@@ -1,0 +1,18 @@
+{# templates/about.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h2>{{ header }}</h2>
+
+    <p>
+        MVC kursen handlar om att programmera webbapplikationer på ett objektorienterat sätt med fokus på det arkitekturella designmönstret MVC.
+        Inom kursen använder man ramverket Symfony som är ett av de mer kända ramverken inom PHP. I kursen lär man sig grunderna för objektorientering
+        inom PHP.
+    </p>
+
+    <p>Här kan man se kursens <a href="https://github.com/dbwebb-se/mvc">github repo</a></p>
+
+    <img src="{{ asset("img/php.png") }}" alt="PHP" title="Bild som representerar kursen" height="200" width="250">
+
+{% endblock %}
