@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class Controller extends AbstractController
 {
     /**
-     * @Route("/", name="index", schemes={"https"})
+     * @Route("/", name="index")
      */
     public function index(): Response
     {
@@ -20,7 +20,7 @@ class Controller extends AbstractController
     }
 
     /**
-     * @Route("/about", name="about", schemes={"https"})
+     * @Route("/about", name="about")
      */
     public function about(): Response
     {
@@ -31,7 +31,7 @@ class Controller extends AbstractController
     }
 
     /**
-     * @Route("/report", name="report", schemes={"https"})
+     * @Route("/report", name="report")
      */
     public function report(): Response
     {
