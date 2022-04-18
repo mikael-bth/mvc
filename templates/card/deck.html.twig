@@ -1,0 +1,13 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+
+<h2>{{ header }}</h2>
+
+<ul>
+    {% for card in deck %}
+        <li>{{ card.getAsString() }}</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

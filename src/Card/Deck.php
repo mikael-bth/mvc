@@ -4,19 +4,18 @@ namespace App\Card;
 
 use App\Card\Card;
 
-class DiceHand
+class Deck
 {
-    private $deck = [];
+    protected $deck = [];
+    private $value_list = ['A','2','3','4','5','6','7','8','9','10','J','Q','K'];
+    private $color_list = ["Hearts", "Spades", "Clubs", "Diamonds"];
 
     public function __construct()
     {
-        $this->deck[] = new Card;
-    }
-
-    public function shuffle(): void
-    {
-        foreach ($this->deck as $card) {
-            $card->roll();
+        foreach ($this->color_list as $color) {
+            foreach($this->value_list as $value) {
+                $this->deck[] = new Card($value, $color);
+            }
         }
     }
 
@@ -27,5 +26,10 @@ class DiceHand
             $str .= $card->getAsString();
         }
         return $str;
+    }
+
+    public function getDeck(): array
+    {
+        return $this->deck;
     }
 }

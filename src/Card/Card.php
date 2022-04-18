@@ -6,19 +6,11 @@ class Card
 {
     protected $value;
     protected $color;
-    private $color_list = ["Hearts", "Spades", "Clubs", "Diamonds"];
 
-    public function __construct()
+    public function __construct($value, $color)
     {
-        $this->value = random_int(1, 13);
-        $this->color = $this->color_list[random_int(0, 4)];
-    }
-
-    public function roll(): int
-    {
-        $this->value = random_int(1, 13);
-        $this->color = $this->color_list[random_int(0, 4)];
-        return $this->value;
+        $this->value = $value;
+        $this->color = $color;
     }
 
     public function getAsString(): string
