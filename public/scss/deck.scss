@@ -25,6 +25,15 @@
     margin: 10px;
 }
 
+.deck .draws {
+    all: revert;
+    list-style-type: none;
+}
+
+.deck .draws li {
+    margin: 5px;
+}
+
 .heart, .diamond {
     color: red;
 }

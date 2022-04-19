@@ -1,0 +1,17 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+
+<div class="deck">
+<h2>{{ header }}</h2>
+
+<ul class="draws">
+    {% for card in cards %}
+        <li class="{{ card.getColorName() }}">{{ card.getAsString() }}</li>
+    {% endfor %}
+</ul>
+
+<p>Kort kvar i leken - {{ count }}</p>
+</div>
+
+{% endblock %}

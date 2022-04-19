@@ -59,8 +59,19 @@ class CardController extends AbstractController
         $deck = new \App\Card\Deck();
         $cardList = $session->get("deck") ?? $deck->getDeck();
         $deck->setDeck($cardList);
-        $card = $deck->drawCard();
+        $cardCount = $deck->getDeckSize();
+        if ($cardCount == 0) {
+            return $this->render('card/draw.html.twig', [
+                'title' => "Dra ett kort",
+                'header' => "Slut på kort",
+                'card' => "Inga kort kvar i kortleken",
+                'color' => "spade",
+                'count' => $cardCount
+            ]);
+        }
         
+        $card = $deck->drawCard();
+        $cardCount = $deck->getDeckSize();
         $session->set("deck", $deck->getDeck());
 
         return $this->render('card/draw.html.twig', [
@@ -68,7 +79,42 @@ class CardController extends AbstractController
             'header' => "Du fick kortet...",
             'card' => $card->getAsString(),
             'color' => $card->getColorName(),
-            'count' => $deck->getDeckSize()
+            'count' => $cardCount
+        ]);
+    }
+
+    /**
+     * @Route("/card/deck/draw/{numDraws}", name="deck-draw-count")
+     */
+    public function drawCount(int $numDraws, SessionInterface $session): Response
+    {
+        $deck = new \App\Card\Deck();
+        $cardList = $session->get("deck") ?? $deck->getDeck();
+        $deck->setDeck($cardList);
+        $cardCount = $deck->getDeckSize();
+        if ($cardCount - $numDraws < 0) {
+            return $this->render('card/draw.html.twig', [
+                'title' => "Dra ett kort",
+                'header' => "Inte tillräckligt med kort",
+                'card' => "Inte tillräckligt med kort för att dra ${numDraws} kort",
+                'color' => "spade",
+                'count' => $cardCount
+            ]);
+        }
+        
+        $cardList = [];
+        for ($i=0; $i < $numDraws; $i++) { 
+            $card = $deck->drawCard();
+            $cardList[] = $card;
+        }
+        $cardCount = $deck->getDeckSize();
+        $session->set("deck", $deck->getDeck());
+
+        return $this->render('card/draws.html.twig', [
+            'title' => "Dra flera kort",
+            'header' => "Du fick korten...",
+            'cards' => $cardList,
+            'count' => $cardCount
         ]);
     }
 }
