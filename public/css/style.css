@@ -347,6 +347,11 @@ template {
   text-align: center;
 }
 
+.deck h3 {
+  text-align: center;
+  font-size: 32px;
+}
+
 .deck ul {
   display: flex;
   flex-wrap: wrap;

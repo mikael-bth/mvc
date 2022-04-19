@@ -50,4 +50,25 @@ class CardController extends AbstractController
             'deck' => $deck->getDeck()
         ]);
     }
+
+    /**
+     * @Route("/card/deck/draw", name="deck-draw")
+     */
+    public function draw(SessionInterface $session): Response
+    {
+        $deck = new \App\Card\Deck();
+        $cardList = $session->get("deck") ?? $deck->getDeck();
+        $deck->setDeck($cardList);
+        $card = $deck->drawCard();
+        
+        $session->set("deck", $deck->getDeck());
+
+        return $this->render('card/draw.html.twig', [
+            'title' => "Dra ett kort",
+            'header' => "Du fick kortet...",
+            'card' => $card->getAsString(),
+            'color' => $card->getColorName(),
+            'count' => $deck->getDeckSize()
+        ]);
+    }
 }

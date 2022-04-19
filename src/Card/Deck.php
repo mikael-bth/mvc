@@ -20,14 +20,16 @@ class Deck
         }
     }
     
-    public function setDeck(array $newDeck): void
-    {
-        $this->deck = $newDeck;
-    }
-    
     public function shuffle(): void
     {
         shuffle($this->deck);
+    }
+
+    public function drawCard(): Card
+    {
+        $cardIndex = random_int(0, count($this->deck) - 1);
+        array_splice($this->deck, $cardIndex, 1);
+        return $this->deck[$cardIndex];
     }
 
     public function getAsString(): string
@@ -39,8 +41,18 @@ class Deck
         return $str;
     }
 
+    public function getDeckSize(): int
+    {
+        return count($this->deck);
+    }
+
     public function getDeck(): array
     {
         return $this->deck;
+    }
+
+    public function setDeck(array $newDeck): void
+    {
+        $this->deck = $newDeck;
     }
 }

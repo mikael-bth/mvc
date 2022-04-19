@@ -1,0 +1,12 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+
+<div class="deck">
+<h2>{{ header }}</h2>
+
+<h3 class="{{ color }}">{{ card }}</h3>
+<p>Kort kvar i leken - {{ count }}</p>
+</div>
+
+{% endblock %}
