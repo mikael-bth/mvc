@@ -2,12 +2,14 @@
 
 {% block content %}
 
+<div class="deck">
 <h2>{{ header }}</h2>
 
 <ul>
     {% for card in deck %}
-        <li>{{ card.getAsString() }}</li>
+        <li class="{{ card.getColorName() }}">{{ card.getAsString() }}</li>
     {% endfor %}
 </ul>
+</div>
 
 {% endblock %}

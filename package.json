@@ -19,7 +19,7 @@
         "watch": "encore dev --watch",
         "build": "encore production --progress",
         "lint": "stylelint \"**/*.scss\"",
-        "style": "sass playful/scss/style.scss playful/css/style.css --no-source-map",
-        "style-min": "sass playful/scss/style.scss playful/css/style.min.css --no-source-map --style compressed"
+        "style": "sass public/scss/style.scss public/css/style.css --no-source-map",
+        "style-min": "sass public/scss/style.scss public/css/style.min.css --no-source-map --style compressed"
     }
 }

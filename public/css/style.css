@@ -337,6 +337,36 @@ template {
   display: none;
 }
 
+.deck {
+  display: grid;
+  justify-content: center;
+}
+
+.deck h2 {
+  width: 100%;
+  text-align: center;
+}
+
+.deck ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+  width: 85%;
+}
+
+.deck li {
+  font-size: 20px;
+  margin: 10px;
+}
+
+.heart, .diamond {
+  color: red;
+}
+
+.spade, .club {
+  color: black;
+}
+
 .header {
   height: 5em;
   width: 100%;
