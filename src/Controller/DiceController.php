@@ -11,6 +11,17 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 class DiceController extends AbstractController
 {
     /**
+     * @Route("/dice-start", name="dice")
+     */
+    public function dice(): Response
+    {
+        return $this->render('dice.html.twig', [
+            'title' => "Tärningsspel",
+            'header' => "Tärning",
+        ]);
+    }
+
+    /**
      * @Route("/dice", name="dice-home")
      */
     public function home(): Response

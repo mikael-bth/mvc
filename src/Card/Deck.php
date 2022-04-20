@@ -27,7 +27,8 @@ class Deck
 
     public function drawCard(): Card
     {
-        $cardIndex = random_int(0, count($this->deck) - 1);
+        $deckSize = $this->getDeckSize();
+        $cardIndex = random_int(0, $deckSize - 1);
         $card = $this->deck[$cardIndex];
         array_splice($this->deck, $cardIndex, 1);
         return $card;

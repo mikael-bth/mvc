@@ -3,11 +3,23 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
+    <div class="card-home">
     <h2>{{ header }}</h2>
     <p>
         <a href="{{ path('deck') }}">Kortlek</a>
+    </p>
+    <p>
         <a href="{{ path('deck-shuffle') }}">Blanda kortlek</a>
+    </p>
+    <p>
         <a href="{{ path('deck-draw') }}">Dra ett kort</a>
     </p>
+    <p>
+        <a href="{{ path('deck-draw-count', {numDraws: 5}) }}">Dra fem kort</a>
+    </p>
+    <p>
+        <a href="{{ path('deck-deal', {numPlayers: 4, numCards: 2}) }}">Dela ut kort till spelare</a>
+    </p>
+    </div>
 
 {% endblock %}

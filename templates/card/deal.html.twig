@@ -1,0 +1,22 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+
+<div class="deal">
+    <h2>{{ header }}</h2>
+
+    <div class="players">
+    {% for player in players %}
+        <div>
+            <h3>{{ player.getName() }}</h3>
+            {% for card in player.getHand() %}
+            <p class="{{ card.getColorName() }}">{{ card.getAsString() }}</p>
+            {% endfor %}
+        </div>
+    {% endfor %}
+    </div>
+
+    <p>Kort kvar i leken - {{ count }}</p>
+</div>
+
+{% endblock %}

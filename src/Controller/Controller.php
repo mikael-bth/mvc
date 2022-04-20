@@ -40,15 +40,4 @@ class Controller extends AbstractController
             'header' => "Redovisning för kursen MVC",
         ]);
     }
-
-    /**
-     * @Route("/dice-start", name="dice")
-     */
-    public function dice(): Response
-    {
-        return $this->render('dice.html.twig', [
-            'title' => "Tärningsspel",
-            'header' => "Pig - Tärningsspel",
-        ]);
-    }
 }

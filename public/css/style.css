@@ -337,6 +337,20 @@ template {
   display: none;
 }
 
+.card-home {
+  display: grid;
+  justify-content: center;
+}
+
+.card-home h2 {
+  text-align: center;
+}
+
+.card-home a,
+.card-home p {
+  font-size: 24px;
+}
+
 .deck {
   display: grid;
   justify-content: center;
@@ -360,8 +374,13 @@ template {
 }
 
 .deck li {
-  font-size: 20px;
+  text-align: center;
   margin: 10px;
+  padding-top: 15px;
+  height: 50px;
+  width: 50px;
+  font-size: 20px;
+  border: 1px solid black;
 }
 
 .deck .draws {
@@ -379,6 +398,45 @@ template {
 
 .spade, .club {
   color: black;
+}
+
+.deal {
+  display: grid;
+  justify-content: center;
+}
+
+.deal h2 {
+  text-align: center;
+}
+
+.players {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.players div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin: 10px;
+  width: 30%;
+  border: 2px solid black;
+}
+
+.players div h3 {
+  width: 100%;
+  text-align: center;
+}
+
+.players p {
+  text-align: center;
+  margin: 10px;
+  padding-top: 15px;
+  height: 50px;
+  width: 50px;
+  font-size: 20px;
+  border: 1px solid black;
 }
 
 .header {
