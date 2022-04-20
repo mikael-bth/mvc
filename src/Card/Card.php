@@ -20,6 +20,11 @@ class Card
         return "{$this->value} | {$this->color}";
     }
 
+    public function getAsJSONString(): string
+    {
+        return "{$this->value} | {$this->color_name}";
+    }
+
     public function getColorName(): string
     {
         return $this->color_name;
