@@ -162,4 +162,18 @@ class CardController extends AbstractController
             'count' => $cardCount
         ]);
     }
+
+    /**
+     * @Route("/card/deck2", name="deck2")
+     */
+    public function deck2(): Response
+    {
+        $deck = new \App\Card\Deck2Jokers();
+
+        return $this->render('card/deck.html.twig', [
+            'title' => "Kortlek 2",
+            'header' => "Här är alla kort i kortleken",
+            'deck' => $deck->getDeck()
+        ]);
+    }
 }
