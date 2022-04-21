@@ -26,6 +26,10 @@ class CardAPIController extends AbstractController
             'deck' => $cardList
         ];
 
-        return new JsonResponse($data);
+        $response = new Response();
+        $response->setContent(json_encode($data));
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
     }
 }

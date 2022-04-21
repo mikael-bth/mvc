@@ -22,6 +22,15 @@ class CardController extends AbstractController
     }
 
     /**
+     * @Route("/card/reset", name="reset")
+     */
+    public function reset(SessionInterface $session): Response
+    {
+        $session->invalidate();
+        return $this->redirectToRoute("card");
+    }
+
+    /**
      * @Route("/card/deck", name="deck")
      */
     public function deck(): Response
@@ -41,7 +50,7 @@ class CardController extends AbstractController
     public function shuffle(SessionInterface $session): Response
     {
         $deck = new \App\Card\Deck();
-        $deck->shuffle();
+        $deck->shuffleDeck();
         
         $session->set("deck", $deck->getDeck());
 

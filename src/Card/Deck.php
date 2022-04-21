@@ -20,7 +20,7 @@ class Deck
         }
     }
     
-    public function shuffle(): void
+    public function shuffleDeck(): void
     {
         shuffle($this->deck);
     }
