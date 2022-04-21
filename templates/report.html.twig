@@ -46,7 +46,41 @@
 
     <section>
     <h3>Kmom02</h3>
-    <p></p>
+    <p>
+        Arv inom objektorienterat PHP används för att helt enkelt ärva saker. Det används för att klasser ska kunna använda
+        funktioner och variabler från andra klasser utan att behöva skriva ut dom igen. Förrutom detta kan man också överlagra
+        funktioner då man ändrar koden i funktionen men man kan fortfarande hämta koden från den ärvda klassens funktionen med
+        'parent::' vilket då används för att specifikt kalla på den ärvda klassen. Komposition är på liknande spår när en klass
+        innehåller klass objekt av andra klasser tillexempel så har vi en klass som heter card och en som heter deck där deck
+        innehåller en variabel som är en lista på 52 stycken card objekt. Interface i PHP används för att sätta ett krav på
+        klasserna som använder interfacet att det måste ha vissa specifika saker som tillexempel ifall en klass använder ett
+        interface med funktionen getAsString som returnar en string så måste klassen ha en metod som heter getAsString och returnar
+        en string. Trait i PHP fungerar väldigt mycket som en ärvd klass men ett trait kan inte leva själv utan måste bli användas
+        av en klass, en klass kan också använda flera traits. I helhet så används trait för att hålla metoder och variabler som
+        flera klasser kan ha nytta av.
+    </p>
+    <p>
+        När jag skulle börja implementera uppgiften valde jag att börja med att implementera dice övningen på report mest för att
+        få lite känsla för det och för att ha lite exempel kod att falla tillbaka på ifall jag kände mig helt vilse. Därefter skapade
+        jag två klasser Card och Deck och implementera alla variabler och funktioner jag trodde jag skulle behöva så som en konstruktor
+        där variablernas värde sätts, getAsString metod för att lätt skriva ut värdena på sidan och för Deck klassen getDeck och getDeckSize
+        för att hämta arrayen med korten och se hur många kort finns i leken. Därefter skapade jag symfony controllerna och templatesen,
+        det var inte några stora svårigheter där eftersom jag kunde mest följa exempelkoden men så klart justera så det passar det jag
+        behövde. Därefter la jag till en setDeck funktion i Deck klassen så att jag kunde sätta kortleken till den aktiva leken i session.
+        Sedan spendera jag en del tid på att justera templatesen och css så utskiften av korten skulle se bra ut. I helhet skulle jag säga
+        att jag blev nöjd med hur jag löste uppgiften då sidan ser ganska bra ut och fungerar på ett bra sätt men körde fast på en del
+        små problem vilket gjorde att inte hann göra lika mycket som jag hade hoppats som tillexempel bygga ut JSON API:t och börjat på
+        flödesschemat och psuedokoden för kmom03 uppgiften. Några förbättringar jag kan komma på nu är att card klassen behöver en numerisk
+        representation av värdet på kortet för att lättare skapa ett spel med kortleken och jag hade velat bygga ett interface för Deck
+        klassen för att lättare kunna bygga ut den.
+    </p>
+    <p>
+        Hann inte börja med flödesdiagramet eller psuedokoden detta kmomet så tar det i kmom03 istället.
+    </p>
+    <p>
+        Mitt TIL detta kmomet skulle jag säga är att jag har fått en större kunskap hur man kan använda Symfony och jag har lärt mig mycket
+        mer om hur objektorientering kan användas inom PHP och lärt mig några ny begrepp som interface och trait.
+    </p>
     </section>
 
     <section>
