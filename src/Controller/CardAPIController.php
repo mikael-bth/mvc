@@ -9,6 +9,8 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
+use \App\Card\Deck;
+
 class CardAPIController extends AbstractController
 {
     /**
@@ -16,7 +18,7 @@ class CardAPIController extends AbstractController
      */
     public function deck(): Response
     {
-        $deck = new \App\Card\Deck();
+        $deck = new Deck();
 
         $cardList = [];
         foreach ($deck->getDeck() as $card) {

@@ -1,0 +1,31 @@
+.game-home {
+    display: grid;
+    justify-content: center;
+}
+
+.game-home h2 {
+    text-align: center;
+    grid-column: span 2;
+    justify-self: center
+}
+
+.game-rules {
+    grid-column: span 2;
+    justify-self: center
+}
+
+.game-home a {
+    font-size: 24px;
+}
+
+.game-home p {
+    margin: 24px 20px;
+}
+
+.doc {
+    margin-bottom: 80px;
+}
+
+.doc p {
+    width: 60%;
+}

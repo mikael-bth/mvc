@@ -7,15 +7,15 @@ use App\Card\Card;
 class Deck
 {
     protected $deck = [];
-    private $value_list = ['A','2','3','4','5','6','7','8','9','10','J','Q','K'];
-    private $color_list = ['heart', 'spade', 'diamond', 'club'];
-    private $icon_list = ['♥', '♠', '♦', '♣'];
+    private $valueList = ['A','2','3','4','5','6','7','8','9','10','J','Q','K'];
+    private $colorList = ['heart', 'spade', 'diamond', 'club'];
+    private $iconList = ['♥', '♠', '♦', '♣'];
 
     public function __construct()
     {
-        foreach ($this->icon_list as $index => $color) {
-            foreach($this->value_list as $value) {
-                $this->deck[] = new Card($value, $color, $this->color_list[$index]);
+        foreach ($this->iconList as $index => $color) {
+            foreach($this->valueList as $value) {
+                $this->deck[] = new Card($value, $color, $this->colorList[$index]);
             }
         }
     }

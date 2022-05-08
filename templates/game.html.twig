@@ -1,0 +1,23 @@
+{# templates/game.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block content %}
+<div class="game-home">
+<h2>{{ header }}</h2>
+<div class="game-rules">
+<pre>
+Spelets idé är att med ett eller flera kort försöka uppnå det sammanlagda värdet 21, eller komma så nära som möjligt utan att överskrida 21.
+
+Essen är värda valfritt 1 eller 14, kungarna 13, damerna 12, knektarna 11. Nummerkorten har samma värden som valören.
+
+Spelet börjar med att du som spelare får ett kort och sedan får du välja att ta ett kort eller att stanna, Ifall det sammanlagda värdet överskrider 21 så har du förlorat.
+
+Efter du har stannat får banken börja ta kort med samma regler och du vinner då genom att ha högre värde värde än banken utan att överskridit 21. Banken vinner på lika värden.
+</pre>
+</div>
+<p>
+    <a href="{{ path('game-doc') }}">Dokumentation</a>
+</p>
+</div>
+{% endblock %}

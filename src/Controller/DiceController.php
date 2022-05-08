@@ -7,6 +7,8 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+use \App\Dice\Dice;
+
 class DiceController extends AbstractController
 {
     /**
@@ -25,7 +27,7 @@ class DiceController extends AbstractController
      */
     public function home(): Response
     {
-        $die = new \App\Dice\Dice();
+        $die = new Dice();
         $data = [
             'title' => 'Dice',
             'die_value' => $die->roll(),
@@ -40,7 +42,7 @@ class DiceController extends AbstractController
      */
     public function roll(int $numRolls): Response
     {
-        $die = new \App\Dice\Dice();
+        $die = new Dice();
 
         $rolls = [];
         for ($i = 1; $i <= $numRolls; $i++) {

@@ -1,0 +1,45 @@
+{# templates/game/doc.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block content %}
+<div class="doc">
+<h2>{{ header }}</h2>
+
+<p>
+    Bilden under är flödesschemat jag skapade för att planera hur spelet skulle fungera på sidan.
+</p>
+<img src="{{ asset("img/game.png") }}" alt="flowchart" title="Flödesschema" height="591" width="552">
+
+<h3>Psuedokod, min förståelse om hur spelet ska implementeras</h3>
+<pre>
+När spelet börjar hämtas kortleken från session, ifall det inte finns en sparad skapas en ny.
+Det initieras också två Player klasser en för spelaren och en för banken.
+Det initieras också en Game klass som håller spelarna och deras kort som sparas i session.
+Det kommer finnas två knappar på sidan, en för att stanna och en för att ta ett kort.
+När en av knapparna trycks på så skickas användaren till en processing sida där värdet på knappen plockas från request parametern.
+Därefter uppdateras Game och spelarens Player klass beroende på ifall användaren valde stanna eller ta ett kort,
+Sen redirectas användaren tillbaka till spel sidan.
+Ifall användaren valde att ta ett kort så lägger ett kort till i användarens Player klass och session uppdateras.
+Ifall användarens hand kommer över 21 så avslutas spelet och resultatet visas.
+När användaren har valt att stanna så börjar banken ta sina kort med någon sekunds mellanrum mellan korten
+för att göra det tydligt för användaren. När banken är klar med att dra kort så visas resultatet.
+Jag tänker visa upp resultatet med ett flash message som kommer ha två knappar på sig, en för att starta om spelet och en för att avsluta.
+Ifall användaren väljer att starta om spelet så resetas Game klassen i session och spelet börjar om.
+Ifall användaren väljer att avsluta så tas återställs game värdena i session och sen redirectas användaren till landingsidan.
+Jag kommer också ha en bool i parameterna för spelets sida så när man klickar på länken från landingsidan så skapas ett nytt
+spel men när man redirectas från en processing sida så återställs inte spelet.
+</pre>
+
+<h3>Nya klasser</h3>
+<p>
+    Den enda nya klassen jag tror jag kommer behöva är en Game klass som kommer ha två variabler ett 'bank'
+    och ett 'player' variabel som kommer vara Player klassobjekt. Den kommer också ha hjälp funktioner
+    för att hämta summan av banken och spelarens korts värden. Den kommer också ha en funktion för att
+    sätta spelaren och bankens hand efter den har hämtats från session.
+    Jag behöver också lägga till ett nummer värde i Card klassen för att lätt kunna få ut summan av
+    en hand.
+</p>
+</div>
+
+{% endblock %}

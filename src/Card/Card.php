@@ -6,13 +6,13 @@ class Card
 {
     protected $value;
     protected $color;
-    protected $color_name;
+    protected $colorName;
 
-    public function __construct($value, $color, $color_name)
+    public function __construct($value, $color, $colorName)
     {
         $this->value = $value;
         $this->color = $color;
-        $this->color_name = $color_name;
+        $this->colorName = $colorName;
     }
 
     public function getAsString(): string
@@ -22,11 +22,11 @@ class Card
 
     public function getAsJSONString(): string
     {
-        return "{$this->value} | {$this->color_name}";
+        return "{$this->value} | {$this->colorName}";
     }
 
     public function getColorName(): string
     {
-        return $this->color_name;
+        return $this->colorName;
     }
 }

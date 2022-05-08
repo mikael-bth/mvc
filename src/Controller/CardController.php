@@ -8,6 +8,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
+use \App\Card\Deck;
+use \App\Card\Deck2Jokers;
+use \App\Card\Player;
+
 class CardController extends AbstractController
 {
     /**
@@ -35,7 +39,7 @@ class CardController extends AbstractController
      */
     public function deck(): Response
     {
-        $deck = new \App\Card\Deck();
+        $deck = new Deck();
 
         return $this->render('card/deck.html.twig', [
             'title' => "Kortlek",
@@ -49,7 +53,7 @@ class CardController extends AbstractController
      */
     public function shuffle(SessionInterface $session): Response
     {
-        $deck = new \App\Card\Deck();
+        $deck = new Deck();
         $deck->shuffleDeck();
         
         $session->set("deck", $deck->getDeck());
@@ -66,7 +70,7 @@ class CardController extends AbstractController
      */
     public function draw(SessionInterface $session): Response
     {
-        $deck = new \App\Card\Deck();
+        $deck = new Deck();
         $cardList = $session->get("deck") ?? $deck->getDeck();
         $deck->setDeck($cardList);
         $cardCount = $deck->getDeckSize();
@@ -98,7 +102,7 @@ class CardController extends AbstractController
      */
     public function drawCount(int $numDraws, SessionInterface $session): Response
     {
-        $deck = new \App\Card\Deck();
+        $deck = new Deck();
         $cardList = $session->get("deck") ?? $deck->getDeck();
         $deck->setDeck($cardList);
         $cardCount = $deck->getDeckSize();
@@ -133,7 +137,7 @@ class CardController extends AbstractController
      */
     public function deal(int $numPlayers, int $numCards, SessionInterface $session): Response
     {
-        $deck = new \App\Card\Deck();
+        $deck = new Deck();
         $cardList = $session->get("deck") ?? $deck->getDeck();
         $deck->setDeck($cardList);
 
@@ -152,7 +156,7 @@ class CardController extends AbstractController
         $playerList = [];
         for ($i=1; $i <= $numPlayers; $i++)
         {
-            $player = new \App\Card\Player("Player ${i}");
+            $player = new Player("Player ${i}");
             for ($y=0; $y < $numCards; $y++) 
             {
                 $card = $deck->drawCard();
@@ -177,7 +181,7 @@ class CardController extends AbstractController
      */
     public function deck2(): Response
     {
-        $deck = new \App\Card\Deck2Jokers();
+        $deck = new Deck2Jokers();
 
         return $this->render('card/deck.html.twig', [
             'title' => "Kortlek 2",
