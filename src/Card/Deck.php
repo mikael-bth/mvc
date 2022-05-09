@@ -3,19 +3,21 @@
 namespace App\Card;
 
 use App\Card\Card;
+use Doctrine\Common\Collections\Expr\Value;
 
 class Deck
 {
     protected $deck = [];
     private $valueList = ['A','2','3','4','5','6','7','8','9','10','J','Q','K'];
+    private $valueNumberList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
     private $colorList = ['heart', 'spade', 'diamond', 'club'];
     private $iconList = ['♥', '♠', '♦', '♣'];
 
     public function __construct()
     {
-        foreach ($this->iconList as $index => $color) {
-            foreach($this->valueList as $value) {
-                $this->deck[] = new Card($value, $color, $this->colorList[$index]);
+        foreach ($this->iconList as $colorIndex => $color) {
+            foreach($this->valueList as $valueIndex => $value) {
+                $this->deck[] = new Card($value, $this->valueNumberList[$valueIndex], $color, $this->colorList[$colorIndex]);
             }
         }
     }

@@ -5,12 +5,14 @@ namespace App\Card;
 class Card
 {
     protected $value;
+    protected $valueNumber;
     protected $color;
     protected $colorName;
 
-    public function __construct($value, $color, $colorName)
+    public function __construct($value, $valueNumber, $color, $colorName)
     {
         $this->value = $value;
+        $this->valueNumber = $valueNumber;
         $this->color = $color;
         $this->colorName = $colorName;
     }
@@ -28,5 +30,10 @@ class Card
     public function getColorName(): string
     {
         return $this->colorName;
+    }
+
+    public function getNumberValue(): string
+    {
+        return $this->valueNumber;
     }
 }

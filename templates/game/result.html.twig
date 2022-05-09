@@ -1,0 +1,10 @@
+{# result message #}
+{% if result == true %}
+    <div class="result">
+        <h2>{{ message }}</h2>
+        <form action="{{ path('game-result-process') }}" method="post">
+            <input type="submit" name="exit" value="Avsluta">
+            <input type="submit" name="restart" value="Kör igen">
+        </form>
+    </div>
+{% endif %}

@@ -1,0 +1,36 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+
+<div class="game">
+    <h2>{{ header }}</h2>
+
+    {{ include('game/result.html.twig') }}
+
+    <div>
+        <h3>{{ bank.getName() }}</h3>
+        {% for card in bank.getHand() %}
+        <p class="{{ card.getColorName() }}">{{ card.getAsString() }}</p>
+        {% endfor %}
+        <p>Bankens värde: {{ bankSum }}</p>
+    </div>
+
+    <div>
+        <h3>{{ player.getName() }}</h3>
+        {% for card in player.getHand() %}
+        <p class="{{ card.getColorName() }}">{{ card.getAsString() }}</p>
+        {% endfor %}
+        <p>Ditt värde: {{ playerSum }}</p>
+    </div>
+
+
+    {% if standing == false %}
+    <form action="{{ path('game-play-process') }}" method="post">
+        <input type="submit" name="stand" value="Stanna">
+        <input type="submit" name="draw" value="Dra kort">
+    </form>
+    {% endif %}
+    <p>Kort kvar i leken - {{ count }}</p>
+</div>
+
+{% endblock %}

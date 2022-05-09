@@ -477,6 +477,53 @@ template {
   width: 60%;
 }
 
+.game {
+  display: grid;
+  justify-content: center;
+}
+
+.game h2 {
+  text-align: center;
+  grid-column: span 2;
+}
+
+.game form {
+  grid-column: span 2;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.game .heart,
+.game .diamond,
+.game .spade,
+.game .club {
+  text-align: center;
+  margin: 10px;
+  padding-top: 15px;
+  height: 50px;
+  width: 50px;
+  font-size: 20px;
+  border: 1px solid black;
+}
+
+.result {
+  display: grid;
+  position: fixed;
+  top: 65%;
+  left: calc(50% - 175px);
+  background-color: yellow;
+  height: 150px;
+  width: 350px;
+}
+
+.result input {
+  margin-bottom: 10px;
+}
+
+.game h3 {
+  grid-column: span 2;
+}
+
 .header {
   height: 5em;
   width: 100%;
