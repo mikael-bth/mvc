@@ -26,4 +26,14 @@ class Player
     {
         return $this->name;
     }
+
+    public function hasAce()
+    {
+        foreach ($this->hand as $card) {
+            if ($card->getNumberValue() == 14) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

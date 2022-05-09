@@ -466,7 +466,7 @@ template {
 }
 
 .game-home p {
-  margin: 24px 20px;
+  text-align: center;
 }
 
 .doc {
@@ -522,6 +522,12 @@ template {
   display: flex;
   justify-content: space-evenly;
   height: 100px;
+}
+
+.game .points {
+  display: flex;
+  justify-content: space-evenly;
+  height: 45px;
 }
 
 .result {

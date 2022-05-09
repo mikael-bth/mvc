@@ -59,6 +59,9 @@ class Game
         foreach ($this->player->getHand() as $card) {
             $sum += $card->getNumberValue();
         }
+        if ($sum > 21 and $this->player->hasAce()) {
+            $sum = $this->aceAdjust($this->player, $sum);
+        }
         return $sum;
     }
     
@@ -68,6 +71,20 @@ class Game
         foreach ($this->bank->getHand() as $card) {
             $sum += $card->getNumberValue();
         }
+        if ($sum > 21 and $this->bank->hasAce()) {
+            $sum = $this->aceAdjust($this->bank, $sum);
+        }
         return $sum;
+    }
+
+    public function aceAdjust(Player $player, int $oldSum): int
+    {
+        foreach ($player->getHand() as $card) {
+            if ($card->getNumberValue() == 14) {
+                $card->setNumberValue(1);
+                return $oldSum - 13;
+            }
+        }
+        return $oldSum;
     }
 }
