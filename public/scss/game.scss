@@ -59,6 +59,24 @@
     border: 1px solid black;
 }
 
+.game .player {
+    display: grid;
+    justify-content: center;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #000;
+}
+
+.game .player h3 {
+    grid-column: span 1;
+}
+
+.game .cards {
+    display: flex;
+    justify-content: space-evenly;
+    height: 100px;
+}
+
 .result {
     display: grid;
     position: fixed;
@@ -74,5 +92,6 @@
 }
 
 .game h3 {
+    text-align: center;
     grid-column: span 2;
 }

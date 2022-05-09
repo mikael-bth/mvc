@@ -47,6 +47,10 @@ class GameController extends AbstractController
         $game = $session->get("game") ?? new Game();
 
         if ($status == 1) {
+            if ($deck->getDeckSize() < 12) {
+                $deck = new Deck();
+                $deck->shuffleDeck();
+            }
             $session->remove("game");
             $game = new Game();
             $deck = $game->drawPlayer($deck);

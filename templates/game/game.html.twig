@@ -7,19 +7,23 @@
 
     {{ include('game/result.html.twig') }}
 
-    <div>
+    <div class="player">
         <h3>{{ bank.getName() }}</h3>
+        <div class="cards">
         {% for card in bank.getHand() %}
         <p class="{{ card.getColorName() }}">{{ card.getAsString() }}</p>
         {% endfor %}
+        </div>
         <p>Bankens värde: {{ bankSum }}</p>
     </div>
 
-    <div>
+    <div class="player">
         <h3>{{ player.getName() }}</h3>
+        <div class="cards">
         {% for card in player.getHand() %}
         <p class="{{ card.getColorName() }}">{{ card.getAsString() }}</p>
         {% endfor %}
+        </div>
         <p>Ditt värde: {{ playerSum }}</p>
     </div>
 
