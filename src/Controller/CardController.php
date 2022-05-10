@@ -55,7 +55,7 @@ class CardController extends AbstractController
     {
         $deck = new Deck();
         $deck->shuffleDeck();
-        
+        $session->invalidate();
         $session->set("deck", $deck->getDeck());
 
         return $this->render('card/deck.html.twig', [

@@ -47,9 +47,10 @@ class GameController extends AbstractController
         $game = $session->get("game") ?? new Game();
 
         if ($status == 1) {
-            if ($deck->getDeckSize() < 12) {
+            if ($deck->getDeckSize() < 15) {
                 $deck = new Deck();
                 $deck->shuffleDeck();
+                $session->invalidate();
             }
             $session->remove("game");
             $game = new Game();
@@ -71,6 +72,8 @@ class GameController extends AbstractController
                 $message = "Du vann, Banken gick över 21";
             } else if ($game->getBankSum() > $game->getPlayerSum()) {
                 $message = "Banken vann, Banken var närmare 21 än dig";
+            } else if ($game->getBankSum() == $game->getPlayerSum()) {
+                $message = "Banken vann, Banken var lika nära 21 som dig";
             } else {
                 $message = "Du vann, du var närmare 21 än banken";
             }
