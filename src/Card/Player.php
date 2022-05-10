@@ -21,7 +21,7 @@ class Player
     {
         return $this->hand;
     }
-    
+
     public function getName(): string
     {
         return $this->name;

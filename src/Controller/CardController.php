@@ -8,9 +8,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
-use \App\Card\Deck;
-use \App\Card\Deck2Jokers;
-use \App\Card\Player;
+use App\Card\Deck;
+use App\Card\Deck2Jokers;
+use App\Card\Player;
 
 class CardController extends AbstractController
 {
@@ -83,7 +83,7 @@ class CardController extends AbstractController
                 'count' => $cardCount
             ]);
         }
-        
+
         $card = $deck->drawCard();
         $cardCount = $deck->getDeckSize();
         $session->set("deck", $deck->getDeck());
@@ -115,9 +115,9 @@ class CardController extends AbstractController
                 'count' => $cardCount
             ]);
         }
-        
+
         $cardList = [];
-        for ($i=0; $i < $numDraws; $i++) { 
+        for ($i=0; $i < $numDraws; $i++) {
             $card = $deck->drawCard();
             $cardList[] = $card;
         }
@@ -154,11 +154,9 @@ class CardController extends AbstractController
         }
 
         $playerList = [];
-        for ($i=1; $i <= $numPlayers; $i++)
-        {
+        for ($i=1; $i <= $numPlayers; $i++) {
             $player = new Player("Player ${i}");
-            for ($y=0; $y < $numCards; $y++) 
-            {
+            for ($y=0; $y < $numCards; $y++) {
                 $card = $deck->drawCard();
                 $player->addCard($card);
             }

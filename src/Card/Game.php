@@ -45,12 +45,12 @@ class Game
 
     public function playerStay()
     {
-       $this->playerStanding = true;
+        $this->playerStanding = true;
     }
 
     public function getPlayerStatus(): bool
     {
-       return $this->playerStanding;
+        return $this->playerStanding;
     }
 
     public function getPlayerSum(): int
@@ -64,7 +64,7 @@ class Game
         }
         return $sum;
     }
-    
+
     public function getBankSum(): int
     {
         $sum = 0;

@@ -36,8 +36,8 @@ class Card
     {
         return $this->valueNumber;
     }
-    
-    public function setNumberValue(int $newValue)
+
+    public function setNumberValue(int $newValue): void
     {
         $this->valueNumber = $newValue;
     }

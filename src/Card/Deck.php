@@ -16,12 +16,12 @@ class Deck
     public function __construct()
     {
         foreach ($this->iconList as $colorIndex => $color) {
-            foreach($this->valueList as $valueIndex => $value) {
+            foreach ($this->valueList as $valueIndex => $value) {
                 $this->deck[] = new Card($value, $this->valueNumberList[$valueIndex], $color, $this->colorList[$colorIndex]);
             }
         }
     }
-    
+
     public function shuffleDeck(): void
     {
         shuffle($this->deck);

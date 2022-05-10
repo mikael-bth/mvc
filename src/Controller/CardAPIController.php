@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
-use \App\Card\Deck;
+use App\Card\Deck;
 
 class CardAPIController extends AbstractController
 {
