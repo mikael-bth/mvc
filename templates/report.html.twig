@@ -122,7 +122,38 @@
 
     <section>
     <h3>Kmom04</h3>
-    <p></p>
+    <p>
+        Hade inte för svårt med att skapa tester med PHPUnit eftersom det liknade väldigt mycket unittest från python vilket gjorde att det var
+        inte jätte mycket nytt att lära sig. Tyckte också att XDEBUG gav en väldigt bra insikt till hur mycket man faktiskt har testat vilket var
+        väldigt användbart för att se så man inte glömmer att testa något. Gillade också hur man använde mock i PHPUnit tyckte det kändes bättre
+        och gav snyggare kod jämfört med hur det användes i unittest.
+    </p>
+    <p>
+        Skulle säga att lyckades väldigt bra på mina testers kodtäckning där 3 klasser hade 100% kodtäckning och bara en klass hade under 90% vilket
+        var Deck med 75% kodtäckning.
+    </p>
+    <p>
+        Skulle säga att alla klasser var ganska testbara där jag inte behövde ändra något i klasserna för att testa dom. Men det fanns såklart vissa
+        funktioner som var lite svårare att testa tillexempel så hade jag lite svårt med att komma på en test för Deck klassens shuffleDeck funktion
+        men nöjde mig med att testa så att en deck som shufflas inte är 'equal' till en ny skapad deck vilket då visar att den har shufflats. Det
+        var också lite svårt att testa sum funktionera från Game klassen men kom på att jag kan använda mock för att bestämma vilket kort som skulle
+        dras från Decks drawCard funktion vilket gjorde att det var lätt att veta vilket värde som spelaren eller banken skulle ha på handen efter
+        en dragning och gick då att testa detta. Använde också denna metoden för att testa min aceAdjust funktion. I helhet skulle jag säga att koden
+        var väldigt testbar och kan inte komma på något för att förbättra dens testbarhet.
+    </p>
+    <p>
+        Skulle säga att en kod är testbar så betyder det också att den har ett tydligt mål som då går att testa ifall den uppnår. Detta skulle jag säga
+        bidrar till renare kod eftersom kod som inte går att testa kanske är bättre att skriva om så dess mål är tydligare och detta ökar också chansen
+        att koden kommer återanvändas ifall man behöver uppnå detta målet igen. Skulle också säga att testbar kod betyder också tydlig kod eftersom man
+        kan lätt förstå varför koden utförs och vad den ska göra vilket då gör att det är lättare att testa den och att koden blir lättare att förstå.
+        Detta gör också att man kanske borde skriva om kod som är svår att förstå och testa vilket gör att man kanske bryter upp koden lite mer vilket
+        göra att den blir snyggare.
+    </p>
+    <p>
+        Mitt TIL detta kmomet skulle jag säga är hur man kan använda enhetstester med PHP för att testa och få bättre kod. Jag har också lärt mig några
+        nya program för att skapa data om min kod som gör det lättare att se vart någonstans den behövs förbättras. Fick också en liten påminnelse detta
+        kmomet att det är viktigt med kommentarer så implementera också det i koden.
+    </p>
     </section>
 
     <section>
