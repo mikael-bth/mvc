@@ -3,15 +3,14 @@
 namespace App\Card;
 
 use App\Card\Card;
-use Doctrine\Common\Collections\Expr\Value;
 
 class Deck
 {
-    protected $deck = [];
-    private $valueList = ['2','3','4','5','6','7','8','9','10','J','Q','K','A'];
-    private $valueNumberList = [2,3,4,5,6,7,8,9,10,11,12,13,14];
-    private $colorList = ['heart', 'spade', 'diamond', 'club'];
-    private $iconList = ['♥', '♠', '♦', '♣'];
+    protected array $deck = [];
+    private array $valueList = ['2','3','4','5','6','7','8','9','10','J','Q','K','A'];
+    private array $valueNumberList = [2,3,4,5,6,7,8,9,10,11,12,13,14];
+    private array $colorList = ['heart', 'spade', 'diamond', 'club'];
+    private array $iconList = ['♥', '♠', '♦', '♣'];
 
     /**
      * Constructor

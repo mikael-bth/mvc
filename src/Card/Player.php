@@ -4,13 +4,13 @@ namespace App\Card;
 
 class Player
 {
-    protected $hand = [];
-    private $name;
+    protected array $hand = [];
+    private string $name;
 
     /**
      * Constructor
      */
-    public function __construct($name)
+    public function __construct(string $name)
     {
         $this->name = $name;
     }
@@ -43,7 +43,7 @@ class Player
      * Returns true if player has an ace with numerical value of 14
      * in hand else false.
      */
-    public function hasAce()
+    public function hasAce(): bool
     {
         foreach ($this->hand as $card) {
             if ($card->getNumberValue() == 14) {

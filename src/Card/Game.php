@@ -21,7 +21,7 @@ class Game
     /**
      * Returns the bank object.
      */
-    public function getBank()
+    public function getBank(): Player
     {
         return $this->bank;
     }
@@ -29,7 +29,7 @@ class Game
     /**
      * Returns the player object.
      */
-    public function getPlayer()
+    public function getPlayer(): Player
     {
         return $this->player;
     }

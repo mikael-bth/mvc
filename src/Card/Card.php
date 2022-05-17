@@ -4,15 +4,15 @@ namespace App\Card;
 
 class Card
 {
-    protected $value;
-    protected $valueNumber;
-    protected $color;
-    protected $colorName;
+    protected string $value;
+    protected int $valueNumber;
+    protected string $color;
+    protected string $colorName;
 
     /**
      * Constructor
      */
-    public function __construct($value, $valueNumber, $color, $colorName)
+    public function __construct(string $value, int $valueNumber, string $color, string $colorName)
     {
         $this->value = $value;
         $this->valueNumber = $valueNumber;
