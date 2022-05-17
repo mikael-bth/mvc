@@ -67,5 +67,4 @@ class CardTest extends TestCase
         $exp = 14;
         $this->assertEquals($exp, $res);
     }
-
 }

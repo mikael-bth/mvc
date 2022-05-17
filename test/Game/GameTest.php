@@ -55,7 +55,7 @@ class GameTest extends TestCase
     public function testDrawCardPlayer()
     {
         $game = new Game();
-        $deck = new Deck;
+        $deck = new Deck();
         $expDeck = 51;
         $expDraw = 1;
         $resDeck = $game->drawPlayer($deck);
@@ -73,7 +73,7 @@ class GameTest extends TestCase
     public function testDrawCardBank()
     {
         $game = new Game();
-        $deck = new Deck;
+        $deck = new Deck();
         $expDeck = 52;
         $expDraw = 0;
         $resDeck = $game->drawBank($deck);

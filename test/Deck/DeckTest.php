@@ -71,5 +71,4 @@ class DeckTest extends TestCase
         $res = $deck->getDeck();
         $this->assertEquals($exp, $res);
     }
-
 }
