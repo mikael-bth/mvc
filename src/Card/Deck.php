@@ -13,6 +13,9 @@ class Deck
     private $colorList = ['heart', 'spade', 'diamond', 'club'];
     private $iconList = ['♥', '♠', '♦', '♣'];
 
+    /**
+     * Constructor
+     */
     public function __construct()
     {
         foreach ($this->iconList as $colorIndex => $color) {
@@ -22,11 +25,17 @@ class Deck
         }
     }
 
+    /**
+     * Shuffles the deck array.
+     */
     public function shuffleDeck(): void
     {
         shuffle($this->deck);
     }
 
+    /**
+     * Returns a random card, then removes that card from the deck.
+     */
     public function drawCard(): Card
     {
         $deckSize = $this->getDeckSize();
@@ -36,6 +45,9 @@ class Deck
         return $card;
     }
 
+    /**
+     * Returns the deck array as a string.
+     */
     public function getAsString(): string
     {
         $str = "";
@@ -45,16 +57,25 @@ class Deck
         return $str;
     }
 
+    /**
+     * Returns how many card are in the deck array.
+     */
     public function getDeckSize(): int
     {
         return count($this->deck);
     }
 
+    /**
+     * Returns the deck array.
+     */
     public function getDeck(): array
     {
         return $this->deck;
     }
 
+    /**
+     * Sets the deck array to a given array.
+     */
     public function setDeck(array $newDeck): void
     {
         $this->deck = $newDeck;

@@ -4,6 +4,9 @@ namespace App\Card;
 
 class Deck2Jokers extends Deck
 {
+    /**
+     * Constructor
+     */
     public function __construct()
     {
         parent::__construct();

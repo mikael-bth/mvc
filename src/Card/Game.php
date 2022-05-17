@@ -8,6 +8,9 @@ class Game
     private Player $player;
     private bool $playerStanding;
 
+    /**
+     * Constructor
+     */
     public function __construct()
     {
         $this->bank = new Player("Bank");
@@ -15,16 +18,25 @@ class Game
         $this->playerStanding = false;
     }
 
+    /**
+     * Returns the bank object.
+     */
     public function getBank()
     {
         return $this->bank;
     }
 
+    /**
+     * Returns the player object.
+     */
     public function getPlayer()
     {
         return $this->player;
     }
 
+    /**
+     * Draws a card for the player, updates the deck accordingly.
+     */
     public function drawPlayer(Deck $deck): Deck
     {
         $card = $deck->drawCard();
@@ -32,6 +44,9 @@ class Game
         return $deck;
     }
 
+    /**
+     * Draws a card for the bank, updates the deck accordingly.
+     */
     public function drawBank(Deck $deck): Deck
     {
         $bankSum = $this->getBankSum();
@@ -43,16 +58,26 @@ class Game
         return $deck;
     }
 
+    /**
+     * Changes the playerStanding bool to true.
+     */
     public function playerStay()
     {
         $this->playerStanding = true;
     }
 
+    /**
+     * Returns the playerStanding value.
+     */
     public function getPlayerStatus(): bool
     {
         return $this->playerStanding;
     }
 
+    /**
+     * Returns the sum of the cards in the players hands,
+     * updates the value accordingly if the player has aces in the hand.
+     */
     public function getPlayerSum(): int
     {
         $sum = 0;
@@ -65,6 +90,10 @@ class Game
         return $sum;
     }
 
+    /**
+     * Returns the sum of the cards in the banks hands,
+     * updates the value accordingly if the bank has aces in the hand.
+     */
     public function getBankSum(): int
     {
         $sum = 0;
@@ -77,6 +106,9 @@ class Game
         return $sum;
     }
 
+    /**
+     * Changes an ace cards value to 1 instead of 14.
+     */
     public function aceAdjust(Player $player, int $oldSum): int
     {
         foreach ($player->getHand() as $card) {
