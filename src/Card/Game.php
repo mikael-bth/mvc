@@ -61,7 +61,7 @@ class Game
     /**
      * Changes the playerStanding bool to true.
      */
-    public function playerStay()
+    public function playerStay(): void
     {
         $this->playerStanding = true;
     }

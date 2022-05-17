@@ -48,7 +48,7 @@ class Card
     /**
      * Returns the numerical value of the cards value.
      */
-    public function getNumberValue(): string
+    public function getNumberValue(): int
     {
         return $this->valueNumber;
     }
