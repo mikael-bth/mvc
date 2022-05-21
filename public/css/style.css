@@ -603,8 +603,12 @@ template {
 }
 
 .books > div {
+  display: grid;
+  align-content: space-between;
   width: 25%;
+  padding: 5px;
   border: 1px solid #000;
+  max-height: 500px;
 }
 
 .books > div h3 {
@@ -618,6 +622,7 @@ template {
 .books > div img {
   width: 100%;
   object-fit: cover;
+  max-height: 500px;
 }
 
 .library-create {
