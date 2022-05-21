@@ -1,0 +1,24 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+
+<div class="library-create">
+    <h2>{{ header }}</h2>
+
+    <form action="{{ path('library-create-process') }}" method="post">
+        <fieldset>
+            <legend>Ny bok</legend>
+            <label for="title">Titel:</label><br>
+            <input type="text" id="title" name="title" required><br>
+            <label for="author">Författare:</label><br>
+            <input type="text" id="author" name="author" required><br>
+            <label for="isbn">ISBN(max 11-tecken):</label><br>
+            <input type="text" id="isbn" name="isbn" required><br>
+            <label for="img">Bildlänk:</label><br>
+            <input type="text" id="img" name="img"><br><br>
+            <input type="submit" value="Lägg till">
+        </fieldset>
+    </form> 
+</div>
+
+{% endblock %}

@@ -1,0 +1,62 @@
+.library-home {
+    display: grid;
+    justify-content: center;
+}
+
+.library-home h2 {
+    text-align: center;
+    grid-column: span 2;
+    justify-self: center
+}
+
+.library-home a {
+    font-size: 24px;
+}
+
+.library-home p {
+    margin: 24px 20px;
+}
+
+.library-books {
+    display: grid;
+    justify-content: center;
+}
+
+.library-books h2 {
+    text-align: center;
+}
+
+.library-books .books {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.books>div {
+    width: 25%;
+    border: 1px solid #000;
+}
+
+
+.books>div h3 {
+    text-align: center;
+}
+
+.books>div h4 {
+    text-align: center;
+}
+
+.books>div img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.library-create {
+    display: grid;
+    justify-content: center;
+}
+
+.library-create h2 {
+    text-align: center;
+}
+

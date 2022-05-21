@@ -1,0 +1,26 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+
+<div class="library-books">
+    <h2>{{ header }}</h2>
+
+    <div class="books">
+        {% for book in books %}
+            <div>
+                <h3>{{ book.getBookTitle() }}</h3>
+                {% if book.getImg() != null %}
+                <figure>
+                    <img src="{{ book.getImg() }}" alt="{{ book.getBookTitle() }}">
+                    <figcaption>ISBN: {{ book.getBookIsbn() }}</figcaption>
+                </figure>
+                {% else %}
+                <p>ISBN: {{ book.getBookIsbn() }}</p>
+                {% endif %}
+                <h4>Av: {{ book.getAuthor() }}</h4>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
