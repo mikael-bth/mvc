@@ -20,6 +20,7 @@
 .library-books {
     display: grid;
     justify-content: center;
+    margin-bottom: 5em;
 }
 
 .library-books h2 {
@@ -37,6 +38,7 @@
     align-content: space-between;
     width: 25%;
     padding: 5px;
+    margin: 20px;
     border: 1px solid #000;
     max-height: 500px;
 }
@@ -53,7 +55,7 @@
 .books>div img {
     width: 100%;
     object-fit: cover;
-    max-height: 500px;
+    max-height: 300px;
 }
 
 .library-create {
@@ -62,6 +64,28 @@
 }
 
 .library-create h2 {
+    text-align: center;
+}
+
+.library-books .book {
+    display: grid;
+    align-content: space-between;
+    width: 96.5%;
+    padding: 10px;
+    border: 1px solid #000;
+}
+
+.book img {
+    width: 100%;
+    object-fit: cover;
+    max-height: 500px;
+}
+
+.book>h3 {
+    text-align: center;
+}
+
+.book>h4 {
     text-align: center;
 }
 

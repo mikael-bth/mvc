@@ -41,6 +41,28 @@ class LibraryController extends AbstractController
     }
 
     /**
+     * @Route("/library/show/{id}", name="library-show-id")
+     */
+    public function showBookId(
+        LibraryRepository $libraryRepository,
+        int $id
+    ): Response {
+        $book = $libraryRepository
+            ->find($id);
+        if (!$book) {
+            throw $this->createNotFoundException(
+                'No book found with id '.$id
+            );
+        }
+
+        return $this->render('library/book.html.twig', [
+            'title' => "Bok",
+            'header' => "Här är boken med ID: ${id}",
+            'book' => $book
+        ]);
+    }
+
+    /**
      * @Route("/library/create", name="library-create")
      */
     public function createBookForm(): Response {
@@ -59,9 +81,9 @@ class LibraryController extends AbstractController
      */
     public function createBookProcess(Request $request, ManagerRegistry $doctrine): Response {
         $title  = $request->request->get('title');
-        $author  = $request->request->get('author');
-        $isbn  = $request->request->get('isbn');
-        $img  = $request->request->get('img');
+        $author = $request->request->get('author');
+        $isbn   = $request->request->get('isbn');
+        $img    = $request->request->get('img');
         $entityManager = $doctrine->getManager();
 
         $library = new Library();
@@ -80,5 +102,57 @@ class LibraryController extends AbstractController
         $entityManager->flush();
 
         return $this->redirectToRoute("library-show-all");;
+    }
+
+    /**
+     * @Route("/library/update/{id}", name="library-update")
+     */
+    public function updateBookForm(
+            LibraryRepository $libraryRepository,
+            int $id
+        ): Response {
+            $book = $libraryRepository
+                ->find($id);
+
+            return $this->render('library/update.html.twig', [
+                'title' => "Uppdatera bok",
+                'header' => "Uppdatera boken med ID: ${id}",
+                'book' => $book
+            ]);
+    }
+
+    /**
+     * @Route(
+     *      "/library/update/process/{id}",
+     *      name="library-update-process",
+     *      methods={"POST"}
+     * )
+     */
+    public function updateBookProcess(
+        Request $request,
+        ManagerRegistry $doctrine,
+        int $id
+    ): Response {
+        $title  = $request->request->get('title');
+        $author = $request->request->get('author');
+        $isbn   = $request->request->get('isbn');
+        $img    = $request->request->get('img');
+        $entityManager = $doctrine->getManager();
+        $library = $entityManager->getRepository(Library::class)->find($id);
+        if (!$library) {
+            throw $this->createNotFoundException(
+                'No book found with id '.$id
+            );
+        }
+        $library->setBookTitle($title);
+        $library->setAuthor($author);
+        $library->setBookIsbn($isbn);
+        if ($img != null) {
+            $library->setImg($img);
+        }
+
+        $entityManager->flush();
+
+        return $this->redirectToRoute('library-show-id', array('id' => $id));
     }
 }

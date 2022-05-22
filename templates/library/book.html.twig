@@ -1,0 +1,25 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+
+<div class="library-books">
+    <h2>{{ header }}</h2>
+
+    <div class="book">
+        <h3>{{ book.getBookTitle() }}</h3>
+        {% if book.getImg() != null %}
+        <figure>
+            <img src="{{ book.getImg() }}" alt="{{ book.getBookTitle() }}">
+            <figcaption>ISBN: {{ book.getBookIsbn() }}</figcaption>
+        </figure>
+        {% else %}
+        <figure>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png" alt="{{ book.getBookTitle() }}">
+            <figcaption>ISBN: {{ book.getBookIsbn() }}</figcaption>
+        </figure>
+        {% endif %}
+        <h4>Av: {{ book.getAuthor() }}</h4>
+    </div>
+</div>
+
+{% endblock %}

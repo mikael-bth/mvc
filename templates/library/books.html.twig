@@ -15,7 +15,10 @@
                     <figcaption>ISBN: {{ book.getBookIsbn() }}</figcaption>
                 </figure>
                 {% else %}
-                <p>ISBN: {{ book.getBookIsbn() }}</p>
+                <figure>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png" alt="{{ book.getBookTitle() }}">
+                    <figcaption>ISBN: {{ book.getBookIsbn() }}</figcaption>
+                </figure>
                 {% endif %}
                 <h4>Av: {{ book.getAuthor() }}</h4>
             </div>
