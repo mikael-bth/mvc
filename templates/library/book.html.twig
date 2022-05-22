@@ -6,6 +6,7 @@
     <h2>{{ header }}</h2>
 
     <div class="book">
+        <p id="book-id">{{ book.getId() }}</p>
         <h3>{{ book.getBookTitle() }}</h3>
         {% if book.getImg() != null %}
         <figure>

@@ -8,6 +8,7 @@
     <div class="books">
         {% for book in books %}
             <div>
+                <p id="book-id">{{ book.getId() }}</p>
                 <h3>{{ book.getBookTitle() }}</h3>
                 {% if book.getImg() != null %}
                 <figure>
