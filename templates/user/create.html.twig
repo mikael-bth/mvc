@@ -1,0 +1,26 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+
+<div class="user-create">
+    <h2>{{ header }}</h2>
+
+    <form action="{{ path('user-create-process') }}" method="post">
+        <fieldset>
+            <legend>Ny användare</legend>
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" required><br>
+            <label for="acro">Akronym (max 6 tecken):</label><br>
+            <input type="text" id="acro" name="acro" maxlength="6" required><br>
+            <label for="name">Namn:</label><br>
+            <input type="text" id="name" name="name" required><br>
+            <label for="pass">Lösenord:</label><br>
+            <input type="password" id="pass" name="pass" required><br>
+            <label for="admin">Admin:</label><br>
+            <input type="checkbox" id="admin" name="admin"><br><br>
+            <input type="submit" value="Lägg till">
+        </fieldset>
+    </form> 
+</div>
+
+{% endblock %}

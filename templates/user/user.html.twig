@@ -1,0 +1,16 @@
+{# templates/user.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <div class="card-home">
+    <h2>{{ header }}</h2>
+    <p>
+        <a href="{{ path('user-create') }}">Skapa användare</a>
+    </p>
+    <p>
+        <a href="{{ path('user-show') }}">Visa användare</a>
+    </p>
+    </div>
+
+{% endblock %}

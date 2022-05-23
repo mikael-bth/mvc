@@ -1,0 +1,30 @@
+{# templates/user.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <div class="user-show">
+    <h2>{{ header }}</h2>
+    <table>
+        <tr>
+            <th>Namn</th>
+            <th>Akronym</th>
+            <th>Email</th>
+            <th>Admin</th>
+        </tr>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.getName() }}</td>
+                <td>{{ user.getAcronym() }}</td>
+                <td>{{ user.getEmail() }}</td>
+                {% if user.getType() == 1 %}
+                <td>YES</td>
+                {% else %}
+                <td>NO</td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+    </table>
+    </div>
+
+{% endblock %}
