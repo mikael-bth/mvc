@@ -146,14 +146,26 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/user/login", name="user-log-in")
+     * @Route("/user/profile", name="user-profile")
      */
-    public function getProfileUser(): Response {
-        return $this->render('user/login.html.twig', [
-            'title' => "Logga in",
-            'header' => "Logga in",
-            'fail' => false,
-            'message' => ""
+    public function getProfileUser(
+        UserRepository $userRepository,
+        SessionInterface $session
+    ): Response {
+        $loggedIn = $session->get('loggedIn') ?? false;
+        if (!$loggedIn) {
+            return $this->redirectToRoute("user");
+        }
+        $name = $session->get("user");
+        $user = $userRepository
+            ->findOneBy(array('name' => $name));
+        $admin = 'No';
+        if ($user->getType() == 1) $admin = 'Yes';
+        return $this->render('user/profile.html.twig', [
+            'title' => "Min profil",
+            'header' => "Min profil",
+            'user' => $user,
+            'admin' => $admin
         ]);
     }
 }
