@@ -610,7 +610,7 @@ template {
   padding: 5px;
   margin: 20px;
   border: 1px solid #000;
-  max-height: 500px;
+  max-height: 650px;
 }
 
 .books > div h3 {
@@ -624,7 +624,7 @@ template {
 .books > div img {
   width: 100%;
   object-fit: cover;
-  max-height: 300px;
+  max-height: 500px;
 }
 
 .library-create {
@@ -661,8 +661,7 @@ template {
 #book-id {
   position: relative;
   margin: 0;
-  height: 20px;
-  width: 15px;
+  height: 0;
   top: 0;
   left: 97%;
 }

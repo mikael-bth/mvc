@@ -155,4 +155,46 @@ class LibraryController extends AbstractController
 
         return $this->redirectToRoute('library-show-id', array('id' => $id));
     }
+
+    /**
+     * @Route("/library/delete/{id}", name="library-delete")
+     */
+    public function deleteBookForm(
+        LibraryRepository $libraryRepository,
+        int $id
+    ): Response {
+        $book = $libraryRepository
+            ->find($id);
+
+        return $this->render('library/delete.html.twig', [
+            'title' => "Ta bort bok",
+            'header' => "Ta bort boken med ID: ${id}",
+            'book' => $book
+        ]);
+    }
+
+    /**
+     * @Route(
+     *      "/library/delete/process/{id}",
+     *      name="library-delete-process",
+     *      methods={"POST"}
+     * )
+     */
+    public function deleteBookProcess(
+        ManagerRegistry $doctrine,
+        int $id
+    ): Response {
+        $entityManager = $doctrine->getManager();
+        $library = $entityManager->getRepository(Library::class)->find($id);
+        if (!$library) {
+            throw $this->createNotFoundException(
+                'No book found with id '.$id
+            );
+        }
+
+        $entityManager->remove($library);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('library-show-all');
+    }
 }

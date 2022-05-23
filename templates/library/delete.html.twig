@@ -1,0 +1,24 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+
+<div class="library-create">
+    <h2>{{ header }}</h2>
+
+    <form action="{{ path('library-delete-process', {id:book.getID()}) }}" method="post">
+        <fieldset>
+            <legend>Ta bort bok {{ book.getID() }}</legend>
+            <label for="title">Titel:</label><br>
+            <input type="text" id="title" name="title" value="{{ book.getBookTitle() }}" readonly><br>
+            <label for="author">Författare:</label><br>
+            <input type="text" id="author" name="author" value="{{ book.getAuthor() }}" readonly><br>
+            <label for="isbn">ISBN(max 11-tecken):</label><br>
+            <input type="text" id="isbn" name="isbn" value="{{ book.getBookIsbn() }}" readonly><br>
+            <label for="img">Bildlänk:</label><br>
+            <input type="text" id="img" name="img" value="{{ book.getImg() }}" readonly><br><br>
+            <input type="submit" value="Ta bort">
+        </fieldset>
+    </form> 
+</div>
+
+{% endblock %}
