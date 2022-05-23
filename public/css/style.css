@@ -713,6 +713,17 @@ template {
   text-align: center;
 }
 
+.card-home form {
+  grid-column: span 2;
+  display: flex;
+  justify-content: center;
+}
+
+.card-home form > input {
+  width: 110px;
+  height: 40px;
+}
+
 .header {
   height: 5em;
   width: 100%;

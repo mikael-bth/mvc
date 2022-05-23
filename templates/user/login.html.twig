@@ -1,0 +1,23 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+
+<div class="user-create">
+    <h2>{{ header }}</h2>
+
+    <form action="{{ path('user-login-process') }}" method="post">
+        <fieldset>
+            <legend>Logga in</legend>
+            <label for="name">Namn:</label><br>
+            <input type="text" id="name" name="name" required><br>
+            <label for="pass">Lösenord:</label><br>
+            <input type="password" id="pass" name="pass" required><br><br>
+            <input type="submit" value="Logga in">
+            {% if fail %}
+                <p>{{ message }}</p>
+            {% endif %}
+        </fieldset>
+    </form> 
+</div>
+
+{% endblock %}

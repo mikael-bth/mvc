@@ -11,6 +11,19 @@
     <p>
         <a href="{{ path('user-show') }}">Visa användare</a>
     </p>
+
+    {% if loggedIn %}
+    <p>
+        <a href="{{ path('user-profile') }}">Min profil</a>
+    </p>
+    <form action="{{ path('user-log-out') }}" method="post">
+        <input type="submit" value="Logga ut">
+    </form>
+    {% else %}
+    <form action="{{ path('user-log-in') }}">
+        <input type="submit" value="Logga in">
+    </form>
+    {% endif %}
     </div>
 
 {% endblock %}

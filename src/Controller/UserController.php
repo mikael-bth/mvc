@@ -5,6 +5,7 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 use App\Entity\User;
@@ -16,11 +17,13 @@ class UserController extends AbstractController
     /**
      * @Route("/user", name="user")
      */
-    public function user()
+    public function user(SessionInterface $session)
     {
+        $loggedIn = $session->get("loggedIn") ?? false;
         return $this->render('user/user.html.twig', [
             'title' => "Profil",
             'header' => "Här är användar inställningarna",
+            'loggedIn' => $loggedIn
         ]);
     }
 
@@ -78,6 +81,79 @@ class UserController extends AbstractController
             'title' => "Användare",
             'header' => "Här är alla användare",
             'users' => $users
+        ]);
+    }
+
+    /**
+     * @Route("/user/login", name="user-log-in")
+     */
+    public function logInUserForm(): Response {
+        return $this->render('user/login.html.twig', [
+            'title' => "Logga in",
+            'header' => "Logga in",
+            'fail' => false,
+            'message' => ""
+        ]);
+    }
+
+    /**
+     * @Route(
+     *      "/user/login/process",
+     *      name="user-login-process",
+     *      methods={"POST"}
+     * )
+     */
+    public function logInUserProcess(
+        Request $request,
+        UserRepository $userRepository,
+        SessionInterface $session
+        ): Response {
+        $name  = $request->request->get('name');
+        $pass   = $request->request->get('pass');
+
+        $encryptedPass = password_hash($pass, PASSWORD_DEFAULT);
+
+        $user = $userRepository
+            ->findOneBy(array('name' => $name));
+        if (!$user) {
+            return $this->render('user/login.html.twig', [
+                'title' => "Logga in",
+                'header' => "Logga in",
+                'fail' => true,
+                'message' => "Felaktigt namn"
+            ]);
+        }
+        if (!password_verify($pass, $user->getPass())) {
+            return $this->render('user/login.html.twig', [
+                'title' => "Logga in",
+                'header' => "Logga in",
+                'fail' => true,
+                'message' => "Felaktigt lösenord"
+            ]);
+        }
+        $session->set("loggedIn", true);
+        $session->set("user", $name);
+        return $this->redirectToRoute("user");
+    }
+
+    /**
+     * @Route("/user/logout", name="user-log-out", methods={"POST"})
+     */
+    public function logOutUser(SessionInterface $session): Response {
+        $session->remove("loggedIn");
+        $session->remove('user');
+        return $this->redirectToRoute("user");
+    }
+
+    /**
+     * @Route("/user/login", name="user-log-in")
+     */
+    public function getProfileUser(): Response {
+        return $this->render('user/login.html.twig', [
+            'title' => "Logga in",
+            'header' => "Logga in",
+            'fail' => false,
+            'message' => ""
         ]);
     }
 }
