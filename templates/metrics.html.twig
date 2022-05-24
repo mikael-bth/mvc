@@ -5,11 +5,91 @@
 {% block content %}
 <div class="metrics">
     <h2>{{ header }}</h2>
-
     <h3>Introduktion</h3>
-    <p></p>
+    <p>
+        I denna rapporten kommer jag prata om kodkvalite och med hjälp av phpmetrics och Scrutinizer hur man kan testa
+        sin kodkvalite och se vad som kan förbättras. Jag kommer också göra en analys på min kodkvalite på koden bakom
+        denna sidan, där jag kommer först analysera koden med phpmetrics och Scrutinizer för att hitta problem och
+        förbättringspotentialer i koden och kommer sen göra mitt bästa för att lösa problemen och förbättra koden och
+        där efter analysera koden igen för att se vad som ändrades och om kodkvaliten gick upp. Jag kommer fokusera
+        mycket på mätvärdena för de 4 C:na om kodkvalitet vilka är:
+    </p>
+    <p>
+        Coverage<br>
+        Coverage handlar om hur mycket av koden testas, när man pratar om att testa kod pratar man ofta om unittester
+        som använda för att se till att kod fungerar som tänkt. Unittester används ofta på funktioner för att se till
+        att funktionen returnerar korrekta värden av korrekta typer, det kan också användas på klasser för att se till
+        att ett korrekt klassobjekt skapas. Det är också vanligt att testa så korrekt errors 'slängs' när en felaktig
+        parameter har givits. Vissa funktioner kan behövas testas flera gånger också eftersom den kan ha flera utfall
+        beroende på parameterna eller annat. Man kan då säga att coverage visar hur 'säker' koden är då den visar hur
+        mycket av koden har testas att den fungerar som tänkt. Jag fick mätvärdet '16%' på coverage vilket är ganska
+        lågt eftersom det betyder att bara 16% av koden är testad men det beror på att jag bara ska test modellklasserna,
+        vilket jag fick mätvärdet '92%' vilket är bra coverage.
+    </p>
+    <p>
+        Complexity<br>
+        Complexity handlar om som namnet antyder programmets komplexitet. En programs komplexitet är hur många linjärt
+        oberoende vägar man kan ta när man går igenom ett program. Detta kanske kan vara lite förvirrande eftersom det
+        kan vara svårt att förställas sig vad det faktist betyder så en lättare förklaring kan vara att en programs
+        komplexitet är hur många olika utfall ett program har, där en if sats som testar ifall en boolean är sann ger
+        2 utfall antigen sant eller falskt, antigen går programmet in i if sats eller inte. Jag fick mätvärdet '3.72'
+        på Average Cyclomatic complexity by class vilket anses vara en bra komplexitet eftersom det är under 4, En
+        komplexitet mellan 5-7 anses vara mellan medans en komplexitet mellan 8-10 anses vara mycket komplicerad.
+        Det anses då att vara bra att ha en låg komplexitet på sitt program.
+    </p>
+    <p>
+        Cohesion<br>
+        Cohesion handlar om hur mycket av klass kod hör ihop, det visar alltså ifall det passar att viss kod sitter ihop.
+        Hög cohesion är bra eftersom ifall klassens kod hör ihop så gör det oftast koden mer pålitlig, återanvändbar och
+        mer förstålig. Detta är bra eftersom det gör inte bara koden snyggare, det gör den också lättare att använda och
+        förstå. Jag fick mätvärdet '1.24' på lack of cohesion of methods, man vill försöka få lågt på detta värdet eftersom
+        det då betyder att det program har högt cohesion.
+    </p>
+    <p>
+        Coupling<br>
+        Coupling liknar väldigt mycket cohesion då det är hur mycket varje klass i ett program hör ihop med varande. Man
+        kan säga att det visar hur beroende klasser är av varandra. Jag kan analysera två sorters coupling afferent och
+        efferent. Afferent coupling visar hur mycket en klass används av andra klasser medans efferent visar hur mycket
+        en klass använder andra klasser. Låg coupling anses vara bra för det kommer ofta med hög cohesion och en väl
+        strukturerat program. Jag fick mätvärdena '1.08' och '3' på afferent och efferent coupling respektivt.
+    </p>
     <h3>Phpmetrics</h3>
-    <p></p>
+    <p>
+        Efter jag har analyserat rapporten som generades av phpmetrics har jag kommit fram till 4 mätvärden jag vill kolla
+        in i och hitta förbättringar för.
+    </p>
+    <p>
+        Complexity<br>
+        Efter analyserat mätvärdena såg jag att det va vissa klasser som hade väldigt höga värden i cyclomatic complexity.
+        Det är då dessa klasser jag kommer jobba mest med för att få ner complexiteten på programmet. Klasserna med högst
+        cyclomatic complexity är GameController, CardController, Game och UserController vilket hade respektiva värdena
+        17, 10, 10, 8. Där GameController hade högst cyclomatic complexity och hade en max method cyclomatic complexity
+        på 11 så kommer jag sätta stort fokus på denna klassen där det ser ut som en av funktionerna i klassen har en
+        väldigt hög komplexitet.
+    </p>
+    <p>
+        Cohesion<br>
+        Efter jag analyserat mätvärdena såg jag att det var en del klasser som hade högre LCOM(lack of cohesion of methods)
+        än andra och dessa blir då mitt fokus. Klasserna ProductController, GameController och CardController hade en respektive
+        LCOM på 4, 2 och 2 där GameController och CardController hade också stor volym och hade hög difficulty. Dessa klasser
+        ska jag då öka cohesion i. Tror dock jag inte kommer ha kvar ProductController eftersom det var en klass för att testa
+        doctorine i och har nu all kod jag använder med det i LibraryController. Detta kommer höja LCOM på sidan och ta bort
+        onödigt material.
+    </p>
+    <p>
+        Coupling<br>
+        Likt cohesion kommer jag fokusera på klasser med höga mätvärden men denna gången på dom klasser med hög efferent coupling
+        eftersom det var det mätvärdet som var högst i coupling och det jag vill helst sänka. Klasserna UserController, CardController
+        och GameController hade alla ganska hög coupling med värdena 8, 7, 7 respektivt.
+    </p>
+    <p>
+        Violations<br>
+        När jag analysera mätvärdena såg jag att en del klasser hade fått violations och vill då sätta ett fokus på att få bort detta.
+        Klasserna CardController, GameController, LibraryController och UserController har alla fått violationen 'probaly bugged'
+        och jag kommer därför analysera anledningen till violationen och försöka få bort problemet från koden. Jag kommer också kolla
+        lite extra på GameController eftersom den också fick violationen 'too complex method code' så ska hitta funktionen den påpekar
+        och dela upp den bättre så den inte är lika komplicerad.
+    </p>
     <h3>Scrutinizer</h3>
     <p></p>
     <h3>Förbättringar</h3>
