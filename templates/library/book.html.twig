@@ -20,6 +20,10 @@
         </figure>
         {% endif %}
         <h4>Av: {{ book.getAuthor() }}</h4>
+        <div class="options">
+            <a href="{{ path('library-update', {bookId:book.getId()}) }}">Uppdatera bok</a>
+            <a href="{{ path('library-delete', {bookId:book.getId()}) }}">Ta bort bok</a>
+        </div>
     </div>
 </div>
 

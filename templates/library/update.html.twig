@@ -5,7 +5,7 @@
 <div class="library-create">
     <h2>{{ header }}</h2>
 
-    <form action="{{ path('library-update-process', {id:book.getID()}) }}" method="post">
+    <form action="{{ path('library-update-process', {bookId:book.getID()}) }}" method="post">
         <fieldset>
             <legend>Uppdatera bok {{ book.getID() }}</legend>
             <label for="title">Titel:</label><br>

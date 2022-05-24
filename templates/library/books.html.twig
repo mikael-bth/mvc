@@ -9,7 +9,7 @@
         {% for book in books %}
             <div>
                 <p id="book-id">{{ book.getId() }}</p>
-                <h3>{{ book.getBookTitle() }}</h3>
+                <h3><a href="{{ path('library-show-id', {bookId:book.getId()}) }}">{{ book.getBookTitle() }}</a></h3>
                 {% if book.getImg() != null %}
                 <figure>
                     <img src="{{ book.getImg() }}" alt="{{ book.getBookTitle() }}">

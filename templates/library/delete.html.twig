@@ -5,7 +5,7 @@
 <div class="library-create">
     <h2>{{ header }}</h2>
 
-    <form action="{{ path('library-delete-process', {id:book.getID()}) }}" method="post">
+    <form action="{{ path('library-delete-process', {bookId:book.getID()}) }}" method="post">
         <fieldset>
             <legend>Ta bort bok {{ book.getID() }}</legend>
             <label for="title">Titel:</label><br>

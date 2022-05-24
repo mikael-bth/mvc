@@ -666,6 +666,15 @@ template {
   left: 97%;
 }
 
+.book > .options {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.book > .options a {
+  font-size: 30px;
+}
+
 .user {
   position: absolute;
   top: 0;
@@ -722,6 +731,10 @@ template {
 .card-home form > input {
   width: 110px;
   height: 40px;
+}
+
+.metrics h2 {
+  text-align: center;
 }
 
 .header {

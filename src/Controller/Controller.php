@@ -40,4 +40,15 @@ class Controller extends AbstractController
             'header' => "Redovisning för kursen MVC",
         ]);
     }
+
+    /**
+     * @Route("/metrics", name="metrics")
+     */
+    public function metrics(): Response
+    {
+        return $this->render('metrics.html.twig', [
+            'title' => "Metrics",
+            'header' => "Metrics",
+        ]);
+    }
 }
