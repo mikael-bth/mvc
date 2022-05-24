@@ -2,6 +2,9 @@
 
 namespace App\Card;
 
+/**
+ * @property Card[] $hand 
+ */
 class Player
 {
     protected array $hand = [];
@@ -25,6 +28,7 @@ class Player
 
     /**
      * Returns the players hand.
+     * @return Card[] $hand
      */
     public function getHand(): array
     {

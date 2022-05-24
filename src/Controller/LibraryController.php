@@ -40,23 +40,23 @@ class LibraryController extends AbstractController
     }
 
     /**
-     * @Route("/library/show/{id}", name="library-show-id")
+     * @Route("/library/show/{bookId}", name="library-show-id")
      */
     public function showBookId(
         LibraryRepository $libraryRepository,
-        int $id
+        int $bookId
     ): Response {
         $book = $libraryRepository
-            ->find($id);
+            ->find($bookId);
         if (!$book) {
             throw $this->createNotFoundException(
-                'No book found with id ' . $id
+                'No book found with id ' . $bookId
             );
         }
 
         return $this->render('library/book.html.twig', [
             'title' => "Bok",
-            'header' => "Här är boken med ID: ${id}",
+            'header' => "Här är boken med ID: ${bookId}",
             'book' => $book
         ]);
     }
@@ -107,25 +107,25 @@ class LibraryController extends AbstractController
     }
 
     /**
-     * @Route("/library/update/{id}", name="library-update")
+     * @Route("/library/update/{bookId}", name="library-update")
      */
     public function updateBookForm(
         LibraryRepository $libraryRepository,
-        int $id
+        int $bookId
     ): Response {
             $book = $libraryRepository
-                ->find($id);
+                ->find($bookId);
 
             return $this->render('library/update.html.twig', [
                 'title' => "Uppdatera bok",
-                'header' => "Uppdatera boken med ID: ${id}",
+                'header' => "Uppdatera boken med ID: ${bookId}",
                 'book' => $book
             ]);
     }
 
     /**
      * @Route(
-     *      "/library/update/process/{id}",
+     *      "/library/update/process/{bookId}",
      *      name="library-update-process",
      *      methods={"POST"}
      * )
@@ -133,17 +133,17 @@ class LibraryController extends AbstractController
     public function updateBookProcess(
         Request $request,
         ManagerRegistry $doctrine,
-        int $id
+        int $bookId
     ): Response {
         $title  = $request->request->get('title');
         $author = $request->request->get('author');
         $isbn   = $request->request->get('isbn');
         $img    = $request->request->get('img');
         $entityManager = $doctrine->getManager();
-        $library = $entityManager->getRepository(Library::class)->find($id);
+        $library = $entityManager->getRepository(Library::class)->find($bookId);
         if (!$library) {
             throw $this->createNotFoundException(
-                'No book found with id ' . $id
+                'No book found with id ' . $bookId
             );
         }
         $library->setBookTitle($title);
@@ -155,42 +155,42 @@ class LibraryController extends AbstractController
 
         $entityManager->flush();
 
-        return $this->redirectToRoute('library-show-id', array('id' => $id));
+        return $this->redirectToRoute('library-show-id', array('id' => $bookId));
     }
 
     /**
-     * @Route("/library/delete/{id}", name="library-delete")
+     * @Route("/library/delete/{bookId}", name="library-delete")
      */
     public function deleteBookForm(
         LibraryRepository $libraryRepository,
-        int $id
+        int $bookId
     ): Response {
         $book = $libraryRepository
-            ->find($id);
+            ->find($bookId);
 
         return $this->render('library/delete.html.twig', [
             'title' => "Ta bort bok",
-            'header' => "Ta bort boken med ID: ${id}",
+            'header' => "Ta bort boken med ID: ${bookId}",
             'book' => $book
         ]);
     }
 
     /**
      * @Route(
-     *      "/library/delete/process/{id}",
+     *      "/library/delete/process/{bookId}",
      *      name="library-delete-process",
      *      methods={"POST"}
      * )
      */
     public function deleteBookProcess(
         ManagerRegistry $doctrine,
-        int $id
+        int $bookId
     ): Response {
         $entityManager = $doctrine->getManager();
-        $library = $entityManager->getRepository(Library::class)->find($id);
+        $library = $entityManager->getRepository(Library::class)->find($bookId);
         if (!$library) {
             throw $this->createNotFoundException(
-                'No book found with id ' . $id
+                'No book found with id ' . $bookId
             );
         }
 

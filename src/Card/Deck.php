@@ -4,6 +4,15 @@ namespace App\Card;
 
 use App\Card\Card;
 
+/**
+ * Deck class
+ * 
+ * @property Card[] $deck
+ * @property array<string> $valueList
+ * @property array<int> $valueNumberList
+ * @property array<string> $colorList
+ * @property array<string> $iconList
+ */
 class Deck
 {
     protected array $deck = [];
@@ -71,6 +80,7 @@ class Deck
 
     /**
      * Returns the deck array.
+     * @return array<Card> $deck
      */
     public function getDeck(): array
     {
@@ -79,6 +89,7 @@ class Deck
 
     /**
      * Sets the deck array to a given array.
+     * @param array<Card> $newDeck
      */
     public function setDeck(array $newDeck): void
     {

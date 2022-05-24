@@ -113,8 +113,6 @@ class UserController extends AbstractController
         $name  = $request->request->get('name');
         $pass   = $request->request->get('pass');
 
-        $encryptedPass = password_hash($pass, PASSWORD_DEFAULT);
-
         $user = $userRepository
             ->findOneBy(array('name' => $name));
         if (!$user) {
