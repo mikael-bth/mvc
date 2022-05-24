@@ -7,7 +7,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
-
 use App\Entity\User;
 use Doctrine\Persistence\ManagerRegistry;
 use App\Repository\UserRepository;
@@ -30,7 +29,8 @@ class UserController extends AbstractController
     /**
      * @Route("/user/create", name="user-create")
      */
-    public function createUserForm(): Response {
+    public function createUserForm(): Response
+    {
         return $this->render('user/create.html.twig', [
             'title' => "Lägg till användare",
             'header' => "Lägg till en användare",
@@ -44,7 +44,8 @@ class UserController extends AbstractController
      *      methods={"POST"}
      * )
      */
-    public function createUserProcess(Request $request, ManagerRegistry $doctrine): Response {
+    public function createUserProcess(Request $request, ManagerRegistry $doctrine): Response
+    {
         $email  = $request->request->get('email');
         $acro   = $request->request->get('acro');
         $name   = $request->request->get('name');
@@ -61,7 +62,7 @@ class UserController extends AbstractController
         $user->setName($name);
         $user->setPass($encryptedPass);
         $user->setType($type);
-    
+
         $entityManager->persist($user);
         $entityManager->flush();
 
@@ -87,7 +88,8 @@ class UserController extends AbstractController
     /**
      * @Route("/user/login", name="user-log-in")
      */
-    public function logInUserForm(): Response {
+    public function logInUserForm(): Response
+    {
         return $this->render('user/login.html.twig', [
             'title' => "Logga in",
             'header' => "Logga in",
@@ -107,7 +109,7 @@ class UserController extends AbstractController
         Request $request,
         UserRepository $userRepository,
         SessionInterface $session
-        ): Response {
+    ): Response {
         $name  = $request->request->get('name');
         $pass   = $request->request->get('pass');
 
@@ -139,7 +141,8 @@ class UserController extends AbstractController
     /**
      * @Route("/user/logout", name="user-log-out", methods={"POST"})
      */
-    public function logOutUser(SessionInterface $session): Response {
+    public function logOutUser(SessionInterface $session): Response
+    {
         $session->remove("loggedIn");
         $session->remove('user');
         return $this->redirectToRoute("user");
@@ -160,7 +163,9 @@ class UserController extends AbstractController
         $user = $userRepository
             ->findOneBy(array('name' => $name));
         $admin = 'No';
-        if ($user->getType() == 1) $admin = 'Yes';
+        if ($user->getType() == 1) {
+            $admin = 'Yes';
+        }
         return $this->render('user/profile.html.twig', [
             'title' => "Min profil",
             'header' => "Min profil",

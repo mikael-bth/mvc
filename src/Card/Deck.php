@@ -19,7 +19,12 @@ class Deck
     {
         foreach ($this->iconList as $colorIndex => $color) {
             foreach ($this->valueList as $valueIndex => $value) {
-                $this->deck[] = new Card($value, $this->valueNumberList[$valueIndex], $color, $this->colorList[$colorIndex]);
+                $this->deck[] = new Card(
+                    $value,
+                    $this->valueNumberList[$valueIndex],
+                    $color,
+                    $this->colorList[$colorIndex]
+                );
             }
         }
     }
