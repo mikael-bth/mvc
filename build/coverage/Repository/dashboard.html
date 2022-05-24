@@ -2,7 +2,7 @@
 <html lang="en">
  <head>
   <meta charset="UTF-8">
-  <title>Dashboard for /home/snigel/dbwebb-kurser/mvc/me/report/src/Card</title>
+  <title>Dashboard for /home/snigel/dbwebb-kurser/mvc/me/report/src/Repository</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../_css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <link href="../_css/nv.d3.min.css" rel="stylesheet" type="text/css">
@@ -17,7 +17,7 @@
       <nav aria-label="breadcrumb">
        <ol class="breadcrumb">
          <li class="breadcrumb-item"><a href="../index.html">/home/snigel/dbwebb-kurser/mvc/me/report/src</a></li>
-         <li class="breadcrumb-item"><a href="index.html">Card</a></li>
+         <li class="breadcrumb-item"><a href="index.html">Repository</a></li>
          <li class="breadcrumb-item active">(Dashboard)</li>
 
        </ol>
@@ -58,6 +58,9 @@
         </tr>
        </thead>
        <tbody>
+       <tr><td><a href="LibraryRepository.php.html#17">App\Repository\LibraryRepository</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ProductRepository.php.html#17">App\Repository\ProductRepository</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="UserRepository.php.html#17">App\Repository\UserRepository</a></td><td class="text-right">0%</td></tr>
 
        </tbody>
       </table>
@@ -74,6 +77,9 @@
         </tr>
        </thead>
        <tbody>
+       <tr><td><a href="LibraryRepository.php.html#17">App\Repository\LibraryRepository</a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="ProductRepository.php.html#17">App\Repository\ProductRepository</a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="UserRepository.php.html#17">App\Repository\UserRepository</a></td><td class="text-right">30</td></tr>
 
        </tbody>
       </table>
@@ -111,7 +117,15 @@
         </tr>
        </thead>
        <tbody>
-       <tr><td><a href="Deck.php.html#64"><abbr title="App\Card\Deck::getAsString">getAsString</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="LibraryRepository.php.html#19"><abbr title="App\Repository\LibraryRepository::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="LibraryRepository.php.html#24"><abbr title="App\Repository\LibraryRepository::add">add</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="LibraryRepository.php.html#33"><abbr title="App\Repository\LibraryRepository::remove">remove</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ProductRepository.php.html#19"><abbr title="App\Repository\ProductRepository::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ProductRepository.php.html#24"><abbr title="App\Repository\ProductRepository::add">add</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ProductRepository.php.html#33"><abbr title="App\Repository\ProductRepository::remove">remove</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="UserRepository.php.html#19"><abbr title="App\Repository\UserRepository::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="UserRepository.php.html#24"><abbr title="App\Repository\UserRepository::add">add</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="UserRepository.php.html#33"><abbr title="App\Repository\UserRepository::remove">remove</abbr></a></td><td class="text-right">0%</td></tr>
 
        </tbody>
       </table>
@@ -128,7 +142,12 @@
         </tr>
        </thead>
        <tbody>
-       <tr><td><a href="Deck.php.html#64"><abbr title="App\Card\Deck::getAsString">getAsString</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="LibraryRepository.php.html#24"><abbr title="App\Repository\LibraryRepository::add">add</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="LibraryRepository.php.html#33"><abbr title="App\Repository\LibraryRepository::remove">remove</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="ProductRepository.php.html#24"><abbr title="App\Repository\ProductRepository::add">add</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="ProductRepository.php.html#33"><abbr title="App\Repository\ProductRepository::remove">remove</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="UserRepository.php.html#24"><abbr title="App\Repository\UserRepository::add">add</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="UserRepository.php.html#33"><abbr title="App\Repository\UserRepository::remove">remove</abbr></a></td><td class="text-right">6</td></tr>
 
        </tbody>
       </table>
@@ -157,7 +176,7 @@ $(document).ready(function() {
       .yAxis.tickFormat(d3.format('d'));
 
     d3.select('#classCoverageDistribution svg')
-      .datum(getCoverageDistributionData([0,0,0,0,0,0,0,0,1,0,1,3], "Class Coverage"))
+      .datum(getCoverageDistributionData([3,0,0,0,0,0,0,0,0,0,0,0], "Class Coverage"))
       .transition().duration(500).call(chart);
 
     nv.utils.windowResize(chart.update);
@@ -175,7 +194,7 @@ $(document).ready(function() {
       .yAxis.tickFormat(d3.format('d'));
 
     d3.select('#methodCoverageDistribution svg')
-      .datum(getCoverageDistributionData([1,0,0,0,0,0,0,0,0,2,0,26], "Method Coverage"))
+      .datum(getCoverageDistributionData([9,0,0,0,0,0,0,0,0,0,0,0], "Method Coverage"))
       .transition().duration(500).call(chart);
 
     nv.utils.windowResize(chart.update);
@@ -225,7 +244,7 @@ $(document).ready(function() {
     chart.yAxis.axisLabel('Cyclomatic Complexity');
 
     d3.select('#classComplexity svg')
-      .datum(getComplexityData([[100,6,"<a href=\"Card.php.html#5\">App\\Card\\Card<\/a>"],[77.77777777777779,10,"<a href=\"Deck.php.html#16\">App\\Card\\Deck<\/a>"],[100,1,"<a href=\"Deck2Jokers.php.html#5\">App\\Card\\Deck2Jokers<\/a>"],[93.93939393939394,19,"<a href=\"Game.php.html#5\">App\\Card\\Game<\/a>"],[100,7,"<a href=\"Player.php.html#8\">App\\Card\\Player<\/a>"]], 'Class Complexity'))
+      .datum(getComplexityData([[0,5,"<a href=\"LibraryRepository.php.html#17\">App\\Repository\\LibraryRepository<\/a>"],[0,5,"<a href=\"ProductRepository.php.html#17\">App\\Repository\\ProductRepository<\/a>"],[0,5,"<a href=\"UserRepository.php.html#17\">App\\Repository\\UserRepository<\/a>"]], 'Class Complexity'))
       .transition()
       .duration(500)
       .call(chart);
@@ -249,7 +268,7 @@ $(document).ready(function() {
     chart.yAxis.axisLabel('Method Complexity');
 
     d3.select('#methodComplexity svg')
-      .datum(getComplexityData([[100,1,"<a href=\"Card.php.html#15\">App\\Card\\Card::__construct<\/a>"],[100,1,"<a href=\"Card.php.html#26\">App\\Card\\Card::getAsString<\/a>"],[100,1,"<a href=\"Card.php.html#35\">App\\Card\\Card::getAsJSONString<\/a>"],[100,1,"<a href=\"Card.php.html#43\">App\\Card\\Card::getColorName<\/a>"],[100,1,"<a href=\"Card.php.html#51\">App\\Card\\Card::getNumberValue<\/a>"],[100,1,"<a href=\"Card.php.html#59\">App\\Card\\Card::setNumberValue<\/a>"],[100,3,"<a href=\"Deck.php.html#27\">App\\Card\\Deck::__construct<\/a>"],[100,1,"<a href=\"Deck.php.html#44\">App\\Card\\Deck::shuffleDeck<\/a>"],[100,1,"<a href=\"Deck.php.html#52\">App\\Card\\Deck::drawCard<\/a>"],[0,2,"<a href=\"Deck.php.html#64\">App\\Card\\Deck::getAsString<\/a>"],[100,1,"<a href=\"Deck.php.html#76\">App\\Card\\Deck::getDeckSize<\/a>"],[100,1,"<a href=\"Deck.php.html#85\">App\\Card\\Deck::getDeck<\/a>"],[100,1,"<a href=\"Deck.php.html#94\">App\\Card\\Deck::setDeck<\/a>"],[100,1,"<a href=\"Deck2Jokers.php.html#10\">App\\Card\\Deck2Jokers::__construct<\/a>"],[100,1,"<a href=\"Game.php.html#14\">App\\Card\\Game::__construct<\/a>"],[100,1,"<a href=\"Game.php.html#24\">App\\Card\\Game::getBank<\/a>"],[100,1,"<a href=\"Game.php.html#32\">App\\Card\\Game::getPlayer<\/a>"],[100,1,"<a href=\"Game.php.html#40\">App\\Card\\Game::drawPlayer<\/a>"],[100,2,"<a href=\"Game.php.html#50\">App\\Card\\Game::drawBank<\/a>"],[100,1,"<a href=\"Game.php.html#64\">App\\Card\\Game::playerStay<\/a>"],[100,1,"<a href=\"Game.php.html#72\">App\\Card\\Game::getPlayerStatus<\/a>"],[100,4,"<a href=\"Game.php.html#81\">App\\Card\\Game::getPlayerSum<\/a>"],[83.33333333333334,4,"<a href=\"Game.php.html#97\">App\\Card\\Game::getBankSum<\/a>"],[80,3,"<a href=\"Game.php.html#112\">App\\Card\\Game::aceAdjust<\/a>"],[100,1,"<a href=\"Player.php.html#16\">App\\Card\\Player::__construct<\/a>"],[100,1,"<a href=\"Player.php.html#24\">App\\Card\\Player::addCard<\/a>"],[100,1,"<a href=\"Player.php.html#33\">App\\Card\\Player::getHand<\/a>"],[100,1,"<a href=\"Player.php.html#41\">App\\Card\\Player::getName<\/a>"],[100,3,"<a href=\"Player.php.html#50\">App\\Card\\Player::hasAce<\/a>"]], 'Method Complexity'))
+      .datum(getComplexityData([[0,1,"<a href=\"LibraryRepository.php.html#19\">App\\Repository\\LibraryRepository::__construct<\/a>"],[0,2,"<a href=\"LibraryRepository.php.html#24\">App\\Repository\\LibraryRepository::add<\/a>"],[0,2,"<a href=\"LibraryRepository.php.html#33\">App\\Repository\\LibraryRepository::remove<\/a>"],[0,1,"<a href=\"ProductRepository.php.html#19\">App\\Repository\\ProductRepository::__construct<\/a>"],[0,2,"<a href=\"ProductRepository.php.html#24\">App\\Repository\\ProductRepository::add<\/a>"],[0,2,"<a href=\"ProductRepository.php.html#33\">App\\Repository\\ProductRepository::remove<\/a>"],[0,1,"<a href=\"UserRepository.php.html#19\">App\\Repository\\UserRepository::__construct<\/a>"],[0,2,"<a href=\"UserRepository.php.html#24\">App\\Repository\\UserRepository::add<\/a>"],[0,2,"<a href=\"UserRepository.php.html#33\">App\\Repository\\UserRepository::remove<\/a>"]], 'Method Complexity'))
       .transition()
       .duration(500)
       .call(chart);
