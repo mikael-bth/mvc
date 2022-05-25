@@ -46,6 +46,11 @@
     justify-content: space-evenly;
 }
 
+.game>form input {
+    font-size: 2em;
+    padding: 0.2em;
+}
+
 .game .heart, 
 .game .diamond,
 .game .spade,
@@ -85,16 +90,19 @@
 
 .result {
     display: grid;
-    position: fixed;
-    top: 65%;
-    left: calc(50% - 175px);
+    position: absolute;
+    bottom: 10em;
+    left: 32.5%;
     background-color: yellow;
-    height: 150px;
-    width: 350px;
+    height: 12em;
+    width: 35%;
 }
 
 .result input {
-    margin-bottom: 10px;
+    margin-bottom: 1em;
+    width: 40%;
+    height: 50%;
+    font-size: 2em;
 }
 
 .game h3 {

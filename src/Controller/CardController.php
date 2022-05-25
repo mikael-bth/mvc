@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Card\Deck;
 use App\Card\Deck2Jokers;
-use App\Card\Player;
+use App\Card\Deal;
 
 class CardController extends AbstractController
 {
@@ -114,11 +114,7 @@ class CardController extends AbstractController
             ]);
         }
 
-        $cardList = [];
-        for ($i = 0; $i < $numDraws; $i++) {
-            $card = $deck->drawCard();
-            $cardList[] = $card;
-        }
+        $cardList = $deck->drawCards($numDraws);
         $cardCount = $deck->getDeckSize();
         $session->set("deck", $deck->getDeck());
 
@@ -151,15 +147,8 @@ class CardController extends AbstractController
             ]);
         }
 
-        $playerList = [];
-        for ($i = 1; $i <= $numPlayers; $i++) {
-            $player = new Player("Player ${i}");
-            for ($y = 0; $y < $numCards; $y++) {
-                $card = $deck->drawCard();
-                $player->addCard($card);
-            }
-            $playerList[] = $player;
-        }
+        $deal = new Deal($numPlayers, $numCards, $deck);
+        $playerList = $deal->getPlayers();
 
         $cardCount = $deck->getDeckSize();
         $session->set("deck", $deck->getDeck());

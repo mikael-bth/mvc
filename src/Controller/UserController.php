@@ -153,17 +153,14 @@ class UserController extends AbstractController
         UserRepository $userRepository,
         SessionInterface $session
     ): Response {
-        $loggedIn = $session->get('loggedIn') ?? false;
-        if (!$loggedIn) {
+        if (!$session->get('loggedIn')) {
             return $this->redirectToRoute("user");
         }
         $name = $session->get("user");
         $user = $userRepository
             ->findOneBy(array('name' => $name));
-        $admin = 'No';
-        if ($user->getType() == 1) {
-            $admin = 'Yes';
-        }
+        $admin = ($user->getType() == 1) ? 'Yes' : 'No';
+
         return $this->render('user/profile.html.twig', [
             'title' => "Min profil",
             'header' => "Min profil",

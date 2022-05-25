@@ -59,6 +59,20 @@ class Deck
     }
 
     /**
+     * Returns a random list with specified amount of cards,
+     * then removes those card from the deck.
+     */
+    public function drawCards(int $numDraws): array
+    {
+        $cardList = [];
+        for ($i = 0; $i < $numDraws; $i++) {
+            $card = $this->drawCard();
+            $cardList[] = $card;
+        }
+        return $cardList;
+    }
+
+    /**
      * Returns the deck array as a string.
      */
     public function getAsString(): string

@@ -84,9 +84,7 @@ class Game
         foreach ($this->player->getHand() as $card) {
             $sum += $card->getNumberValue();
         }
-        if ($sum > 21 and $this->player->hasAce()) {
-            $sum = $this->aceAdjust($this->player, $sum);
-        }
+        $sum = $this->aceAdjust($this->player, $sum);
         return $sum;
     }
 
@@ -100,9 +98,7 @@ class Game
         foreach ($this->bank->getHand() as $card) {
             $sum += $card->getNumberValue();
         }
-        if ($sum > 21 and $this->bank->hasAce()) {
-            $sum = $this->aceAdjust($this->bank, $sum);
-        }
+        $sum = $this->aceAdjust($this->bank, $sum);
         return $sum;
     }
 
@@ -111,12 +107,31 @@ class Game
      */
     public function aceAdjust(Player $player, int $oldSum): int
     {
-        foreach ($player->getHand() as $card) {
-            if ($card->getNumberValue() == 14) {
-                $card->setNumberValue(1);
-                return $oldSum - 13;
-            }
+        if ($oldSum < 21 or !$player->hasAce()) {
+            return $oldSum;
         }
-        return $oldSum;
+        $aces = array_filter($player->getHand(), function (Card $card) {
+            return $card->getNumberValue() == 14;
+        });
+        $aces[array_key_first($aces)]->setNumberValue(1);
+        return $oldSum - 13;
+    }
+
+    /**
+     * Returns a string that describes the result of the game.
+     */
+    public function getResult(): string
+    {
+        $bankSum = $this->getBankSum();
+        $playerSum = $this->getPlayerSum();
+        $message = "Du vann, du var närmare 21 än banken";
+        if ($bankSum > 21) {
+            $message = "Du vann, Banken gick över 21";
+        } elseif ($bankSum > $playerSum) {
+            $message = "Banken vann, Banken var närmare 21 än dig";
+        } elseif ($bankSum == $playerSum) {
+            $message = "Banken vann, Banken var lika nära 21 som dig";
+        }
+        return $message;
     }
 }

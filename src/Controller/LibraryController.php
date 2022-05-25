@@ -91,9 +91,7 @@ class LibraryController extends AbstractController
         $library->setBookTitle($title);
         $library->setAuthor($author);
         $library->setBookIsbn($isbn);
-        if ($img != null) {
-            $library->setImg($img);
-        }
+        $library->setImg($img);
 
         // tell Doctrine you want to (eventually) save the Product
         // (no queries yet)
@@ -149,9 +147,7 @@ class LibraryController extends AbstractController
         $library->setBookTitle($title);
         $library->setAuthor($author);
         $library->setBookIsbn($isbn);
-        if ($img != null) {
-            $library->setImg($img);
-        }
+        $library->setImg($img);
 
         $entityManager->flush();
 

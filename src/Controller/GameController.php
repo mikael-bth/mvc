@@ -61,20 +61,13 @@ class GameController extends AbstractController
         $standing = $game->getPlayerStatus();
 
         if ($game->getPlayerSum() > 21) {
-            $result = true;
             $message = "Banken vann, Du gick över 21";
             $standing = true;
-        } elseif ($standing and $game->getPlayerSum() <= 21) {
-            $deck = $game->drawBank($deck);
             $result = true;
-            $message = "Du vann, du var närmare 21 än banken";
-            if ($game->getBankSum() > 21) {
-                $message = "Du vann, Banken gick över 21";
-            } elseif ($game->getBankSum() > $game->getPlayerSum()) {
-                $message = "Banken vann, Banken var närmare 21 än dig";
-            } elseif ($game->getBankSum() == $game->getPlayerSum()) {
-                $message = "Banken vann, Banken var lika nära 21 som dig";
-            }
+        } elseif ($standing) {
+            $deck = $game->drawBank($deck);
+            $message = $game->getResult();
+            $result = true;
         }
 
         $cardCount = $deck->getDeckSize();
@@ -111,17 +104,16 @@ class GameController extends AbstractController
         $deck->setDeck($cardList);
 
         $stand  = $request->request->get('stand');
-        $draw  = $request->request->get('draw');
-
-        if ($stand) {
-            $game->playerStay();
-        } elseif ($draw) {
-            $deck = $game->drawPlayer($deck);
-        }
 
         $session->set("deck", $deck->getDeck());
         $session->set("game", $game);
 
+        if ($stand) {
+            $game->playerStay();
+            return $this->redirectToRoute("game-play", array('status' => 0));
+        }
+        
+        $deck = $game->drawPlayer($deck);
         return $this->redirectToRoute("game-play", array('status' => 0));
     }
 
@@ -134,14 +126,11 @@ class GameController extends AbstractController
      */
     public function resultProcess(Request $request): Response
     {
-        $exit  = $request->request->get('exit');
-        $restart  = $request->request->get('restart');
+        $exit = $request->request->get('exit');
 
         if ($exit) {
             return $this->redirectToRoute("game");
-        } elseif ($restart) {
-            return $this->redirectToRoute("game-play", array('status' => 1));
         }
-        return $this->redirectToRoute("game-play", array('status' => 0));
+        return $this->redirectToRoute("game-play", array('status' => 1));
     }
 }
