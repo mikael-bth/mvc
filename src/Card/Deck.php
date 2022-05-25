@@ -109,4 +109,17 @@ class Deck
     {
         $this->deck = $newDeck;
     }
+
+    /**
+     * Shuffles the deck if there is less than
+     * 15 cards in the deck
+     */
+    public function shuffleOnLow(): void
+    {
+        if ($this->getDeckSize() < 15) {
+            $deck = new Deck();
+            $deck->shuffleDeck();
+            $this->setDeck($deck->getDeck());
+        }
+    }
 }
