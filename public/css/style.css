@@ -737,6 +737,10 @@ template {
   text-align: center;
 }
 
+.metrics p {
+  padding: 0 0.7em;
+}
+
 .header {
   height: 5em;
   width: 100%;
