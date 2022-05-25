@@ -49,7 +49,6 @@ class GameController extends AbstractController
             if ($deck->getDeckSize() < 15) {
                 $deck = new Deck();
                 $deck->shuffleDeck();
-                $session->invalidate();
             }
             $session->remove("game");
             $game = new Game();
@@ -60,7 +59,7 @@ class GameController extends AbstractController
         $message = '';
         $standing = $game->getPlayerStatus();
 
-        if ($game->getPlayerSum() > 21) {
+        if ($game->getSum($game->getPlayer()) > 21) {
             $message = "Banken vann, Du gick över 21";
             $standing = true;
             $result = true;
@@ -78,9 +77,9 @@ class GameController extends AbstractController
             'title' => "Spela kortspelet 21",
             'header' => "Kortspelet 21",
             'bank' => $game->getBank(),
-            'bankSum' => $game->getBankSum(),
+            'bankSum' => $game->getSum($game->getBank()),
             'player' => $game->getPlayer(),
-            'playerSum' => $game->getPlayerSum(),
+            'playerSum' => $game->getSum($game->getPlayer()),
             'standing' => $standing,
             'result' => $result,
             'message' => $message,
@@ -105,15 +104,15 @@ class GameController extends AbstractController
 
         $stand  = $request->request->get('stand');
 
-        $session->set("deck", $deck->getDeck());
-        $session->set("game", $game);
-
         if ($stand) {
             $game->playerStay();
-            return $this->redirectToRoute("game-play", array('status' => 0));
+        } else {
+            $deck = $game->drawPlayer($deck);
         }
         
-        $deck = $game->drawPlayer($deck);
+        $session->set("deck", $deck->getDeck());
+        $session->set("game", $game);
+        
         return $this->redirectToRoute("game-play", array('status' => 0));
     }
 

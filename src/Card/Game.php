@@ -49,11 +49,11 @@ class Game
      */
     public function drawBank(Deck $deck): Deck
     {
-        $bankSum = $this->getBankSum();
+        $bankSum = $this->getSum($this->bank);
         while ($bankSum < 17) {
             $card = $deck->drawCard();
             $this->bank->addCard($card);
-            $bankSum = $this->getBankSum();
+            $bankSum = $this->getSum($this->bank);
         }
         return $deck;
     }
@@ -78,27 +78,14 @@ class Game
      * Returns the sum of the cards in the players hands,
      * updates the value accordingly if the player has aces in the hand.
      */
-    public function getPlayerSum(): int
+    public function getSum(Player $player): int
     {
         $sum = 0;
-        foreach ($this->player->getHand() as $card) {
-            $sum += $card->getNumberValue();
-        }
-        $sum = $this->aceAdjust($this->player, $sum);
-        return $sum;
-    }
-
-    /**
-     * Returns the sum of the cards in the banks hands,
-     * updates the value accordingly if the bank has aces in the hand.
-     */
-    public function getBankSum(): int
-    {
-        $sum = 0;
-        foreach ($this->bank->getHand() as $card) {
-            $sum += $card->getNumberValue();
-        }
-        $sum = $this->aceAdjust($this->bank, $sum);
+        $sumArray = array_map(function (Card $card) {
+            return $card->getNumberValue();
+        }, $player->getHand());
+        $sum = array_sum($sumArray);
+        $sum = $this->aceAdjust($player, $sum);
         return $sum;
     }
 
@@ -122,8 +109,8 @@ class Game
      */
     public function getResult(): string
     {
-        $bankSum = $this->getBankSum();
-        $playerSum = $this->getPlayerSum();
+        $bankSum = $this->getSum($this->bank);
+        $playerSum = $this->getSum($this->player);
         $message = "Du vann, du var närmare 21 än banken";
         if ($bankSum > 21) {
             $message = "Du vann, Banken gick över 21";
