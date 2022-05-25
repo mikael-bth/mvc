@@ -72,9 +72,7 @@
         Efter jag analyserat mätvärdena såg jag att det var en del klasser som hade högre LCOM(lack of cohesion of methods)
         än andra och dessa blir då mitt fokus. Klasserna ProductController, GameController och CardController hade en respektive
         LCOM på 4, 2 och 2 där GameController och CardController hade också stor volym och hade hög difficulty. Dessa klasser
-        ska jag då öka cohesion i. Tror dock jag inte kommer ha kvar ProductController eftersom det var en klass för att testa
-        doctorine i och har nu all kod jag använder med det i LibraryController. Detta kommer höja LCOM på sidan och ta bort
-        onödigt material.
+        ska jag då öka cohesion i.
     </p>
     <p>
         Coupling<br>
@@ -91,10 +89,52 @@
         och dela upp den bättre så den inte är lika komplicerad.
     </p>
     <h3>Scrutinizer</h3>
-    <p></p>
+    <p>
+        Efter jag har analyserat rapporten som generades av scrutinizer har hitta den runt 3800 'issues' med programmet vilket är en hel
+        del där mycket av det inte skapar något problem för programmet. Så jag tänker dela upp det i fyra grupper som jag ska analysera
+        vad det största problemen är i dom grupperna.
+    </p>
+    <p>
+        Bugs<br>
+        Det var runt 2400 'bugs' i programmet som scrutinizer hittade. En del kom från symfony och andra packages filer vilket jag då kommer
+        ignorera eftersom det är inget jag kan fixa. Jag kommer fokusera på buggar där jag vet det kan skapa problem i programmet och undvika
+        buggar där jag vet det inte kommer uppstå problem tillexempel en 'bugg' där scrutinizer tror ett värde kan vara null men jag har byggt
+        programmet på ett sånt sätt så det värdet aldrig kan vara null vid den punkten.
+    </p>
+    <p>
+        Complexity<br>
+        Jag såg också i scrutinizer att en del av mina modellklasser och kontrollers hade hög komplexitet och kommer därför försöka få ner
+        komplexiteten på dessa. De klasser som hade mest problem med komplexitet var Game, GameController, CardController och LibraryController
+        vilket gör att dessa klasser kommer få mest fokus för att försöka sänka komplexiteten på sidan. Klasserna fick en komplexitet på
+        respektive 19, 17, 14 och 14.
+    </p>
+    <p>
+        Ratings<br>
+        I scrutinizer rapporten har scrutinizer betygsatt alla klasser och funktioner så jag kommer också kolla mycket på dom klasser eller funktioner
+        med låga ratings för att hitta problem i programmet. Låga ratings av scrutinizer tyder ofta på dålig kod kvalite vilket betyder att
+        koden kan vara svår att förstå, har dålig prestanda eller dålig återanvändbarhet.
+    </p>
+    <p>
+        Coverage<br>
+        Jag blev väldigt nöjd med mätvärdena jag fick på coverage där den modellklassen med lägst coverage fick 80% vilket är över vad man anser
+        acceptabel coverage vilket anses vara runt 50% - 70%. 3 modellklasser kom fick till och med 100% coverage. Så mitt mål med coverage blir
+        då att öka coveragen på klassen Deck vilket va klassen med 80% i coverage. Men förrutom detta tror jag inte att det finns så mycket mer
+        att förbättra inom coverage.
+    </p>
     <h3>Förbättringar</h3>
     <h4>Innan</h4>
-    <p></p>
+    <p>
+        Jag ska nu förbättra mitt program med hjälp av resultatet jag fick från phpmetrics och scrutinizer. Jag kommer försöka förbättra
+        porgrammet genom att ta några av mätvärdena jag analysera ovan och försöka höja dom genom att ändra koden efter dom så kodkvaliten
+        går upp. Jag ska försöka få ner complexitet värdet i både phpmetrics och scrutinizer genom att fokusera på dom klasser jag nämnde
+        ovan med höga complexitet värden, jag kommer också ta bort onödiga klasser jag inte längre har använding för som dice och product
+        klasserna. Med lägre complexitet värde så kommer klasserna vara lättare att förstå och ha bättre kodkvalite.<br>
+        Jag vill också försöka förbättra mätvärdet cohesion vilket jag kommer göra på samma sätt som complexitet där jag kommer fokusera
+        på klasser med hög LCOM vilket kommer öka cohesion på programmet och detta kommer då göra att programmet blir lättare att förstå
+        och kommer också göra koden mer återanvändbar.<br>
+        Det sista mätvärdet jag vill förbättra är violations i phpmetrics vilket jag kommer göra genom att analysera meddelandet från
+        rapporten och hitta problemet i koden. Jag kommer göra detta eftersom det kommer öka kodkvaliten på programmet.
+    </p>
     <h4>Efter</h4>
     <p></p>
     <h3>Diskussion</h3>
