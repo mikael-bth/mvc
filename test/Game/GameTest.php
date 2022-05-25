@@ -121,7 +121,7 @@ class GameTest extends TestCase
             ->willReturn($card);
         $game->drawPlayer($mockDeck);
         $exp = 14;
-        $res = $game->getPlayerSum();
+        $res = $game->getSum($game->getPlayer());
         $this->assertEquals($exp, $res);
     }
 
@@ -138,7 +138,7 @@ class GameTest extends TestCase
             ->willReturn($card);
         $game->drawBank($mockDeck);
         $exp = 18;
-        $res = $game->getBankSum();
+        $res = $game->getSum($game->getBank());
         $this->assertEquals($exp, $res);
     }
 
@@ -157,7 +157,7 @@ class GameTest extends TestCase
         $game->drawPlayer($mockDeck);
         $game->drawPlayer($mockDeck);
         $exp = 15;
-        $res = $game->getPlayerSum();
+        $res = $game->getSum($game->getPlayer());
         $this->assertEquals($exp, $res);
     }
 }

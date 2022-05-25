@@ -68,7 +68,11 @@
                 
             </li>
                     <li>
-                <a href="namespaces/app-dice.html" class="">Dice</a>
+                <a href="namespaces/app-entity.html" class="">Entity</a>
+                
+            </li>
+                    <li>
+                <a href="namespaces/app-repository.html" class="">Repository</a>
                 
             </li>
             </ul>
@@ -196,14 +200,6 @@
 <dd>Returns the bank object.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/App-Card-Game.html#method_getBankSum">getBankSum()</a>
-    <span>
-                                &nbsp;: int    </span>
-</dt>
-<dd>Returns the sum of the cards in the banks hands,
-updates the value accordingly if the bank has aces in the hand.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Card-Game.html#method_getPlayer">getPlayer()</a>
     <span>
                                 &nbsp;: <a href="classes/App-Card-Player.html"><abbr title="\App\Card\Player">Player</abbr></a>    </span>
@@ -218,7 +214,14 @@ updates the value accordingly if the bank has aces in the hand.</dd>
 <dd>Returns the playerStanding value.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/App-Card-Game.html#method_getPlayerSum">getPlayerSum()</a>
+    <a href="classes/App-Card-Game.html#method_getResult">getResult()</a>
+    <span>
+                                &nbsp;: string    </span>
+</dt>
+<dd>Returns a string that describes the result of the game.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/App-Card-Game.html#method_getSum">getSum()</a>
     <span>
                                 &nbsp;: int    </span>
 </dt>
@@ -399,7 +402,7 @@ updates the value accordingly if the player has aces in the hand.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Card/Game.php"><a href="files/src-card-game.html"><abbr title="src/Card/Game.php">Game.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">112</span>
+    <span class="phpdocumentor-element-found-in__line">94</span>
 
     </aside>
 
@@ -565,40 +568,6 @@ updates the value accordingly if the player has aces in the hand.</dd>
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_getBankSum">
-        getBankSum()
-        <a href="classes/App-Card-Game.html#method_getBankSum" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Card/Game.php"><a href="files/src-card-game.html"><abbr title="src/Card/Game.php">Game.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">97</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Returns the sum of the cards in the banks hands,
-updates the value accordingly if the bank has aces in the hand.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getBankSum</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
-
-    
-    
-    
-
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">int</span>
-            &mdash;
-        
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
     <h4 class="phpdocumentor-element__name" id="method_getPlayer">
         getPlayer()
         <a href="classes/App-Card-Game.html#method_getPlayer" class="headerlink"><i class="fas fa-link"></i></a>
@@ -665,9 +634,42 @@ updates the value accordingly if the bank has aces in the hand.</p>
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_getPlayerSum">
-        getPlayerSum()
-        <a href="classes/App-Card-Game.html#method_getPlayerSum" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_getResult">
+        getResult()
+        <a href="classes/App-Card-Game.html#method_getResult" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Card/Game.php"><a href="files/src-card-game.html"><abbr title="src/Card/Game.php">Game.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">109</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Returns a string that describes the result of the game.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getResult</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+    
+    
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type">string</span>
+            &mdash;
+        
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getSum">
+        getSum()
+        <a href="classes/App-Card-Game.html#method_getSum" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Card/Game.php"><a href="files/src-card-game.html"><abbr title="src/Card/Game.php">Game.php</abbr></a></abbr>
@@ -681,10 +683,21 @@ updates the value accordingly if the player has aces in the hand.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getPlayerSum</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
+                    <span class="phpdocumentor-signature__name">getSum</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Card-Player.html"><abbr title="\App\Card\Player">Player</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$player</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
 
     
-    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$player</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Card-Player.html"><abbr title="\App\Card\Player">Player</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"></section>
+
+            </dd>
+            </dl>
+
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>

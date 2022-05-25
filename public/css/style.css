@@ -722,6 +722,10 @@ template {
   height: 40px;
 }
 
+.metrics {
+  margin-bottom: 5em;
+}
+
 .metrics h2 {
   text-align: center;
 }

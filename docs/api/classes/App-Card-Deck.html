@@ -68,7 +68,11 @@
                 
             </li>
                     <li>
-                <a href="namespaces/app-dice.html" class="">Dice</a>
+                <a href="namespaces/app-entity.html" class="">Entity</a>
+                
+            </li>
+                    <li>
+                <a href="namespaces/app-repository.html" class="">Repository</a>
                 
             </li>
             </ul>
@@ -119,12 +123,12 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Card/Deck.php"><a href="files/src-card-deck.html"><abbr title="src/Card/Deck.php">Deck.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">7</span>
+    <span class="phpdocumentor-element-found-in__line">16</span>
 
     </aside>
 
-        
-    <section class="phpdocumentor-description"></section>
+            <p class="phpdocumentor-summary">Deck class</p>
+
 
 
 
@@ -139,7 +143,42 @@
 </h3>
 
 <dl class="phpdocumentor-table-of-contents">
-                    <dt class="phpdocumentor-table-of-contents__entry -property -protected">
+                    <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/App-Card-Deck.html#property_colorList">$colorList</a>
+    <span>
+                        &nbsp;: array&lt;string|int, string&gt;            </span>
+</dt>
+<dd></dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/App-Card-Deck.html#property_deck">$deck</a>
+    <span>
+                        &nbsp;: array&lt;string|int, <a href="classes/App-Card-Card.html"><abbr title="\App\Card\Card">Card</abbr></a>&gt;            </span>
+</dt>
+<dd></dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/App-Card-Deck.html#property_iconList">$iconList</a>
+    <span>
+                        &nbsp;: array&lt;string|int, string&gt;            </span>
+</dt>
+<dd></dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/App-Card-Deck.html#property_valueList">$valueList</a>
+    <span>
+                        &nbsp;: array&lt;string|int, string&gt;            </span>
+</dt>
+<dd></dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/App-Card-Deck.html#property_valueNumberList">$valueNumberList</a>
+    <span>
+                        &nbsp;: array&lt;string|int, int&gt;            </span>
+</dt>
+<dd></dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a href="classes/App-Card-Deck.html#property_deck">$deck</a>
     <span>
                         &nbsp;: array&lt;string|int, mixed&gt;            </span>
@@ -189,6 +228,14 @@
 <dd>Returns a random card, then removes that card from the deck.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/App-Card-Deck.html#method_drawCards">drawCards()</a>
+    <span>
+                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
+</dt>
+<dd>Returns a random list with specified amount of cards,
+then removes those card from the deck.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Card-Deck.html#method_getAsString">getAsString()</a>
     <span>
                                 &nbsp;: string    </span>
@@ -198,7 +245,7 @@
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Card-Deck.html#method_getDeck">getDeck()</a>
     <span>
-                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
+                                &nbsp;: array&lt;string|int, <a href="classes/App-Card-Card.html"><abbr title="\App\Card\Card">Card</abbr></a>&gt;    </span>
 </dt>
 <dd>Returns the deck array.</dd>
 
@@ -223,6 +270,14 @@
 </dt>
 <dd>Shuffles the deck array.</dd>
 
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/App-Card-Deck.html#method_shuffleOnLow">shuffleOnLow()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Shuffles the deck if there is less than
+15 cards in the deck</dd>
+
         </dl>
 
 
@@ -239,6 +294,171 @@
         class="
             phpdocumentor-element
             -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_colorList">
+        $colorList
+        <a href="classes/App-Card-Deck.html#property_colorList" class="headerlink"><i class="fas fa-link"></i></a>
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Card/Deck.php"><a href="files/src-card-deck.html"><abbr title="src/Card/Deck.php">Deck.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">0</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">array&lt;string|int, string&gt;</span>
+    <span class="phpdocumentor-signature__name">$colorList</span>
+    </code>
+
+    
+        <section class="phpdocumentor-description"></section>
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_deck">
+        $deck
+        <a href="classes/App-Card-Deck.html#property_deck" class="headerlink"><i class="fas fa-link"></i></a>
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Card/Deck.php"><a href="files/src-card-deck.html"><abbr title="src/Card/Deck.php">Deck.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">0</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">array&lt;string|int, <a href="classes/App-Card-Card.html"><abbr title="\App\Card\Card">Card</abbr></a>&gt;</span>
+    <span class="phpdocumentor-signature__name">$deck</span>
+    </code>
+
+    
+        <section class="phpdocumentor-description"></section>
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_iconList">
+        $iconList
+        <a href="classes/App-Card-Deck.html#property_iconList" class="headerlink"><i class="fas fa-link"></i></a>
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Card/Deck.php"><a href="files/src-card-deck.html"><abbr title="src/Card/Deck.php">Deck.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">0</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">array&lt;string|int, string&gt;</span>
+    <span class="phpdocumentor-signature__name">$iconList</span>
+    </code>
+
+    
+        <section class="phpdocumentor-description"></section>
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_valueList">
+        $valueList
+        <a href="classes/App-Card-Deck.html#property_valueList" class="headerlink"><i class="fas fa-link"></i></a>
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Card/Deck.php"><a href="files/src-card-deck.html"><abbr title="src/Card/Deck.php">Deck.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">0</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">array&lt;string|int, string&gt;</span>
+    <span class="phpdocumentor-signature__name">$valueList</span>
+    </code>
+
+    
+        <section class="phpdocumentor-description"></section>
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_valueNumberList">
+        $valueNumberList
+        <a href="classes/App-Card-Deck.html#property_valueNumberList" class="headerlink"><i class="fas fa-link"></i></a>
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Card/Deck.php"><a href="files/src-card-deck.html"><abbr title="src/Card/Deck.php">Deck.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">0</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">array&lt;string|int, int&gt;</span>
+    <span class="phpdocumentor-signature__name">$valueNumberList</span>
+    </code>
+
+    
+        <section class="phpdocumentor-description"></section>
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
             -protected
                                                         "
 >
@@ -251,7 +471,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Card/Deck.php"><a href="files/src-card-deck.html"><abbr title="src/Card/Deck.php">Deck.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">9</span>
+    <span class="phpdocumentor-element-found-in__line">18</span>
 
     </aside>
 
@@ -285,7 +505,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Card/Deck.php"><a href="files/src-card-deck.html"><abbr title="src/Card/Deck.php">Deck.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">12</span>
+    <span class="phpdocumentor-element-found-in__line">21</span>
 
     </aside>
 
@@ -319,7 +539,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Card/Deck.php"><a href="files/src-card-deck.html"><abbr title="src/Card/Deck.php">Deck.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">13</span>
+    <span class="phpdocumentor-element-found-in__line">22</span>
 
     </aside>
 
@@ -353,7 +573,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Card/Deck.php"><a href="files/src-card-deck.html"><abbr title="src/Card/Deck.php">Deck.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">10</span>
+    <span class="phpdocumentor-element-found-in__line">19</span>
 
     </aside>
 
@@ -387,7 +607,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Card/Deck.php"><a href="files/src-card-deck.html"><abbr title="src/Card/Deck.php">Deck.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">11</span>
+    <span class="phpdocumentor-element-found-in__line">20</span>
 
     </aside>
 
@@ -425,7 +645,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Card/Deck.php"><a href="files/src-card-deck.html"><abbr title="src/Card/Deck.php">Deck.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">18</span>
+    <span class="phpdocumentor-element-found-in__line">27</span>
 
     </aside>
 
@@ -458,7 +678,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Card/Deck.php"><a href="files/src-card-deck.html"><abbr title="src/Card/Deck.php">Deck.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">38</span>
+    <span class="phpdocumentor-element-found-in__line">52</span>
 
     </aside>
 
@@ -484,6 +704,51 @@
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_drawCards">
+        drawCards()
+        <a href="classes/App-Card-Deck.html#method_drawCards" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Card/Deck.php"><a href="files/src-card-deck.html"><abbr title="src/Card/Deck.php">Deck.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">65</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Returns a random list with specified amount of cards,
+then removes those card from the deck.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">drawCards</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$numDraws</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$numDraws</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"></section>
+
+            </dd>
+            </dl>
+
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+            &mdash;
+        
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_getAsString">
         getAsString()
         <a href="classes/App-Card-Deck.html#method_getAsString" class="headerlink"><i class="fas fa-link"></i></a>
@@ -491,7 +756,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Card/Deck.php"><a href="files/src-card-deck.html"><abbr title="src/Card/Deck.php">Deck.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">50</span>
+    <span class="phpdocumentor-element-found-in__line">78</span>
 
     </aside>
 
@@ -524,7 +789,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Card/Deck.php"><a href="files/src-card-deck.html"><abbr title="src/Card/Deck.php">Deck.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">70</span>
+    <span class="phpdocumentor-element-found-in__line">99</span>
 
     </aside>
 
@@ -532,16 +797,18 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getDeck</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">getDeck</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, <a href="classes/App-Card-Card.html"><abbr title="\App\Card\Card">Card</abbr></a>&gt;</span></code>
 
     
     
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+    <span class="phpdocumentor-signature__response_type">array&lt;string|int, <a href="classes/App-Card-Card.html"><abbr title="\App\Card\Card">Card</abbr></a>&gt;</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>$deck</p>
+</section>
+
     
 </article>
                     <article
@@ -557,7 +824,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Card/Deck.php"><a href="files/src-card-deck.html"><abbr title="src/Card/Deck.php">Deck.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">62</span>
+    <span class="phpdocumentor-element-found-in__line">90</span>
 
     </aside>
 
@@ -590,7 +857,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Card/Deck.php"><a href="files/src-card-deck.html"><abbr title="src/Card/Deck.php">Deck.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">78</span>
+    <span class="phpdocumentor-element-found-in__line">108</span>
 
     </aside>
 
@@ -598,18 +865,17 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">setDeck</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$newDeck</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">setDeck</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, <a href="classes/App-Card-Card.html"><abbr title="\App\Card\Card">Card</abbr></a>&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$newDeck</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$newDeck</span>
-                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, <a href="classes/App-Card-Card.html"><abbr title="\App\Card\Card">Card</abbr></a>&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
+                
             </dd>
             </dl>
 
@@ -634,7 +900,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Card/Deck.php"><a href="files/src-card-deck.html"><abbr title="src/Card/Deck.php">Deck.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">30</span>
+    <span class="phpdocumentor-element-found-in__line">44</span>
 
     </aside>
 
@@ -643,6 +909,40 @@
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">shuffleDeck</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    
+    
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type">void</span>
+            &mdash;
+        
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_shuffleOnLow">
+        shuffleOnLow()
+        <a href="classes/App-Card-Deck.html#method_shuffleOnLow" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Card/Deck.php"><a href="files/src-card-deck.html"><abbr title="src/Card/Deck.php">Deck.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">117</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Shuffles the deck if there is less than
+15 cards in the deck</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">shuffleOnLow</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     
     

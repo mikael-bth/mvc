@@ -142,9 +142,40 @@
         Violations: 7
     </p>
     <h4>Efter</h4>
-    <p></p>
+    <p>
+        Som man ser så blev det inte än jätte stor skillnad mellan värdena men blev ändå nöjd med vad jag lyckades göra. Jag började med
+        cohesion då jag flyttade ut kod från controllers som jag tyckte passade bättre i en klass. Detta gjorde att det blev lättare
+        att se vad controller funktionerna gjorde och gav snyggare kod tillexempel så flyttade jag ut en for loop för att dra flera kort
+        till en egen funktion i Deck klassen, detta gav mycket snyggare kod och gjorde så koden blir mer återanvändbar. Jag skapade också
+        en ny klass Deal vilket inte håller jätte mycket kod men jag tyckte det gjorde koden lite mer cohesive och blir också mer återanvändbar.
+        Detta ökade dock mer complexitet en del då den gick upp till 4.5 men löste detta genom att först ta bort så många onödigt if satser som
+        möjligt, sen så flytta jag ut några if satser som jag behövde ha kvar från GameController som hade väldigt hög complexitet till passande
+        modellklass, tillexempel så flytta jag ut en if sats som resetar och shufflar om kortleken ifall den har för lite kort till Deck och så
+        flytta jag ut en lång if sats som hämtar en string som beskriver resultatet från GameController till Game klassen. Jag la också mycket
+        arbete med att försöka ta bort så många onödiga for loopar som möjligt och ersätte dom med array funktioner istället vilket fungerade
+        väldigt bra och var intressant för jag inte använt array funktioner knappt något i PHP. Några användbara array funktioner jag använda var
+        array_filter, array_map och array_key_first vilket gjorde att jag inte behövde loopa igenom spelarens array av kort något och kunde då
+        sänka complexiteten. Ifall jag ska vara ärlig så la jag inte jätte mycket aktivt arbete på att få bort violations utan jag kunde jobba
+        bort dom samtidigt jag jobbade med det andra eftersom kodkvaliten ökade vilket gjorde att många buggar försvann och då försvann violations
+        med dom.
+    </p>
+    <p>
+        Mätvärden:<br>
+        Cyclomatic complexity: 3.59<br>
+        LCOM: 1.06<br>
+        Violations: 4
+    </p>
     <h3>Diskussion</h3>
-    <p></p>
+    <p>
+        Jag skulle säga att jag blev ganska nöjd med mitt analys då jag inte riktigt analyserat min kod på ett sånt här sätt innan. Hade ganska
+        svårt med att komma igång men när jag väl började blev det ganska lätt att se kod delar jag inte var nöjd med och försöka hitta
+        sätt att förbättra det. Vet inte om jag aktivt kunde jobba med kodkvalite på detta sättet när jag programmerar dock eftersom det tog
+        väldigt mycket tid och arbete men tror det är ett väldigt användbart verktyg som är bra att använda när man börjar bli klar med ett
+        program för att programmet ska bli så bra som möjligt. Tror också det kan vara bra att arbete med kodkvalite när man arbetar på ett
+        projekt med flera personer eftersom det gör det lättare för de andra personerna för att förstå din kod och kunna ta användning av den.
+        I helhet skulle jag säga det kan vara väldigt bra med att arbete med kodkvalite på detta sättet men det kan också i vissa fall ta för
+        mycket tid och energi för att det ska vara användbart.
+    </p>
 </div>
 
 {% endblock %}

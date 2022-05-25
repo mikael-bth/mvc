@@ -80,11 +80,10 @@ class Game
      */
     public function getSum(Player $player): int
     {
-        $sum = 0;
         $sumArray = array_map(function (Card $card) {
             return $card->getNumberValue();
         }, $player->getHand());
-        $sum = array_sum($sumArray);
+        $sum = intval(array_sum($sumArray));
         $sum = $this->aceAdjust($player, $sum);
         return $sum;
     }
