@@ -48,6 +48,19 @@ class DeckTest extends TestCase
 
     /**
      * Constructs object and tests that the constructed objects
+     * deck array decreases in correct amount after drawing cards.
+     */
+    public function testDrawCardsDecrease()
+    {
+        $deck = new Deck();
+        $deck->drawCards(5);
+        $res = $deck->getDeckSize();
+        $exp = 47;
+        $this->assertEquals($exp, $res);    
+    }
+
+    /**
+     * Constructs object and tests that the constructed objects
      * getDeckSize function returns expected number.
      */
     public function testDeckSize()
@@ -69,6 +82,32 @@ class DeckTest extends TestCase
         $deck = new Deck();
         $deck->setDeck($exp);
         $res = $deck->getDeck();
+        $this->assertEquals($exp, $res);
+    }
+
+    /**
+     * Constructs object and tests that the constructed objects
+     * getAsString function returns a string.
+     */
+    public function testGetAsString()
+    {
+        $deck = new Deck();
+        $res = $deck->getAsString();
+        $this->assertIsString($res);
+    }
+
+    /**
+     * Constructs object and tests that the constructed objects
+     * shuffleOnLow function shuffles and resets the deck if called
+     * with less than 15 cards.
+     */
+    public function testShuffleOnLow()
+    {
+        $deck = new Deck();
+        $deck->drawCards(40);
+        $deck->shuffleOnLow();
+        $res = $deck->getDeckSize();
+        $exp = 52;
         $this->assertEquals($exp, $res);
     }
 }

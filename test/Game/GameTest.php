@@ -160,4 +160,22 @@ class GameTest extends TestCase
         $res = $game->getSum($game->getPlayer());
         $this->assertEquals($exp, $res);
     }
+
+    /**
+     * Constructs object and tests that the constructed objects
+     * getResult function returns the correct string
+     */
+    public function testGetResult()
+    {
+        $game = new Game();
+        $card = new Card("9", 9, '♥', 'heart');
+        $mockDeck = $this->createMock(Deck::class);
+        $mockDeck->method('drawCard')
+            ->willReturn($card);
+        $game->drawPlayer($mockDeck);
+        $game->drawBank($mockDeck);
+        $exp = "Banken vann, Banken var närmare 21 än dig";
+        $res = $game->getResult();
+        $this->assertEquals($exp, $res);
+    }
 }
