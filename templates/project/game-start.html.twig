@@ -1,0 +1,16 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+
+<div class="poker-start">
+    <h2>{{ header }}</h2>
+
+    <form action="{{ path('project-game-start-process') }}" method="post">
+        <input type="submit" name="new" value="Nytt spel">
+        {% if active %}
+        <input type="submit" value="Fortsätt">
+        {% endif %}
+    </form> 
+</div>
+
+{% endblock %}

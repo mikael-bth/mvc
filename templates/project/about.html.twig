@@ -1,0 +1,19 @@
+{# templates/about.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h2>{{ header }}</h2>
+
+    <p>
+        MVC kursen handlar om att programmera webbapplikationer på ett objektorienterat sätt med fokus på det arkitekturella designmönstret MVC.
+        Inom kursen använder man ramverket Symfony som är ett av de mer kända ramverken inom PHP. I kursen lär man sig grunderna för objektorientering
+        inom PHP.
+    </p>
+
+    <p><a href="{{ absolute_url(https://www.student.bth.se/~mimn21/dbwebb-kurser/mvc/me/report/docs/api/) }}">PHPDoc</a></p>
+    <p><a href="{{ absolute_url(https://www.student.bth.se/~mimn21/dbwebb-kurser/mvc/me/report/docs/metrics/) }}">PHPMetrics</a></p>
+    <p><a href="https://github.com/mikael-bth/mvc.git">Github repo</a></p>
+    <p><a href="https://scrutinizer-ci.com/g/mikael-bth/mvc/?branch=main">Scrutinizer</a></p>
+
+{% endblock %}

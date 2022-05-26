@@ -734,6 +734,84 @@ template {
   padding: 0 0.7em;
 }
 
+.poker-start {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 60%;
+  align-content: space-around;
+}
+
+.poker-start h2 {
+  text-align: center;
+}
+
+.poker-start input {
+  width: 40%;
+  height: 3em;
+  font-size: 2.5em;
+  padding: 0.5em;
+}
+
+.poker {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 200px 200px 200px;
+  justify-content: center;
+  height: 100%;
+  margin-bottom: 5em;
+  overflow-y: scroll;
+}
+
+.poker::-webkit-scrollbar {
+  display: none;
+}
+
+.poker > p {
+  position: absolute;
+  margin: 1em;
+  top: 8em;
+  right: 0;
+}
+
+.poker .card {
+  text-align: center;
+  margin: 0.7em;
+  padding-top: 1em;
+  height: 2.5em;
+  width: 2.5em;
+  font-size: 1.5em;
+  border: 1px solid black;
+}
+
+.poker .holder {
+  display: grid;
+  height: 200px;
+  grid-template-columns: 60%;
+  justify-content: center;
+  align-content: flex-start;
+}
+
+.poker .player {
+  align-self: flex-end;
+}
+
+.poker .table {
+  display: grid;
+  height: 200px;
+  justify-content: center;
+  align-content: center;
+}
+
+.poker .holder h3 {
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.poker .cards {
+  display: flex;
+  justify-content: center;
+}
+
 .header {
   height: 5em;
   width: 100%;

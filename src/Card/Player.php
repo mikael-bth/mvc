@@ -27,6 +27,17 @@ class Player
     }
 
     /**
+     * Adds cards to the players hand.
+     * @param Card[] $cards
+     */
+    public function addCards(array $cards): void
+    {
+        foreach ($cards as $card) {
+            $this->hand[] = $card;
+        }
+    }
+
+    /**
      * Returns the players hand.
      * @return Card[] $hand
      */

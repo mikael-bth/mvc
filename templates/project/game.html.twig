@@ -1,0 +1,45 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+<div class="poker">
+    <p>Kort kvar i leken - {{ count }}</p>
+    <div class="computer holder">
+        <h3>{{ computer.getName() }}</h3>
+        <div class="cards">
+        {% for card in computer.getHand() %}
+            {% if showCards %}
+            <p class="{{ card.getColorName() }} card">{{ card.getAsString() }}</p>
+            {% else %}
+            <p class="card">? | ?</p>
+            {% endif %}
+        {% endfor %}
+        </div>
+    </div>
+
+    <div class="table">
+        <div class="cards">
+        {% for card in table.getHand() %}
+            <p class="{{ card.getColorName() }} card">{{ card.getAsString() }}</p>
+        {% endfor %}
+        </div>
+    </div>
+
+    <div class="player holder">
+        <h3>{{ player.getName() }}</h3>
+        <div class="cards">
+        {% for card in player.getHand() %}
+            <p class="{{ card.getColorName() }} card">{{ card.getAsString() }}</p>
+        {% endfor %}
+        </div>
+    </div>
+
+    {#
+    {% if standing == false %}
+    <form action="{{ path('project-game-play-process') }}" method="post">
+        <input type="submit" name="bet" value="BET">
+        <input type="submit" name="fold" value="FOLD">
+    </form>
+    {% endif %}
+    #}
+</div>
+{% endblock %}
