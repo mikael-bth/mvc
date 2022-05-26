@@ -115,4 +115,21 @@ class ProjectController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route(
+     *      "/proj/game/play/process",
+     *      name="project-game-play-process",
+     *      methods={"POST"}
+     * )
+     */
+    public function gamePlayProcess(
+        ManagerRegistry $doctrine,
+        Request $request
+    ): Response {
+        $bet = $request->request->get('bet');
+        $betAmount = $request->request->get('betAmount');
+        error_log($betAmount);
+        return $this->redirectToRoute("project-game-play");
+    }
+
 }

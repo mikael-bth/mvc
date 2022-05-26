@@ -1,5 +1,6 @@
 .poker-start {
     display: grid;
+    height: 350px;
     justify-content: center;
     grid-template-columns: 60%;
     align-content: space-around;
@@ -9,11 +10,17 @@
     text-align: center;
 }
 
+.poker-start form {
+    display: flex;
+    justify-content: space-evenly;
+}
+
 .poker-start input {
-    width: 40%;
-    height: 3em;
-    font-size: 2.5em;
-    padding: 0.5em;
+    width: 30%;
+    height: 2.5em;
+    font-size: 2em;
+    border: 1px solid;
+    border-radius: 5%;
 }
 
 .poker {
@@ -75,3 +82,40 @@
     display: flex;
     justify-content: center;
 }
+
+.poker>form {
+    position: fixed;
+    bottom: 5em;
+    left: 0;
+    margin: 0 -2px;
+}
+
+.poker>form fieldset {
+    display: grid;
+}
+
+.poker>form h3 {
+    grid-column: span 2;
+    margin: 1em;
+}
+
+.poker>form fieldset>input {
+    font-size: 1.7em;
+    width: 3.7em;
+    margin: 0.3em;
+    padding: 0.3em;
+    border-radius: 20%;
+}
+
+.poker>form fieldset>input[name=fold] {
+    margin-left: -4em;
+}
+
+.poker>form .bet>input {
+    margin: 0.3em;
+}
+
+.poker>form .bet>label {
+    font-size: 1.5em;
+}
+

@@ -33,13 +33,24 @@
         </div>
     </div>
 
-    {#
-    {% if standing == false %}
     <form action="{{ path('project-game-play-process') }}" method="post">
-        <input type="submit" name="bet" value="BET">
-        <input type="submit" name="fold" value="FOLD">
+        <fieldset>
+            <h3>POKER</h3>
+            <input type="submit" name="bet" value="BET">
+            <input type="submit" name="fold" value="FOLD">
+            <div class="bet">
+                <input type="radio" id="ten" name="betAmount" value="10" checked>
+                <label for="ten">10</label>
+                <input type="radio" id="thirty" name="betAmount" value="30">
+                <label for="thirty">30</label>
+                <input type="radio" id="fifty" name="betAmount" value="50">
+                <label for="fifty">50</label>
+                <input type="radio" id="seventy" name="betAmount" value="70">
+                <label for="seventy">70</label>
+                <input type="radio" id="hundo" name="betAmount" value="100">
+                <label for="hundo">100</label>
+            </div>
+        </fieldset>
     </form>
-    {% endif %}
-    #}
 </div>
 {% endblock %}
