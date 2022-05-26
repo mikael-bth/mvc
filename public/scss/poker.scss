@@ -73,7 +73,8 @@
     align-content: center;
 }
 
-.poker .holder h3 {
+.poker .holder h3,
+.poker .holder>p {
     text-align: center;
     margin-bottom: 0;
 }
@@ -95,20 +96,20 @@
 }
 
 .poker>form h3 {
-    grid-column: span 2;
+    grid-column: span 4;
     margin: 1em;
 }
 
 .poker>form fieldset>input {
     font-size: 1.7em;
-    width: 3.7em;
+    width: 4em;
     margin: 0.3em;
     padding: 0.3em;
     border-radius: 20%;
 }
 
-.poker>form fieldset>input[name=fold] {
-    margin-left: -4em;
+.poker>form .bet {
+    grid-column: span 4;
 }
 
 .poker>form .bet>input {
@@ -116,6 +117,7 @@
 }
 
 .poker>form .bet>label {
-    font-size: 1.5em;
+    font-size: 1.7em;
+    margin-right: 0.7em;
 }
 

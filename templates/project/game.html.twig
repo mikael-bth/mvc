@@ -14,6 +14,7 @@
             {% endif %}
         {% endfor %}
         </div>
+        <p>Money: {{ cMoney }} | Bet: {{ computer.getBet() }}</p>
     </div>
 
     <div class="table">
@@ -22,6 +23,7 @@
             <p class="{{ card.getColorName() }} card">{{ card.getAsString() }}</p>
         {% endfor %}
         </div>
+        <p>Pot: {{ pot }}</p>
     </div>
 
     <div class="player holder">
@@ -31,12 +33,15 @@
             <p class="{{ card.getColorName() }} card">{{ card.getAsString() }}</p>
         {% endfor %}
         </div>
+        <p>Money: {{ pMoney }} | Bet: {{ player.getBet() }}</p>
     </div>
 
     <form action="{{ path('project-game-play-process') }}" method="post">
         <fieldset>
             <h3>POKER</h3>
+            <input type="submit" name="call" value="CALL">
             <input type="submit" name="bet" value="BET">
+            <input type="submit" name="all" value="ALL IN">
             <input type="submit" name="fold" value="FOLD">
             <div class="bet">
                 <input type="radio" id="ten" name="betAmount" value="10" checked>

@@ -105,7 +105,7 @@ class DeckTest extends TestCase
     {
         $deck = new Deck();
         $deck->drawCards(40);
-        $deck->shuffleOnLow();
+        $deck->shuffleOnLow(15);
         $res = $deck->getDeckSize();
         $exp = 52;
         $this->assertEquals($exp, $res);
