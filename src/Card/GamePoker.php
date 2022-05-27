@@ -87,4 +87,12 @@ class GamePoker
         $player->addCards($cards);
         return $deck;
     }
+
+    public function getHandValue(Player $player): array
+    {
+        $ruleValue = 0;
+        $highValue = 0;
+
+        return [$ruleValue, $highValue];
+    }
 }
