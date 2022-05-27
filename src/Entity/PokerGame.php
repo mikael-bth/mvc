@@ -22,6 +22,15 @@ class PokerGame
     #[ORM\Column(type: 'boolean')]
     private $ActiveGame;
 
+    #[ORM\Column(type: 'integer')]
+    private $PlayerBet;
+
+    #[ORM\Column(type: 'integer')]
+    private $ComputerBet;
+
+    #[ORM\Column(type: 'integer')]
+    private $Pot;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -59,6 +68,42 @@ class PokerGame
     public function setActiveGame(bool $ActiveGame): self
     {
         $this->ActiveGame = $ActiveGame;
+
+        return $this;
+    }
+
+    public function getPlayerBet(): ?int
+    {
+        return $this->PlayerBet;
+    }
+
+    public function setPlayerBet(int $PlayerBet): self
+    {
+        $this->PlayerBet = $PlayerBet;
+
+        return $this;
+    }
+
+    public function getComputerBet(): ?int
+    {
+        return $this->ComputerBet;
+    }
+
+    public function setComputerBet(int $ComputerBet): self
+    {
+        $this->ComputerBet = $ComputerBet;
+
+        return $this;
+    }
+
+    public function getPot(): ?int
+    {
+        return $this->Pot;
+    }
+
+    public function setPot(int $Pot): self
+    {
+        $this->Pot = $Pot;
 
         return $this;
     }

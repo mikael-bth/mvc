@@ -4,10 +4,9 @@ namespace App\Card;
 
 class GamePoker
 {
-    private PokerPlayer $computer;
-    private PokerPlayer $player;
-    private PokerPlayer $table;
-    private int $pot;
+    private Player $computer;
+    private Player $player;
+    private Player $table;
     private int $state;
     private int $playedState;
 
@@ -16,10 +15,9 @@ class GamePoker
      */
     public function __construct()
     {
-        $this->computer = new PokerPlayer("Dator");
-        $this->player = new PokerPlayer("Du");
-        $this->table = new PokerPlayer("table");
-        $this->pot = 0;
+        $this->computer = new Player("Dator");
+        $this->player = new Player("Du");
+        $this->table = new Player("table");
         $this->state = 0;
         $this->playedState = -1;
     }
@@ -78,22 +76,6 @@ class GamePoker
     public function setPState(int $state): void
     {
         $this->playedState = $state;
-    }
-
-    /**
-     * Returns the pot.
-     */
-    public function getPot(): int
-    {
-        return $this->pot;
-    }
-
-    /**
-     * Sets the pot.
-     */
-    public function setPot(int $pot): void
-    {
-        $this->pot = $pot;
     }
 
     /**

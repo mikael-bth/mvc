@@ -8,9 +8,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-use App\Card\Card;
 use App\Card\Deck;
-use App\Card\Player;
+use App\Card\Game;
 use App\Card\GamePoker;
 
 use Doctrine\Persistence\ManagerRegistry;
@@ -74,26 +73,42 @@ class ProjectController extends AbstractController
         Request $request,
         SessionInterface $session
     ): Response {
+
         $entityManager = $doctrine->getManager();
         $pokerGame = $entityManager->getRepository(PokerGame::class)->find(1);
+
         $newGame = $request->request->get('new');
         $game = new GamePoker;
+
         if (!$pokerGame) {
-            $pokerGame = new PokerGame();
-            $pokerGame->setComputerMoney(100);
-            $pokerGame->setPlayerMoney(100);
-            $pokerGame->setActiveGame(true);
-            $entityManager->persist($pokerGame);
+            $newPokerGame = new PokerGame();
+            $newPokerGame->setComputerMoney(100);
+            $newPokerGame->setPlayerMoney(100);
+            $newPokerGame->setComputerBet(0);
+            $newPokerGame->setPlayerBet(0);
+            $newPokerGame->setPot(0);
+            $newPokerGame->setActiveGame(true);
+            $entityManager->persist($newPokerGame);
             $entityManager->flush();
             $session->set("poker-game", $game);
         } else {
             if (!$pokerGame->isActiveGame() or $newGame) {
                 $pokerGame->setComputerMoney(100);
                 $pokerGame->setPlayerMoney(100);
+                $pokerGame->setComputerBet(0);
+                $pokerGame->setPlayerBet(0);
+                $pokerGame->setPot(0);
                 $pokerGame->setActiveGame(true);
                 $entityManager->flush();
                 $session->set("poker-game", $game);
             }
+        }
+
+        $pokerGame = $entityManager->getRepository(PokerGame::class)->find(1);
+        if (!$pokerGame) {
+            throw $this->createNotFoundException(
+                'poker game not created'
+            );
         }
         
         return $this->redirectToRoute("project-game-play");
@@ -123,8 +138,10 @@ class ProjectController extends AbstractController
                 $deck = $game->drawCards($game->getComputer(), 2, $deck);
             } elseif ($game->getState() == 1) {
                 $deck = $game->drawCards($game->getTable(), 3, $deck);
-            } elseif ($game->getState() > 1) {
+            } elseif ($game->getState() > 1 and $game->getState() < 4) {
                 $deck = $game->drawCards($game->getTable(), 1, $deck);
+            } else {
+                
             }
         }
         $game->setPState($game->getState());
@@ -138,10 +155,12 @@ class ProjectController extends AbstractController
             'showCards' => $showCards,
             'computer' => $game->getComputer(),
             'cMoney' => $pokerGame->getComputerMoney(),
+            'cBet' => $pokerGame->getComputerBet(),
             'table' => $game->getTable(),
-            'pot' => $game->getPot(),
+            'pot' => $pokerGame->getPot(),
             'player' => $game->getPlayer(),
             'pMoney' => $pokerGame->getPlayerMoney(),
+            'pBet' => $pokerGame->getPlayerBet(),
             'count' => $cardCount
         ]);
     }
@@ -164,52 +183,65 @@ class ProjectController extends AbstractController
         $all = $request->request->get('all');
         $betAmount = $request->request->get('betAmount');
 
-        $currentBet = 0;
+        $playerBet = 0;
+        $computerBet = $this->baseBet;
 
         $game = $session->get("poker-game");
-        $player = $game->getPlayer();
-        $computer = $game->getComputer();
-        $pot = $game->getPot();
 
         $entityManager = $doctrine->getManager();
+        $pokerGameUpdate = $entityManager->getRepository(PokerGame::class)->find(1);
+
         $pokerGame = $pokerRepository
             ->find(1);
-        $pokerGameChange = $entityManager->getRepository(PokerGame::class)->find(1);
         $playerMoney = $pokerGame->getPlayerMoney();
         $computerMoney = $pokerGame->getComputerMoney();
+        $activePot = $pokerGame->getPot();
 
         if ($call) {
-            if ($computer->getBet() > 0) {
-                $currentBet = $computer->getBet();
-                $player->setBet($currentBet);
-            } else {
-                $currentBet = $this->baseBet;
-                $player->setBet($currentBet);
-            }
+            $playerBet = $computerBet;
         } elseif ($bet) {
-            $currentBet = intval($betAmount);
-            $player->setBet($currentBet);
+            $playerBet = intval($betAmount);
+            $computerBet = $playerBet;
         } elseif ($all) {
-            $currentBet = $playerMoney;
-            $player->setBet($currentBet);
-        } else {
             $game->setState(0);
             $game->setPState(-1);
             $session->set("poker-game", $game);
 
-            $pokerGameChange->setComputerMoney($computerMoney + $pot);
+            $pokerGameUpdate->setComputerBet(0);
+            $pokerGameUpdate->setPlayerBet(0);
+            $pokerGameUpdate->setPot(0);
+            $pokerGameUpdate->setPlayerMoney($playerMoney + $activePot);
             $entityManager->flush();
-            
+
+            return $this->redirectToRoute("project-game-play");
+        } else {
+            $game = new Game();
+            $session->set("poker-game", $game);
+
+            $pokerGameUpdate->setComputerBet(0);
+            $pokerGameUpdate->setPlayerBet(0);
+            $pokerGameUpdate->setPot(0);
+            $pokerGameUpdate->setComputerMoney($computerMoney + $activePot);
+            $entityManager->flush();
+
             return $this->redirectToRoute("project-game-play");
         }
 
-        $pokerGameChange->setPlayerMoney($playerMoney - $currentBet);
+        $pokerGameUpdate->setPlayerBet($playerBet);
+        $pokerGameUpdate->setComputerBet($computerBet);
+        $pokerGameUpdate->setPlayerMoney($playerMoney - $playerBet);
+        $pokerGameUpdate->setComputerMoney($computerMoney - $computerBet);
+        $pokerGameUpdate->setPot($activePot + $playerBet + $computerBet);
         $entityManager->flush();
 
-        $game->setPot($pot + $currentBet);
+        $playerBet = $pokerGame->getPlayerBet();
+        $computerBet = $pokerGame->getComputerBet();
+
+        if ($playerBet == $computerBet) {
+            $game->setState($game->getState() + 1);
+            $session->set("poker-game", $game);
+        }
         
-        $game->setState($game->getState() + 1);
-        $session->set("poker-game", $game);
         return $this->redirectToRoute("project-game-play");
     }
 

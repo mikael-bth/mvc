@@ -14,7 +14,7 @@
             {% endif %}
         {% endfor %}
         </div>
-        <p>Money: {{ cMoney }} | Bet: {{ computer.getBet() }}</p>
+        <p>Money: {{ cMoney }} | Bet: {{ cBet }}</p>
     </div>
 
     <div class="table">
@@ -33,7 +33,7 @@
             <p class="{{ card.getColorName() }} card">{{ card.getAsString() }}</p>
         {% endfor %}
         </div>
-        <p>Money: {{ pMoney }} | Bet: {{ player.getBet() }}</p>
+        <p>Money: {{ pMoney }} | Bet: {{ pBet }}</p>
     </div>
 
     <form action="{{ path('project-game-play-process') }}" method="post">
