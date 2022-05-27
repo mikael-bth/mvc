@@ -45,7 +45,7 @@ class HandValue
 
     public function testRule(): array
     {
-        return $this->RoyalFlush();
+        return $this->ThreeOfAKind();
     }
 
     /**
@@ -150,6 +150,80 @@ class HandValue
     /**
      * Returns an array with an
      * bool that says if the hand is
+     * an four of a kind and an int that
+     * is the card value of the fours,
+     * 0 if bool is false.
+     * and an int that is the card value
+     * of the biggest remainings cards 
+     * 0 if bool is false.
+     * @return array<bool, int, int>
+     */
+    public function FourOfAKind(): array
+    {
+        $numbers = array_count_values($this->handNumbers);
+        $numbers = array_filter($numbers, function($value) {
+            return $value > 3;
+        });
+
+        if (count($numbers) == 0) return [false, 0];
+
+        $highCard = 0;
+        if (array_key_first($numbers) != $this->handNumbers[0]) {
+            $highCard = $this->handNumbers[0];
+        } else {
+            $highCard = $this->handNumbers[4];
+        }
+
+        $fourHighCard = array_key_first($numbers);
+        return [true, $fourHighCard, $highCard];
+    }
+
+    /**
+     * Returns an array with an
+     * bool that says if the hand is
+     * an full house and an int that
+     * is the card value of the threes,
+     * 0 if bool is false.
+     * and an int that is the card value
+     * of the twoos
+     * 0 if bool is false.
+     * @return array<bool, int, int>
+     */
+    public function FullHouse(): array
+    {
+        $threes = array_count_values($this->handNumbers);
+        $threes = array_filter($threes, function($value) {
+            return $value > 2;
+        });
+
+        if (count($threes) == 0) return [false, 0, 0];
+
+        $threesHighCard = array_key_first($threes);
+
+        $twos = array_count_values($this->handNumbers);
+        $twos = array_filter($threes, function($value) {
+            return $value < 3 and $value > 1;
+        });
+
+        if (count($twos) == 0) return [false, 0, 0];
+
+        $twosHighCard = 0;
+
+        if (count($twos) > 1) {
+            if (array_key_first($twos) > array_key_last($twos)) {
+                $twosHighCard = array_key_first($twos);
+            } else {
+                $twosHighCard = array_key_last($twos);
+            }
+        }
+
+        
+        return [true, $threesHighCard, $twosHighCard];
+    }
+
+    /**
+     * Returns an array with an
+     * bool that says if the hand is
      * an flush and an int that
      * is the highest card of the flush,
      * 0 if bool is false.
@@ -161,6 +235,7 @@ class HandValue
         $colors = array_filter($colors, function($value) {
             return $value > 4;
         });
+
         if (count($colors) > 0) {
             $color = array_key_first($colors);
             $colorsNumberValue  = array_map(
@@ -217,6 +292,75 @@ class HandValue
             }
         }
         return [false, 0];
+    }
+
+    /**
+     * Returns an array with an
+     * bool that says if the hand is
+     * an three of a kind and an int that
+     * is the card value of the threes,
+     * and two ints that is the two biggest
+     * remainings cards.
+     * ints are 0 if bool is false.
+     * @return array<bool, int, int, int>
+     */
+    public function ThreeOfAKind(): array
+    {
+        $numbers = array_count_values($this->handNumbers);
+        $numbers = array_filter($numbers, function($value) {
+            return $value > 2;
+        });
+
+        if (count($numbers) == 0) return [false, 0];
+
+        $threeHighCard = array_key_first($numbers);
+
+        $highCardNumbers = array_filter($this->handNumbers,
+        function($value) use ($threeHighCard) {
+            return $value != $threeHighCard;
+        });
+        $highCardKeys = array_keys($highCardNumbers);
+
+        $firstHighCard = $highCardNumbers[$highCardKeys[0]];
+        $secondHighCard = $highCardNumbers[$highCardKeys[1]];
+        
+        return [true, $threeHighCard, $firstHighCard, $secondHighCard];
+    }
+
+    /**
+     * Returns an array with an
+     * bool that says if the hand is
+     * an three of a kind and an int that
+     * is the card value of the bigger twos,
+     * and an int that is the smaller twos
+     * and an int that is the biggest
+     * remaining card
+     * ints are 0 if bool is false.
+     * @return array<bool, int, int, int>
+     */
+    public function TwoPair(): array
+    {
+        $numbers = array_count_values($this->handNumbers);
+        $numbers = array_filter($numbers, function($value) {
+            return $value > 2;
+        });
+
+        if (count($numbers) < 2) return [false, 0];
+
+        $numbersKeys = array_keys($numbers);
+
+        $threeHighCard = array_key_first($numbers);
+
+        $highCardNumbers = array_filter($this->handNumbers,
+        function($value) use ($threeHighCard) {
+            return $value != $threeHighCard;
+        });
+        $highCardKeys = array_keys($highCardNumbers);
+
+        $firstHighCard = $highCardNumbers[$highCardKeys[0]];
+        $secondHighCard = $highCardNumbers[$highCardKeys[1]];
+        
+        return [true, $threeHighCard, $firstHighCard, $secondHighCard];
     }
 
 }
