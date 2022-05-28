@@ -88,11 +88,38 @@ class GamePoker
         return $deck;
     }
 
-    public function getHandValue(Player $player): array
+    /**
+     * Returns an int that represents the winner of the game 
+     */
+    public function getResults(Player $player, Player $computer): int
     {
-        $ruleValue = 0;
-        $highValue = 0;
+        $handValueP = new HandValue($player->getHand());
+        $handValueC = new HandValue($computer->getHand());
+        $playerHandValue = $handValueP->CalculateHandValue();
+        $computerHandValue = $handValueC->CalculateHandValue();
 
-        return [$ruleValue, $highValue];
+        if ($playerHandValue[0] < $computerHandValue[0]) {
+            return 1;
+        } else if ($playerHandValue[0] == $computerHandValue[0]) {
+            if ($playerHandValue[0] == 9) {
+                return 2;
+            } else {
+                $playerHighCards = $playerHandValue[1];
+                $computerHighCards = $computerHandValue[1];
+                for ($i = 0; $i < 5; $i++) {
+                    if (array_key_exists($i, $playerHighCards)) {
+                        if ($playerHighCards[$i] > $computerHighCards[$i]) {
+                            return 0;
+                        } elseif ($playerHighCards[$i] < $computerHighCards[$i]) {
+                            return 1;
+                        }
+                    } else {
+                        return 2;
+                    }  
+                }
+                return 2;
+            }
+        }
+        return 0;
     }
 }

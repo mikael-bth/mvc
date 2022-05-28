@@ -31,17 +31,16 @@ class HandValue
 
     /**
      * Calculates the hands value and returns
-     * an array of two ints where the first
-     * int represent the rule value
+     * an array of one int and one int array
+     * where the int represent the rule value
      * exampel: pair is 1, two-pair is 2
-     * and the second int represent the high
-     * value
-     * exampel: card with value 7 is 7
-     * If the hand has more cards left
-     * that you may need for handValue
-     * it will be returned in a array of ints.
-     * exampel: if hand has a pair a array
-     * of the remaining 3 cards will be returned.
+     * and the array represent is ints that
+     * represent the highest value cards in the
+     * hand used as tiebreakers.
+     * exampel: if hand is two pair the two card
+     * values of the two pair and the highest
+     * remaining card is in the array
+     * @return array<int, array>
      */
     public function CalculateHandValue(): array
     {
@@ -51,35 +50,35 @@ class HandValue
         }
         $straightF = $this->StraightFlush();
         if ($straightF[0]) {
-            return [8, $straightF[1]];
+            return [8, [$straightF[1]]];
         }
         $fourKind = $this->FourOfAKind();
         if ($fourKind[0]) {
-            return [7, $fourKind[1], $fourKind[2]];
+            return [7, [$fourKind[1], $fourKind[2]]];
         }
         $fullHouse = $this->FullHouse();
         if ($fullHouse[0]) {
-            return [6, $fullHouse[1], $fullHouse[2]];
+            return [6, [$fullHouse[1], $fullHouse[2]]];
         }
         $flush = $this->Flush();
         if ($flush[0]) {
-            return [5, $flush[1]];
+            return [5, [$flush[1]]];
         }
         $straight = $this->Straight();
         if ($straight[0]) {
-            return [4, $straight[1]];
+            return [4, [$straight[1]]];
         }
         $threeKind = $this->ThreeOfAKind();
         if ($threeKind[0]) {
-            return [3, $threeKind[1], array_splice($threeKind, 2, 2)];
+            return [3, array_splice($threeKind, 1, 3)];
         }
         $twoPair = $this->TwoPair();
         if ($twoPair[0]) {
-            return [2, $twoPair[1], $twoPair[2], $twoPair[3]];
+            return [2, array_splice($twoPair, 1, 3)];
         }
         $pair = $this->Pair();
         if ($pair[0]) {
-            return [1, $pair[1], $pair[2]];
+            return [1, array_merge([$pair[1]], $pair[2])];
         }
         $highCards = $this->HighCards();
         return [0, $highCards];
@@ -151,7 +150,7 @@ class HandValue
         $straightFlushValue = 0;
         $prevCard = 0;
 
-        for ($i = 0; $i <= count($colorsNumberValue) - 1; $i++) {
+        for ($i = 0; $i < count($colorsNumberValue); $i++) {
             $cardNumber = $colorsNumberValue[$i];
 
             if ($prevCard == $cardNumber + 1 || $prevCard == 0) {
@@ -333,7 +332,7 @@ class HandValue
      * ints are 0 if bool is false.
      * @return array<bool, int, int, int>
      */
-    public function ThreeOfAKind(): array
+    private function ThreeOfAKind(): array
     {
         $numbers = array_count_values($this->handNumbers);
         $numbers = array_filter($numbers, function($value) {
@@ -367,7 +366,7 @@ class HandValue
      * ints are 0 if bool is false.
      * @return array<bool, int, int, int>
      */
-    public function TwoPair(): array
+    private function TwoPair(): array
     {
         $numbers = array_count_values($this->handNumbers);
         $numbers = array_filter($numbers, function($value) {
@@ -401,7 +400,7 @@ class HandValue
      * ints are 0 if bool is false.
      * @return array<bool, int, array>
      */
-    public function Pair(): array
+    private function Pair(): array
     {
         $numbers = array_count_values($this->handNumbers);
         $numbers = array_filter($numbers, function($value) {
@@ -433,7 +432,7 @@ class HandValue
      * highest cards.
      * @return int[]
      */
-    public function HighCards(): array
+    private function HighCards(): array
     {
         $highCards = [];
         for ($i = 0; $i < 5; $i++) {
