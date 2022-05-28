@@ -37,33 +37,66 @@ class HandValue
      * and the second int represent the high
      * value
      * exampel: card with value 7 is 7
+     * If the hand has more cards left
+     * that you may need for handValue
+     * it will be returned in a array of ints.
+     * exampel: if hand has a pair a array
+     * of the remaining 3 cards will be returned.
      */
     public function CalculateHandValue(): array
     {
-        return [$this->ruleValue, $this->highValue];
-    }
-
-    public function testRule(): array
-    {
-        return $this->ThreeOfAKind();
+        $royal = $this->RoyalFlush();
+        if ($royal) {
+            return [9];
+        }
+        $straightF = $this->StraightFlush();
+        if ($straightF[0]) {
+            return [8, $straightF[1]];
+        }
+        $fourKind = $this->FourOfAKind();
+        if ($fourKind[0]) {
+            return [7, $fourKind[1], $fourKind[2]];
+        }
+        $fullHouse = $this->FullHouse();
+        if ($fullHouse[0]) {
+            return [6, $fullHouse[1], $fullHouse[2]];
+        }
+        $flush = $this->Flush();
+        if ($flush[0]) {
+            return [5, $flush[1]];
+        }
+        $straight = $this->Straight();
+        if ($straight[0]) {
+            return [4, $straight[1]];
+        }
+        $threeKind = $this->ThreeOfAKind();
+        if ($threeKind[0]) {
+            return [3, $threeKind[1], array_splice($threeKind, 2, 2)];
+        }
+        $twoPair = $this->TwoPair();
+        if ($twoPair[0]) {
+            return [2, $twoPair[1], $twoPair[2], $twoPair[3]];
+        }
+        $pair = $this->Pair();
+        if ($pair[0]) {
+            return [1, $pair[1], $pair[2]];
+        }
+        $highCards = $this->HighCards();
+        return [0, $highCards];
     }
 
     /**
-     * Returns an array with an
-     * bool that says if the hand is
-     * an royal-flush and an int that
-     * is the highest card of the royal-flush,
-     * 0 if bool is false.
-     * @return array<bool, int>
+     * Returns true if hand is
+     * royal-flush else false.
      */
-    private function RoyalFlush(): array
+    private function RoyalFlush(): bool
     {
         $colors = array_count_values($this->handColors);
         $colors = array_filter($colors, function($value) {
             return $value > 4;
         });
 
-        if (count($colors) == 0) return [false, 0];
+        if (count($colors) == 0) return false;
 
         $color = array_key_first($colors);
         $colorsNumberValue  = array_map(
@@ -76,11 +109,11 @@ class HandValue
 
         $royalNumbers = [14, 13, 12, 11, 10];
 
-        if (count(array_intersect($colorsNumberValue, $royalNumbers)) == 5) {
-            return [true, 14];
+        if (count(array_intersect($royalNumbers, $colorsNumberValue)) == 5) {
+            return true;
         }
         
-        return [false, 0];
+        return false;
     }
 
     /**
@@ -99,7 +132,6 @@ class HandValue
         });
 
         if (count($colors) == 0) return [false, 0];
-
         $color = array_key_first($colors);
         $colorsNumberValue  = array_map(
             function (Card $card) use ($color) 
@@ -119,25 +151,24 @@ class HandValue
         $straightFlushValue = 0;
         $prevCard = 0;
 
-        $numbersLen = count($colorsNumberValue) - 1;
-
-        for ($i = 0; $i <= $numbersLen; $i++) {
+        for ($i = 0; $i <= count($colorsNumberValue) - 1; $i++) {
             $cardNumber = $colorsNumberValue[$i];
 
             if ($prevCard == $cardNumber + 1 || $prevCard == 0) {
-                if ($i == $numbersLen) {
+                if ($straightFlushValue == 4) {
+                    return [true, $highCard];
+                }
+                if ($i == count($colorsNumberValue) - 1) {
                     $straightFlushValue += 1;
                 } elseif ($cardNumber - 1 == $this->handNumbers[$i + 1]) {
                     $straightFlushValue += 1;
                     $highCard = ($prevCard == 0) ? $cardNumber : $highCard;
                     $prevCard = $cardNumber;
+                } elseif ($cardNumber == $this->handNumbers[$i + 1]) {
+                    $prevCard = $cardNumber + 1;
                 } else {
                     $prevCard = 0;
                     $straightFlushValue = 0;
-                }
-            
-                if ($straightFlushValue == 5) {
-                    return [true, $highCard];
                 }
             } else {
                 $straightFlushValue = 0;
@@ -191,33 +222,33 @@ class HandValue
      */
     public function FullHouse(): array
     {
-        $threes = array_count_values($this->handNumbers);
+        $localHandNumber = $this->handNumbers;
+        $threes = array_count_values($localHandNumber);
         $threes = array_filter($threes, function($value) {
             return $value > 2;
         });
 
         if (count($threes) == 0) return [false, 0, 0];
 
-        $threesHighCard = array_key_first($threes);
+        $threesKeys = array_keys($threes);
+        rsort($threesKeys);
+        $threesHighCard = $threesKeys[0];
+        foreach (array_keys($localHandNumber, $threesHighCard) as $threesCard) {
+            unset($localHandNumber[$threesCard]);
+        }
 
-        $twos = array_count_values($this->handNumbers);
-        $twos = array_filter($threes, function($value) {
-            return $value < 3 and $value > 1;
+        $twos = array_count_values($localHandNumber);
+        $twos = array_filter($twos, function($value) {
+            return $value > 1;
         });
 
         if (count($twos) == 0) return [false, 0, 0];
 
-        $twosHighCard = 0;
 
-        if (count($twos) > 1) {
-            if (array_key_first($twos) > array_key_last($twos)) {
-                $twosHighCard = array_key_first($twos);
-            } else {
-                $twosHighCard = array_key_last($twos);
-            }
-        }
+        $twosKeys = array_keys($twos);
+        rsort($twosKeys);
+        $twosHighCard = $twosKeys[0];
 
-        
         return [true, $threesHighCard, $twosHighCard];
     }
 
@@ -266,25 +297,23 @@ class HandValue
         $straightValue = 0;
         $prevCard = 0;
 
-        $numbersLen = count($this->handNumbers) - 1;
-
-        for ($i = 0; $i <= $numbersLen; $i++) {
+        for ($i = 0; $i <= count($this->handNumbers) - 1; $i++) {
             $cardNumber = $this->handNumbers[$i];
 
             if ($prevCard == $cardNumber + 1 || $prevCard == 0) {
-                if ($i == $numbersLen) {
+                if ($straightValue == 4) {
+                    return [true, $highCard];
+                } if ($i == count($this->handNumbers) - 1) {
                     $straightValue += 1;
                 } elseif ($cardNumber - 1 == $this->handNumbers[$i + 1]) {
                     $straightValue += 1;
                     $highCard = ($prevCard == 0) ? $cardNumber : $highCard;
                     $prevCard = $cardNumber;
+                } elseif ($cardNumber == $this->handNumbers[$i + 1]) {
+                    $prevCard = $cardNumber + 1;
                 } else {
                     $prevCard = 0;
                     $straightValue = 0;
-                }
-                
-                if ($straightValue == 5) {
-                    return [true, $highCard];
                 }
             } else {
                 $straightValue = 0;
@@ -330,11 +359,11 @@ class HandValue
     /**
      * Returns an array with an
      * bool that says if the hand is
-     * an three of a kind and an int that
-     * is the card value of the bigger twos,
-     * and an int that is the smaller twos
-     * and an int that is the biggest
-     * remaining card
+     * a two of a kind and an int that 
+     * is high card of the bigger pair,
+     * and an int that is the high card
+     * of the smaller pair and an int that
+     * is the biggest remaining card
      * ints are 0 if bool is false.
      * @return array<bool, int, int, int>
      */
@@ -342,25 +371,76 @@ class HandValue
     {
         $numbers = array_count_values($this->handNumbers);
         $numbers = array_filter($numbers, function($value) {
-            return $value > 2;
+            return $value == 2;
         });
 
         if (count($numbers) < 2) return [false, 0];
 
         $numbersKeys = array_keys($numbers);
+        rsort($numbersKeys);
 
-        $threeHighCard = array_key_first($numbers);
-
+        $bigHighCard = $numbersKeys[0];
+        $smallHighCard = $numbersKeys[1];
+    
         $highCardNumbers = array_filter($this->handNumbers,
-        function($value) use ($threeHighCard) {
-            return $value != $threeHighCard;
+        function($value) use ($bigHighCard, $smallHighCard) {
+            return $value != $bigHighCard and $value != $smallHighCard;
         });
-        $highCardKeys = array_keys($highCardNumbers);
-
-        $firstHighCard = $highCardNumbers[$highCardKeys[0]];
-        $secondHighCard = $highCardNumbers[$highCardKeys[1]];
+        $highCard = $highCardNumbers[array_key_first($highCardNumbers)];
         
-        return [true, $threeHighCard, $firstHighCard, $secondHighCard];
+        return [true, $bigHighCard, $smallHighCard, $highCard];
+    }
+
+    /**
+     * Returns an array with an
+     * bool that says if the hand is
+     * a two of a kind and an int that 
+     * is high card of the pair,
+     * and an array of three ints that
+     * is the biggest remaining cards.
+     * ints are 0 if bool is false.
+     * @return array<bool, int, array>
+     */
+    public function Pair(): array
+    {
+        $numbers = array_count_values($this->handNumbers);
+        $numbers = array_filter($numbers, function($value) {
+            return $value == 2;
+        });
+
+        if (count($numbers) == 0) return [false, 0];
+
+        $pairHighCard = array_key_first($numbers);
+    
+        $highCardNumbers = array_filter($this->handNumbers,
+        function($value) use ($pairHighCard) {
+            return $value != $pairHighCard;
+        });
+
+        $highCards = [];
+        $count = 0;
+        foreach ($highCardNumbers as $highCard) {
+            $highCards[] = $highCard;
+            $count++;
+            if ($count == 3) break;
+        }
+        
+        return [true, $pairHighCard, $highCards];
+    }
+
+    /**
+     * Returns an array ints of the five
+     * highest cards.
+     * @return int[]
+     */
+    public function HighCards(): array
+    {
+        $highCards = [];
+        for ($i = 0; $i < 5; $i++) {
+            $highCards[] = $this->handNumbers[$i];
+        }
+        
+        return $highCards;
     }
 
 }

@@ -853,7 +853,8 @@ template {
 }
 
 .poker > form .bet > label {
-  font-size: 1.5em;
+  font-size: 1.7em;
+  margin-right: 0.7em;
 }
 
 .header {
