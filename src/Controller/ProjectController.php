@@ -9,8 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 use App\Card\Deck;
-use App\Card\Game;
-use App\Card\GamePoker;
+use App\Poker\GamePoker;
 
 use Doctrine\Persistence\ManagerRegistry;
 use App\Entity\PokerGame;
@@ -78,7 +77,7 @@ class ProjectController extends AbstractController
         $pokerGame = $entityManager->getRepository(PokerGame::class)->find(1);
 
         $newGame = $request->request->get('new');
-        $game = new GamePoker;
+        $game = new GamePoker();
 
         if (!$pokerGame) {
             $newPokerGame = new PokerGame();
@@ -215,7 +214,7 @@ class ProjectController extends AbstractController
 
             return $this->redirectToRoute("project-game-play");
         } else {
-            $game = new Game();
+            $game = new GamePoker();
             $session->set("poker-game", $game);
 
             $pokerGameUpdate->setComputerBet(0);

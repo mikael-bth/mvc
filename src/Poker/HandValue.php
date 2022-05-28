@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Card;
+namespace App\Poker;
+
+use App\Card\Card;
 
 class HandValue
 {

@@ -1,6 +1,9 @@
 <?php
 
-namespace App\Card;
+namespace App\Poker;
+
+use App\Card\Player;
+use App\Card\Deck;
 
 class GamePoker
 {

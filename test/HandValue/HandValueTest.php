@@ -3,7 +3,7 @@
 namespace Test\HandValue;
 
 use App\Card\Card;
-use App\Card\HandValue;
+use App\Poker\HandValue;
 use PHPUnit\Framework\TestCase;
 
 /**
