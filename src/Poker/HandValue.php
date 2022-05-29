@@ -304,7 +304,8 @@ class HandValue
             if ($prevCard == $cardNumber + 1 || $prevCard == 0) {
                 if ($straightValue == 4) {
                     return [true, $highCard];
-                } if ($i == count($this->handNumbers) - 1) {
+                } 
+                if ($i == count($this->handNumbers) - 1) {
                     $straightValue += 1;
                 } elseif ($cardNumber - 1 == $this->handNumbers[$i + 1]) {
                     $straightValue += 1;
