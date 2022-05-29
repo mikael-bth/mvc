@@ -830,6 +830,32 @@ template {
   font-size: 2em;
 }
 
+.poker .round-result {
+  display: grid;
+  position: fixed;
+  bottom: 5em;
+  left: 0;
+  background-color: #76c3c7;
+  height: 8em;
+  width: 20%;
+}
+
+.poker .round-result h2 {
+  text-align: center;
+}
+
+.poker .round-result form {
+  display: flex;
+  justify-content: center;
+}
+
+.poker .round-result input {
+  margin-bottom: 1em;
+  width: 60%;
+  height: 60%;
+  font-size: 2em;
+}
+
 .poker .card {
   text-align: center;
   margin: 0.7em;
