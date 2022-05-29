@@ -5,11 +5,31 @@
 {% block content %}
     <h2>{{ header }}</h2>
 
+    <h3>Projektet</h3>
     <p>
-        MVC kursen handlar om att programmera webbapplikationer på ett objektorienterat sätt med fokus på det arkitekturella designmönstret MVC.
-        Inom kursen använder man ramverket Symfony som är ett av de mer kända ramverken inom PHP. I kursen lär man sig grunderna för objektorientering
-        inom PHP.
+        I detta projektet ska jag skapa ett poker (Texas hold-em) spel. Spelet kommer gå ut på att spela mot datorn
+        och du vinner genom att datorn för slut på pengar likvist förlorar du om du för slut på pengar. Datorn kommer
+        kontrolleras av ett ganska simpelt program som går mycket på randomness men också lite på vilka kort datorn har.
+        Det mesta av arbetet kommer vara i att se till så att spelet ska kunna bestämma vilken av datorn eller din hand som
+        är bäst vilket då kommer gå på standard poker regler och bestämmas med att tillsätta nummer värden till varje "poker
+        hand". Mycket av arbete kommer också gå på att spelet ser bra ut och är så lätt att förstå som möjligt. Detta kommer
+        jag försöka lösa genom att skriva bra css och ha bra twig templates vilket kommer förhoppningsvist se bra ut på alla
+        datorer men är tveksam ifall jag kommer kunna lösa något som fungerar bra på mobila enheter.
     </p>
+    <h3>Kodkvalite</h3>
+    <p>
+        I förra kmomet la jag mycket tid för att se till att komplexiteten var låg på koden men på detta projektet trodde jag
+        ifall jag lägga för mycket tid på detta så hade det nogg kommit ivägen en hel del eftersom detta blev en hel del logisk
+        kodande vilket får komplexiteten att gå upp. Jag valde därför att istället fokusera på att coveragen var hög genom att
+        ha så mycket av koden som jag kunde testade av unittester. Detta passade också bra när jag skapade min HandValue klass
+        vilket var klassen som jag använda för att räkna ut vilket värde spelarens hand hade eftersom att efter jag skapat alla
+        funktioner i klassen var det väldigt lätt att använda unittester för att hitta buggar i funktionerna. Jag använda också
+        scrutinizers issues som rapporterades efter varje commit för att hitta potentiella problem i koden och fixa till dom så
+        kodkvaliten ökade. Jag la också en del arbete på att se till att klassers funktioner passade bra ihop så kod blir lättare
+        att förstå och jag försökte också se till så att det inte var allt för mycket kod i kontrollererna men det var ganska
+        svårt på detta projektet.
+    </p>
+
 
     <p><a href="https://www.student.bth.se/~mimn21/dbwebb-kurser/mvc/me/report/docs/api/">PHPDoc</a></p>
     <p><a href="https://www.student.bth.se/~mimn21/dbwebb-kurser/mvc/me/report/docs/metrics/">PHPMetrics</a></p>

@@ -181,14 +181,14 @@ class ProjectController extends AbstractController
                 if ($winner == 0) {
                     $pokerGameUpdate->setPlayerMoney($playerMoney + $activePot);
                     $game->setMessage("You won the pot");
-                    if ($pokerGame->getComputerMoney() == 0) {
+                    if ($pokerGame->getComputerMoney() === 0) {
                         $game->setMessage("Dator is out of money. You win");
                         $result = true;
                     }
                 } elseif ($winner == 1) {
                     $pokerGameUpdate->setComputerMoney($computerMoney + $activePot); 
                     $game->setMessage("Dator won the pot");
-                    if ($pokerGame->getPlayerMoney() == 0) {
+                    if ($pokerGame->getPlayerMoney() === 0) {
                         $game->setMessage("You are out of money. Dator wins");
                         $result = true;
                     }
@@ -284,9 +284,7 @@ class ProjectController extends AbstractController
         $computerBet = $pokerGame->getComputerBet();
         $activePot = $pokerGame->getPot();
 
-        $pokerComputer = new PokerComputer($game->getComputer()->getHand());
-
-        if ($game->getState() == 0 && $playerBet == 0) {
+        if ($game->getState() == 0 && $playerBet === 0) {
             $session->remove("p-computer");
         }
 
@@ -323,7 +321,7 @@ class ProjectController extends AbstractController
         }
 
         if ($playerBet + $playerNewBet == $computerBet && $playerNewBet < $playerMoney) {
-            if ($computerMoney == 0) {
+            if ($computerMoney === 0) {
                 $pokerGameUpdate->setPlayerBet($playerBet + $playerNewBet);
                 $pokerGameUpdate->setPlayerMoney($playerMoney - $playerNewBet);
                 $pokerGameUpdate->setPot($activePot + $playerNewBet);
