@@ -12,6 +12,7 @@ class GamePoker
     private Player $table;
     private int $state;
     private int $playedState;
+    private string $message;
 
     /**
      * Constructor
@@ -23,6 +24,7 @@ class GamePoker
         $this->table = new Player("table");
         $this->state = 0;
         $this->playedState = -1;
+        $this->message = "";
     }
 
     /**
@@ -82,6 +84,19 @@ class GamePoker
     }
 
     /**
+     * Returns the active message.
+     */
+    public function getMessage(): string
+    {
+        return $this->message;
+    }
+
+    public function setMessage(string $newMessage): void
+    {
+        $this->message = $newMessage;
+    }
+
+    /**
      * Draws cards for the player object, updates the deck accordingly.
      */
     public function drawCards(Player $player, int $numDraws, Deck $deck): Deck
@@ -94,10 +109,10 @@ class GamePoker
     /**
      * Returns an int that represents the winner of the game 
      */
-    public function getResults(Player $player, Player $computer): int
+    public function getResults(Player $player, Player $computer, Player $table): int
     {
-        $handValueP = new HandValue($player->getHand());
-        $handValueC = new HandValue($computer->getHand());
+        $handValueP = new HandValue(array_merge($player->getHand(), $table->getHand()));
+        $handValueC = new HandValue(array_merge($computer->getHand(), $table->getHand()));
         $playerHandValue = $handValueP->CalculateHandValue();
         $computerHandValue = $handValueC->CalculateHandValue();
 

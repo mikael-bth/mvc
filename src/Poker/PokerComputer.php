@@ -6,40 +6,53 @@ use App\Card\Card;
 
 class PokerComputer
 {
+    private int $bluffValue;
+
     /**
-     * Returns the computers next move
-     * in an int.
+     * Constructor
      * @param Card[] $hand
      */
-    public function getMove(array $hand, int $state): int
+    public function __construct(array $hand)
     {
         $handNumbers = array_map(function (Card $card) {
             return $card->getNumberValue();
         }, $hand);
 
-        rsort($handNumbers);
+        $this->bluffValue = random_int(0, 100);
+        if ($this->getPair($handNumbers)) {
+            $this->bluffValue -= 20;
+        }
+        if ($this->getValue($handNumbers)) {
+            $this->bluffValue -= 10;
+        }
+    }
 
-        $bluffValue = random_int(0, 100);
+    /**
+     * Returns the computers next action
+     * in an int.
+     */
+    public function getAction(int $state): int
+    {
         if ($state == 0) {
-            if ($this->getPair($handNumbers) || $bluffValue < 20) {
+            if ($this->bluffValue < 40) {
                 return 1;
-            } elseif ($this->getValue($handNumbers) > 18 || $bluffValue < 40) {
+            } elseif ($this->bluffValue < 90) {
                 return 0;
             } else {
                 return 2;
             }
         } elseif ($state == 1) {
-            if ($bluffValue < 30) {
+            if ($this->bluffValue < 35) {
                 return 1;
-            } elseif ($bluffValue < 70) {
+            } elseif ($this->bluffValue < 85) {
                 return 0;
             } else {
                 return 2;
             }
         } elseif ($state > 1) {
-            if ($bluffValue < 50) {
+            if ($this->bluffValue < 30) {
                 return 1;
-            } elseif ($bluffValue < 80) {
+            } elseif ($this->bluffValue < 80) {
                 return 0;
             } else {
                 return 2;
@@ -58,6 +71,7 @@ class PokerComputer
         }
         $randomBet = random_int($playerBet, $computerMoney);
         $randomBet -= $randomBet % 5;
+        return $randomBet;
     }
 
     /**

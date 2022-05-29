@@ -88,7 +88,7 @@
     height: 45px;
 }
 
-.result {
+.game .result {
     display: grid;
     position: absolute;
     bottom: 10em;
@@ -98,7 +98,7 @@
     width: 35%;
 }
 
-.result input {
+.game .result input {
     margin-bottom: 1em;
     width: 40%;
     height: 50%;

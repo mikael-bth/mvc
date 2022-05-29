@@ -3,6 +3,16 @@
 {% block content %}
 <div class="poker">
     <p>Kort kvar i leken - {{ count }}</p>
+
+    {% if message|length > 0 %}
+    <div class="message">
+        <h3>Latest</h3>
+        <p>{{ message }}</p>
+    </div>
+    {% endif %}
+
+    {{ include('project/result.html.twig') }}
+
     <div class="computer holder">
         <h3>{{ computer.getName() }}</h3>
         <div class="cards">
@@ -36,6 +46,7 @@
         <p>Money: {{ pMoney }} | Bet: {{ pBet }}</p>
     </div>
 
+    {% if result == false %}
     <form action="{{ path('project-game-play-process') }}" method="post">
         <fieldset>
             <h3>POKER</h3>
@@ -46,16 +57,17 @@
             <div class="bet">
                 <input type="radio" id="ten" name="betAmount" value="10" checked>
                 <label for="ten">10</label>
+                <input type="radio" id="twenty" name="betAmount" value="20">
+                <label for="twenty">20</label>
                 <input type="radio" id="thirty" name="betAmount" value="30">
                 <label for="thirty">30</label>
+                <input type="radio" id="forty" name="betAmount" value="40">
+                <label for="forty">40</label>
                 <input type="radio" id="fifty" name="betAmount" value="50">
                 <label for="fifty">50</label>
-                <input type="radio" id="seventy" name="betAmount" value="70">
-                <label for="seventy">70</label>
-                <input type="radio" id="hundo" name="betAmount" value="100">
-                <label for="hundo">100</label>
             </div>
         </fieldset>
     </form>
+    {% endif %}
 </div>
 {% endblock %}

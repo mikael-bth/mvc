@@ -535,7 +535,7 @@ template {
   height: 45px;
 }
 
-.result {
+.game .result {
   display: grid;
   position: absolute;
   bottom: 10em;
@@ -545,7 +545,7 @@ template {
   width: 35%;
 }
 
-.result input {
+.game .result input {
   margin-bottom: 1em;
   width: 40%;
   height: 50%;
@@ -780,6 +780,56 @@ template {
   right: 0;
 }
 
+.poker .message {
+  position: absolute;
+  margin: 1em;
+  top: 8em;
+  left: 0;
+}
+
+.poker .message h3 {
+  text-align: center;
+}
+
+.poker .result {
+  opacity: 0;
+  display: grid;
+  position: fixed;
+  bottom: 5em;
+  left: 0;
+  background-color: #76c3c7;
+  height: 12em;
+  width: 35%;
+  animation-name: fadeIn;
+  animation-duration: 2s;
+  animation-delay: 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.poker .result h2 {
+  text-align: center;
+}
+
+.poker .result form {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.poker .result input {
+  margin-bottom: 1em;
+  width: 40%;
+  height: 50%;
+  font-size: 2em;
+}
+
 .poker .card {
   text-align: center;
   margin: 0.7em;
@@ -807,6 +857,10 @@ template {
   height: 200px;
   justify-content: center;
   align-content: center;
+}
+
+.poker .table > p {
+  text-align: center;
 }
 
 .poker .holder h3,

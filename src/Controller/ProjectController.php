@@ -10,6 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 use App\Card\Deck;
 use App\Poker\GamePoker;
+use App\Poker\PokerComputer;
 
 use Doctrine\Persistence\ManagerRegistry;
 use App\Entity\PokerGame;
@@ -102,23 +103,45 @@ class ProjectController extends AbstractController
                 $session->set("poker-game", $game);
             }
         }
-
-        $pokerGame = $entityManager->getRepository(PokerGame::class)->find(1);
-        if (!$pokerGame) {
-            throw $this->createNotFoundException(
-                'poker game not created'
-            );
-        }
         
         return $this->redirectToRoute("project-game-play");
     }
+
+    /**
+     * @Route(
+     *      "/proj/game/result/process",
+     *      name="project-game-result-process",
+     *      methods={"POST"}
+     * )
+     */
+    public function gameResultProcess(
+        ManagerRegistry $doctrine,
+        Request $request
+    ): Response{
+        $entityManager = $doctrine->getManager();
+        $pokerGameUpdate = $entityManager->getRepository(PokerGame::class)->find(1);
+        $pokerGameUpdate->setActiveGame(false);
+        $entityManager->flush();
+
+        $exit = $request->request->get("exit");
+
+        if ($exit) {
+            return $this->redirectToRoute("project-home");
+        } else {
+            return $this->redirectToRoute("project-game-start-process", [
+                'request' => $request
+            ], 307);
+        }
+    }
+
 
     /**
      * @Route("/proj/game/play", name="project-game-play")
      */
     public function game(
         PokerGameRepository $pokerRepository,
-        SessionInterface $session
+        SessionInterface $session,
+        ManagerRegistry $doctrine
     ): Response {
         $deck = new Deck();
         $cardList = $session->get("deck") ?? $deck->getDeck();
@@ -130,7 +153,10 @@ class ProjectController extends AbstractController
             ->find(1);
 
         $showCards = false;
-        
+        $result = false;
+
+        $game->setPState(3);
+
         if ($game->getState() != $game->getPState()) {
             if ($game->getState() == 0) {
                 $deck = $game->drawCards($game->getPlayer(), 2, $deck);
@@ -140,13 +166,62 @@ class ProjectController extends AbstractController
             } elseif ($game->getState() > 1 and $game->getState() < 4) {
                 $deck = $game->drawCards($game->getTable(), 1, $deck);
             } else {
-                
+                while (count($game->getTable()->getHand()) < 5) {
+                    $deck = $game->drawCards($game->getTable(), 1, $deck);
+                }
+                $showCards = true;
+
+                $winner = $game->getResults($game->getPlayer(), $game->getComputer(), $game->getTable());
+                $entityManager = $doctrine->getManager();
+                $pokerGameUpdate = $entityManager->getRepository(PokerGame::class)->find(1);
+
+                $playerMoney = $pokerGame->getPlayerMoney();
+                $computerMoney = $pokerGame->getComputerMoney();
+                $activePot = $pokerGame->getPot();
+
+                $message = "";
+
+                if ($winner == 0) {
+                    $pokerGameUpdate->setPlayerMoney($playerMoney + $activePot);
+                    $message = "You won the pot";
+                    if ($pokerGame->getComputerMoney() == 0) {
+                        $game->setMessage("Dator is out of money. You win");
+                        $result = true;
+                    }
+                } elseif ($winner == 1) {
+                    $pokerGameUpdate->setComputerMoney($computerMoney + $activePot); 
+                    $message = "Dator won the pot";
+                    if ($pokerGame->getPlayerMoney() == 0) {
+                        $game->setMessage("You are out of money. Dator wins");
+                        $result = true;
+                    }
+                } else {
+                    $pokerGameUpdate->setPlayerMoney($playerMoney + $activePot / 2);
+                    $pokerGameUpdate->setComputerMoney($computerMoney + $activePot / 2);
+                    $message = "Tie, pot is shared";
+                }
+
+                $pokerGameUpdate->setPlayerBet(0);
+                $pokerGameUpdate->setComputerBet(0);
+                $pokerGameUpdate->setPot(0);
+                $entityManager->flush();
+
+                if (!$result) {
+                    $game = new GamePoker();
+                    $game->setMessage($message);
+                }
             }
         }
-        $game->setPState($game->getState());
 
+        if ($game->getState() < 4) {
+            $game->setPState($game->getState());
+        }
+
+        $message = $game->getMessage();
+        
         $cardCount = $deck->getDeckSize();
         $session->set("deck", $deck->getDeck());
+        $session->set("poker-game", $game);
 
         return $this->render('project/game.html.twig', [
             'title' => "Poker",
@@ -160,7 +235,9 @@ class ProjectController extends AbstractController
             'player' => $game->getPlayer(),
             'pMoney' => $pokerGame->getPlayerMoney(),
             'pBet' => $pokerGame->getPlayerBet(),
-            'count' => $cardCount
+            'count' => $cardCount,
+            'message' => $message,
+            'result' => $result
         ]);
     }
 
@@ -182,9 +259,6 @@ class ProjectController extends AbstractController
         $all = $request->request->get('all');
         $betAmount = $request->request->get('betAmount');
 
-        $playerBet = 0;
-        $computerBet = $this->baseBet;
-
         $game = $session->get("poker-game");
 
         $entityManager = $doctrine->getManager();
@@ -193,28 +267,40 @@ class ProjectController extends AbstractController
         $pokerGame = $pokerRepository
             ->find(1);
         $playerMoney = $pokerGame->getPlayerMoney();
+        $playerBet = $pokerGame->getPlayerBet();
         $computerMoney = $pokerGame->getComputerMoney();
+        $computerBet = $pokerGame->getComputerBet();
         $activePot = $pokerGame->getPot();
 
+        $pokerComputer = new PokerComputer($game->getComputer()->getHand());
+
+        if ($game->getState() == 0 && $playerBet == 0) {
+            $session->remove("p-computer");
+        }
+
+        $pokerComputer = $session->get("p-computer") ?? new PokerComputer($game->getComputer()->getHand());
+
+        $playerNewBet = 0;
+
+        $betTest = intval($betAmount);
+        error_log("$betTest");
         if ($call) {
-            $playerBet = $computerBet;
+            $playerNewBet = ($computerBet > 0) ? $computerBet - $playerBet : $this->baseBet;
         } elseif ($bet) {
-            $playerBet = intval($betAmount);
-            $computerBet = $playerBet;
+            if ($computerBet - $playerBet > intval($betAmount)) {
+                $game->setMessage("Too small bet");
+                return $this->redirectToRoute("project-game-play");
+            }
+            if (intval($betAmount) > $playerMoney) {
+                $game->setMessage("Not enough money");
+                return $this->redirectToRoute("project-game-play");
+            }
+            $playerNewBet = intval($betAmount);
         } elseif ($all) {
-            $game->setState(0);
-            $game->setPState(-1);
-            $session->set("poker-game", $game);
-
-            $pokerGameUpdate->setComputerBet(0);
-            $pokerGameUpdate->setPlayerBet(0);
-            $pokerGameUpdate->setPot(0);
-            $pokerGameUpdate->setPlayerMoney($playerMoney + $activePot);
-            $entityManager->flush();
-
-            return $this->redirectToRoute("project-game-play");
+            $playerNewBet = $playerMoney;
         } else {
             $game = new GamePoker();
+            $game->setMessage("Player fold");
             $session->set("poker-game", $game);
 
             $pokerGameUpdate->setComputerBet(0);
@@ -226,20 +312,111 @@ class ProjectController extends AbstractController
             return $this->redirectToRoute("project-game-play");
         }
 
-        $pokerGameUpdate->setPlayerBet($playerBet);
-        $pokerGameUpdate->setComputerBet($computerBet);
-        $pokerGameUpdate->setPlayerMoney($playerMoney - $playerBet);
-        $pokerGameUpdate->setComputerMoney($computerMoney - $computerBet);
-        $pokerGameUpdate->setPot($activePot + $playerBet + $computerBet);
-        $entityManager->flush();
+        if ($playerNewBet > $playerMoney || $playerBet + $playerNewBet < $computerBet) {
+            $playerNewBet = $playerMoney;
+            $pokerGameUpdate->setPlayerBet($playerBet + $playerNewBet);
+            $betDiff = $playerBet + $playerNewBet - $computerBet;
+            $pokerGameUpdate->setComputerBet($computerBet - $betDiff);
+            $pokerGameUpdate->setComputerMoney($computerMoney + $betDiff);
+            $pokerGameUpdate->setPot($activePot + $playerNewBet - $betDiff);
+            $entityManager->flush();
 
-        $playerBet = $pokerGame->getPlayerBet();
-        $computerBet = $pokerGame->getComputerBet();
+            $game->setMessage("Player all in");
+            $game->setState(4);
+            $session->set("poker-game", $game);
 
-        if ($playerBet == $computerBet) {
+            return $this->redirectToRoute("project-game-play");
+        }
+
+        if ($playerBet + $playerNewBet == $computerBet) {
+            if ($computerMoney == 0 && $computerBet > 0) {
+                $pokerGameUpdate->setPlayerBet($playerBet + $playerNewBet);
+                $pokerGameUpdate->setPlayerMoney($playerMoney - $playerNewBet);
+                $pokerGameUpdate->setPot($activePot + $playerNewBet);
+                $entityManager->flush();
+
+                $game->setMessage("Player call");
+                $game->setState($game->getState() + 1);
+                $session->set("poker-game", $game);
+
+                return $this->redirectToRoute("project-game-play");
+                
+            }
+            $pokerGameUpdate->setPlayerBet(0);
+            $pokerGameUpdate->setComputerBet(0);
+            $pokerGameUpdate->setPlayerMoney($playerMoney - $playerNewBet);
+            $pokerGameUpdate->setPot($activePot + $playerNewBet);
+            $entityManager->flush();
+
+            $game->setMessage("Player call");
             $game->setState($game->getState() + 1);
             $session->set("poker-game", $game);
+
+            return $this->redirectToRoute("project-game-play");
         }
+
+        $computerNewBet = 0;
+
+        $computerAction = $pokerComputer->getAction($game->getState());
+        error_log($computerAction);
+        if ($computerAction == 0) {
+            $computerNewBet = $computerBet - $playerBet + $playerNewBet;
+            $game->setMessage("Dator call");
+        } elseif ($computerAction == 1) {
+            $computerNewBet = $pokerComputer->getBetAmount($playerBet + $playerNewBet, $computerMoney);
+            if ($computerNewBet == $computerMoney) {
+                $game->setMessage("Dator all in");
+            } else {
+                $game->setMessage("Dator bet");
+            }
+        } else {
+            $game = new GamePoker();
+            $game->setMessage("Dator fold");
+            $session->set("poker-game", $game);
+
+            $pokerGameUpdate->setComputerBet(0);
+            $pokerGameUpdate->setPlayerBet(0);
+            $pokerGameUpdate->setPot(0);
+            $pokerGameUpdate->setPlayerMoney($playerMoney + $activePot);
+            $entityManager->flush();
+
+            return $this->redirectToRoute("project-game-play");
+        }
+
+        if ($playerBet + $playerNewBet == $computerBet + $computerNewBet) {
+            if ($computerNewBet == $computerMoney) {
+                $pokerGameUpdate->setComputerBet($computerBet + $computerNewBet);
+                $pokerGameUpdate->setPlayerBet($playerBet + $playerNewBet);
+                $pokerGameUpdate->setComputerMoney($computerMoney - $computerNewBet);
+                $pokerGameUpdate->setPlayerMoney($playerMoney - $playerNewBet);
+                $pokerGameUpdate->setPot($activePot + $playerNewBet + $computerNewBet);
+                $entityManager->flush();
+
+                $game->setMessage("Dator all in");
+                $game->setState(4);
+                $session->set("poker-game", $game);
+
+                return $this->redirectToRoute("project-game-play");
+            }
+            $pokerGameUpdate->setPlayerBet(0);
+            $pokerGameUpdate->setComputerBet(0);
+            $pokerGameUpdate->setPlayerMoney($playerMoney - $playerNewBet);
+            $pokerGameUpdate->setComputerMoney($computerMoney - $computerNewBet);
+            $pokerGameUpdate->setPot($activePot + $playerNewBet + $computerNewBet);
+            $entityManager->flush();
+
+            $game->setState($game->getState() + 1);
+            $session->set("poker-game", $game);
+
+            return $this->redirectToRoute("project-game-play");
+        }
+
+        $pokerGameUpdate->setPlayerBet($playerBet + $playerNewBet);
+        $pokerGameUpdate->setComputerBet($computerBet + $computerNewBet);
+        $pokerGameUpdate->setPlayerMoney($playerMoney - $playerNewBet);
+        $pokerGameUpdate->setComputerMoney($computerMoney - $computerNewBet);
+        $pokerGameUpdate->setPot($activePot + $playerNewBet + $computerNewBet);
+        $entityManager->flush();
         
         return $this->redirectToRoute("project-game-play");
     }
