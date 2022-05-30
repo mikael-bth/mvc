@@ -42,7 +42,6 @@ class HandValue
      * exampel: if hand is two pair the two card
      * values of the two pair and the highest
      * remaining card is in the array
-     * @return array<int, array>
      */
     public function CalculateHandValue(): array
     {
@@ -123,7 +122,6 @@ class HandValue
      * an straight-flush and an int that
      * is the highest card of the straight-flush,
      * 0 if bool is false.
-     * @return array<bool, int>
      */
     private function StraightFlush(): array
     {
@@ -188,7 +186,6 @@ class HandValue
      * and an int that is the card value
      * of the biggest remainings cards 
      * 0 if bool is false.
-     * @return array<bool, int, int>
      */
     public function FourOfAKind(): array
     {
@@ -219,7 +216,6 @@ class HandValue
      * and an int that is the card value
      * of the twoos
      * 0 if bool is false.
-     * @return array<bool, int, int>
      */
     public function FullHouse(): array
     {
@@ -259,7 +255,6 @@ class HandValue
      * an flush and an int that
      * is the highest card of the flush,
      * 0 if bool is false.
-     * @return array<bool, int>
      */
     private function Flush(): array
     {
@@ -290,7 +285,6 @@ class HandValue
      * an straight and an int that
      * is the highest card of the straight,
      * 0 if bool is false.
-     * @return array<bool, int>
      */
     private function Straight(): array
     {
@@ -333,7 +327,6 @@ class HandValue
      * and two ints that is the two biggest
      * remainings cards.
      * ints are 0 if bool is false.
-     * @return array<bool, int, int, int>
      */
     private function ThreeOfAKind(): array
     {
@@ -367,7 +360,6 @@ class HandValue
      * of the smaller pair and an int that
      * is the biggest remaining card
      * ints are 0 if bool is false.
-     * @return array<bool, int, int, int>
      */
     private function TwoPair(): array
     {
@@ -401,7 +393,6 @@ class HandValue
      * and an array of three ints that
      * is the biggest remaining cards.
      * ints are 0 if bool is false.
-     * @return array<bool, int, array>
      */
     private function Pair(): array
     {
