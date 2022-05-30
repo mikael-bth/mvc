@@ -18,14 +18,14 @@ class PokerComputer
             return $card->getNumberValue();
         }, $hand);
 
-        $this->bluffValue = random_int(0, 100);
+        $this->bluffValue = rand(0, 100);
+
         if ($this->getPair($handNumbers)) {
             $this->bluffValue -= 20;
         }
         if ($this->getValue($handNumbers) > 18) {
             $this->bluffValue -= 10;
         }
-        error_log("bluff: " . strval($this->bluffValue));
     }
 
     /**
@@ -67,18 +67,17 @@ class PokerComputer
      */
     public function getBetAmount(int $playerBet, int $computerMoney): int
     {
-        if ($playerBet > $computerMoney) {
+        if ($playerBet >= $computerMoney) {
             return $computerMoney;
         }
-        $betRange = random_int(0, 20);
+        $betRange = rand(0, 20);
         if ($betRange <= 10 && $playerBet < $computerMoney * 0.25) {
-            $randomBet = random_int($playerBet, $computerMoney * 0.25);
+            $randomBet = rand($playerBet, $computerMoney * 0.25);
         } elseif ($betRange <= 17 && $playerBet < $computerMoney * 0.50) {
-            $randomBet = random_int($playerBet, $computerMoney * 0.50);
+            $randomBet = rand($playerBet, $computerMoney * 0.50);
         } else {
-            $randomBet = random_int($playerBet, $computerMoney);
+            $randomBet = rand($playerBet, $computerMoney);
         }
-        error_log("bet range: " . $betRange);
         $randomBet -= $randomBet % 5;
         return $randomBet;
     }
