@@ -1,0 +1,108 @@
+@import '../../node_modules/normalize.css/normalize';
+@import 'user';
+@import 'poker';
+
+body {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(/img/poker-table.jpg);
+    background-size: cover;
+}
+
+.header {
+    height: 8em;
+    width: 100%;
+    text-align: center;
+    display: grid;
+    align-items: center;
+    background-size: cover;
+    background-position: 50% 60%;
+}
+
+.header h1 {
+    margin: 0;
+    color: #fff;
+    text-shadow: 1px 1px 2px #000;
+    -moz-text-shadow: 1px 1px 2px #000;
+    -webkit-text-shadow: 1px 1px 2px #000;
+}
+
+.nav {
+    height: 4em;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.nav ul {
+    list-style-type: none;
+    margin: 0;
+    height: 100%;
+}
+
+.nav li {
+    height: 100%;
+    float: left;
+}
+
+.nav li a {
+    display: block;
+    text-align: center;
+    padding: 1em;
+    color: #fff;
+}
+
+.nav li:hover {
+    background-color: rgba(0,0,0,0.5);
+}
+
+.user a {
+    color: #fff;
+}
+
+.content h2,
+.content h3, 
+.content p{
+    color: #fff;
+}
+
+.content {
+    padding: 2em;
+}
+
+.project-home {
+    display: grid;
+    justify-content: center;
+}
+
+.project-home h2 {
+    text-align: center;
+    grid-column: span 2;
+    font-size: 2.8em;
+}
+
+.project-home p {
+    margin: 1em 2.5em;
+    font-size: 3em;
+    text-align: center;
+}
+
+.project-home a {
+    background: linear-gradient(to right, red, blue);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: rgba(0, 0, 0, 0.2);
+    text-shadow: -3px -3px 2px #fff;
+    -moz-text-shadow: -3px -3px 2px #fff;
+    -webkit-text-shadow: 3px -3px 2px #fff;
+}
+
+.footer {
+    height: 5em;
+    width: 100%;
+    text-align: center;
+    background-color: #484848;
+    color: #fff;
+    display: grid;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+}

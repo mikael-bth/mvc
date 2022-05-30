@@ -20,6 +20,7 @@
         "build": "encore production --progress",
         "lint": "stylelint \"**/*.scss\"",
         "style": "sass public/scss/style.scss public/css/style.css --no-source-map",
+        "style-project": "sass public/scss/project.scss public/css/project.css --no-source-map",
         "style-min": "sass public/scss/style.scss public/css/style.min.css --no-source-map --style compressed"
     }
 }

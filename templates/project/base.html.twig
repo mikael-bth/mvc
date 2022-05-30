@@ -1,0 +1,52 @@
+{# templates/base.html.twig #}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}{{ title }} | MVC{% endblock %}</title>
+        {% block stylesheets %}
+            <link rel="stylesheet" type="text/css" href="{{ asset("css/project.css") }}"/>
+        {% endblock %}
+    </head>
+    <body>
+        {% block body %}
+            <div class="header" style="background-image: url({{ asset("img/poker.jpg") }})">
+                {% block header %}
+                    <h1>MVC Kurs - Mikael Menonen</h1>
+                {% endblock %}
+                <div class="nav">
+                {% block nav %}
+                    <ul>
+                        <li><a href="{{ path('index') }}">Startsida</a></li>
+                        <li><a href="{{ path('about') }}">Om kursen</a></li>
+                        <li><a href="{{ path('report') }}">Redovisning</a></li>
+                        <li><a href="{{ path('metrics') }}">Metrics</a></li>
+                        <li><a href="{{ path('card') }}">Kortlek</a></li>
+                        <li><a href="{{ path('game') }}">Kortspelet 21</a></li>
+                        <li><a href="{{ path('library-home') }}">Biblotek</a></li>
+                        <li><a href="{{ path('project-home') }}">Projekt</a></li>
+                    </ul>
+                {% endblock %}
+                </div>
+            </div>
+
+            <div class="user">
+                <h3>
+                    <a href="{{ path('user') }}">Användare</a>
+                </h3>
+            </div>
+
+            
+
+            <div class="content">
+                {% block content %}{% endblock %}
+            </div>
+
+            <div class="footer">
+                {% block footer %}
+                    <h3>Mikael Menonen © 2022</h3>
+                {% endblock %}
+            </div>
+        {% endblock %}
+    </body>
+</html>

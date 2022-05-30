@@ -45,14 +45,22 @@
 }
 
 .poker .message {
-    position: absolute;
-    margin: 1em;
-    top: 8em;
+    position: fixed;
+    padding: 0 5em;
+    bottom: 16em;
     left: 0;
+    background-color: #aeaeae;
+    border: 1px solid;
 }
 
 .poker .message h3 {
     text-align: center;
+    color: #000;
+    text-decoration: underline;
+}
+
+.poker .message p {
+    color: #000;
 }
 
 .poker .result {
@@ -119,12 +127,30 @@
 
 .poker .card {
     text-align: center;
-    margin: 0.7em;
+    margin: 16px;
     padding-top: 1em;
     height: 2.5em;
     width: 2.5em;
     font-size: 1.5em;
-    border: 1px solid black;
+    border: 2px solid #be3b3b;
+    background-color: #fff;
+    color: black;
+}
+
+.card.unknown {
+    background-color: #be3b3b;
+    font-size: 2.5em;
+    padding-top: 0.4em;
+    height: 1.7em;
+    width: 1.5em;
+}
+
+.card.heart, .card.diamond {
+    color: red;
+}
+
+.card.spade, .card.club {
+    color: black;
 }
 
 .poker .holder {
@@ -166,6 +192,8 @@
     bottom: 5em;
     left: 0;
     margin: 0 -2px;
+    background-color: #aeaeae;
+    
 }
 
 .poker>form fieldset {
@@ -175,6 +203,7 @@
 .poker>form h3 {
     grid-column: span 4;
     margin: 1em;
+    color: #000;
 }
 
 .poker>form fieldset>input {

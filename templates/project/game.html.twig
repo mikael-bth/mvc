@@ -1,10 +1,10 @@
-{% extends "base.html.twig" %}
+{% extends 'project/base.html.twig' %}
 
 {% block content %}
 <div class="poker">
     <p>Kort kvar i leken - {{ count }}</p>
 
-    {% if message|length > 0 %}
+    {% if (message|length > 0 and roundDone == false and result == false) %}
     <div class="message">
         <h3>Latest</h3>
         <p>{{ message }}</p>
@@ -29,7 +29,7 @@
             {% if showCards %}
             <p class="{{ card.getColorName() }} card">{{ card.getAsString() }}</p>
             {% else %}
-            <p class="card">? | ?</p>
+            <p class="card unknown">♚</p>
             {% endif %}
         {% endfor %}
         </div>
