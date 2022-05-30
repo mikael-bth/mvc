@@ -43,6 +43,20 @@ class ProjectController extends AbstractController
     }
 
     /**
+     * @Route("/proj/reset", name="project-reset")
+     */
+    public function resetDB(ManagerRegistry $doctrine): Response
+    {
+        $entityManager = $doctrine->getManager();
+        $pokerGame = $entityManager->getRepository(PokerGame::class)->find(1);
+        if ($pokerGame) {
+            $pokerGame->setActiveGame(false);
+            $entityManager->flush();
+        }
+        return $this->redirectToRoute("project-about");
+    }
+
+    /**
      * @Route("/proj/game/start", name="project-game-start")
      */
     public function gameStart(

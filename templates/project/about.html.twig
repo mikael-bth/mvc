@@ -8,13 +8,16 @@
     <h3>Projektet</h3>
     <p>
         I detta projektet ska jag skapa ett poker (Texas hold-em) spel. Spelet kommer gå ut på att spela mot datorn
-        och du vinner genom att datorn för slut på pengar likvist förlorar du om du för slut på pengar. Datorn kommer
+        och du vinner genom att datorn får slut på pengar likvist förlorar du om du för slut på pengar. Datorn kommer
         kontrolleras av ett ganska simpelt program som går mycket på randomness men också lite på vilka kort datorn har.
         Det mesta av arbetet kommer vara i att se till så att spelet ska kunna bestämma vilken av datorn eller din hand som
-        är bäst vilket då kommer gå på standard poker regler och bestämmas med att tillsätta nummer värden till varje "poker
-        hand". Mycket av arbete kommer också gå på att spelet ser bra ut och är så lätt att förstå som möjligt. Detta kommer
-        jag försöka lösa genom att skriva bra css och ha bra twig templates vilket kommer förhoppningsvist se bra ut på alla
-        datorer men är tveksam ifall jag kommer kunna lösa något som fungerar bra på mobila enheter.
+        är bäst vilket då kommer gå på standard poker regler och bestämmas genom att tillsätta nummer värden till varje "poker
+        hand". Jag kommer använda en ORM databas för att spara ner hur mycket pengar datorn och spelaren har, hur mycket deras
+        aktivt bet är och den aktiva potten, liknande kommer jag också spara ner information om spelaren och datorn kort och
+        mer information om den aktiva rundan i session. Mycket av arbete kommer också gå på att spelet ser bra ut och är så
+        lätt att förstå som möjligt. Detta kommer jag försöka lösa genom att skriva bra css och ha bra twig templates vilket
+        kommer förhoppningsvist se bra ut på alla datorer men är tveksam ifall jag kommer kunna lösa något som fungerar bra
+        på mobila enheter.
     </p>
     <h3>Kodkvalite</h3>
     <p>
@@ -35,5 +38,6 @@
     <p><a href="https://www.student.bth.se/~mimn21/dbwebb-kurser/mvc/me/report/docs/metrics/">PHPMetrics</a></p>
     <p><a href="https://github.com/mikael-bth/mvc.git">Github repo</a></p>
     <p><a href="https://scrutinizer-ci.com/g/mikael-bth/mvc/?branch=main">Scrutinizer</a></p>
+    <p><a href="{{ path("project-reset") }}">Återställ poker DB</a></p>
 
 {% endblock %}
