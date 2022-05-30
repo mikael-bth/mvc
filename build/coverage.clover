@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1653936116">
-  <project timestamp="1653936116">
+<coverage generated="1653937064">
+  <project timestamp="1653937064">
     <file name="/home/snigel/dbwebb-kurser/mvc/me/report/src/Card/Card.php">
       <class name="App\Card\Card" namespace="global">
         <metrics complexity="6" methods="6" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="9" coveredstatements="9" elements="15" coveredelements="15"/>
@@ -158,11 +158,11 @@
       <line num="46" type="stmt" count="13"/>
       <line num="52" type="method" name="getName" visibility="public" complexity="1" crap="1" count="1"/>
       <line num="54" type="stmt" count="1"/>
-      <line num="61" type="method" name="hasAce" visibility="public" complexity="3" crap="3" count="3"/>
-      <line num="63" type="stmt" count="3"/>
-      <line num="64" type="stmt" count="2"/>
+      <line num="61" type="method" name="hasAce" visibility="public" complexity="3" crap="3" count="4"/>
+      <line num="63" type="stmt" count="4"/>
+      <line num="64" type="stmt" count="3"/>
       <line num="65" type="stmt" count="2"/>
-      <line num="68" type="stmt" count="1"/>
+      <line num="68" type="stmt" count="2"/>
       <metrics loc="71" ncloc="47" classes="1" methods="6" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="10" elements="16" coveredelements="16"/>
     </file>
     <file name="/home/snigel/dbwebb-kurser/mvc/me/report/src/Controller/CardAPIController.php">

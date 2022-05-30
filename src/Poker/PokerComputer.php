@@ -35,23 +35,23 @@ class PokerComputer
     public function getAction(int $state): int
     {
         if ($state == 0) {
-            if ($this->bluffValue < 40) {
+            if ($this->bluffValue <= 40) {
                 return 1;
-            } elseif ($this->bluffValue < 80) {
+            } elseif ($this->bluffValue <= 80) {
                 return 0;
             }
             return 2;
         } elseif ($state == 1) {
-            if ($this->bluffValue < 35) {
+            if ($this->bluffValue <= 35) {
                 return 1;
-            } elseif ($this->bluffValue < 75) {
+            } elseif ($this->bluffValue <= 85) {
                 return 0;
             }
             return 2;
         }
-        if ($this->bluffValue < 30) {
+        if ($this->bluffValue <= 30) {
             return 1;
-        } elseif ($this->bluffValue < 70) {
+        } elseif ($this->bluffValue <= 85) {
             return 0;
         }
         return 2;
