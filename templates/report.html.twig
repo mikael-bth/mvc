@@ -228,7 +228,58 @@
 
     <section>
     <h3>Kmom10</h3>
-    <p></p>
+    <p>
+        Jag valde projektidén Poker att implementera på min sida. Jag valde specifikt Texas hold'em eftersom det var den varianten jag har spelat innan och den jag
+        trodde jag hade bäst chans att implementera en bra version av. Jag började projektet genom att skapa landing, about och spel sidorna. Jag skapade sen en
+        klass för Poker spelet GamePoker som höll Player klasserna: player, computer och table som då ska användas för att ge kort till spelaren, datorn och bordet.
+        GamePoker hade också några mer värden som behövdes för att hålla kolla på rundan vilket var: state, playedState och message. Jag skapade sen en tabell i min
+        databas PokerGame för att hålla koll på spelarnas pengar, bet och pottens värden. Jag började sen skapa kontrollerna för sidan men höll det ganska simpelt i
+        början och implementera bara ett sätt så att GamePoker klassen sparades i session och att databas tabellen uppdateras. Jag valde att spara informationen i
+        session och databas eftersom det förhindrade att äns spel skulle försvinna ifall man refreshar och det gjorde också möjligt att använda post formulär för att
+        hämta spelar input.
+        <br>
+        Jag fortsatte sen genom att designa spelet template där jag försökte göra det så tydligt som möjligt genom att dela upp sidan i tre delar:den överste delen
+        höll datorns kort, i mitten var korten som låg på bordet och längst ner var spelarens kort. Detta gjorde jag så att korten inte var för klumpades tillsammans
+        för då hade lätt blivit förvirrande och för att detta gjorde så det såg ut som ett vanligt pokerbord. Därefter la jag också till ett formulär i vänstra hörnet
+        som användes för att hämta spelarens val.
+        <br>
+        Efter jag blev nöjd med hur sidan såg ut så började jag skapa klassen som tog mest arbete HandValue, denna klassen använde jag för att kolla ifall spelarna
+        hade någon "poker hand" alltså tillexempel triss och färg. Jag gjorde detta genom att skapa funktioner för varje "poker hand" som då returnade en bool som
+        visar ifall spelaren hade poker handen, högsta kortet/korten på poker handen och resterande hösta kort i handen ifall det fanns några. Detta gjorde jag så man
+        kunde använda dessa värden för att bestämma vinnare ifall både spelarna hade samma "poker hand". Nu i efter hand kom jag på att jag skulle gjort så att alla
+        poker hand funktioner returnar alla fem kort handen för jag såg att det kunde komma några få scenarier där en av spelarna skulle vunnit men det blir lika istället.
+        Efter detta så gjorde jag klart GamePoker klassen genom att lägga till funktionen getResults som använder HandValue för att bestämma vinnaren av rundan.
+        <br>
+        Därefter började jag implementera spelet i kontrollerna där det mesta av arbetet kom till i game play process funktionen då det var
+        mycket mer scenarier än jag tänkte mig så det blev en hel del arbetet där med men skulle ändå säga att slutresultat var värt det eftersom jag tror jag lyckades
+        få bort nästan alla buggar och så att pengarna efter varje bet blev alltid rätt vilket var det stora problemet. Därefter skapade jag en hyffsat simpel 'AI' för
+        datorn som använder mest random numbers att bestämma vad den gjorde men den går ändå lite på vilka kort den har på hand. 
+        <br>
+        Jag skapade därefter tester för klasserna GamePoker och PokerComputer där jag redan hade skapat HandValue tester när jag byggde klassen eftersom det var ett bra
+        sätt att se till att funktionerna gav rätt resultat i alla lägen. Därefter skapade jag en ny stil för projekt sidan där jag gick på poker temat och la till en
+        bakgrundsbild på ett poker bord i headern och gav jag hela body'n en bakgrundsbild på texturen av ett pokerbord vilket passade väldigt bra med headern och gjorde
+        så det verkligen såg ut som ett pokerspel på spel sidan. Stylade också till texten på sidan lite och gjorde så korten såg lite bättre ut och gav dom en cool symbol
+        som då ska vara casinots logga som då syns när kortet är "ner vänt". Skulle säga att jag blev väldigt nöjd med stylen och höjde upp sidan en hel del.
+        Tillsist så uppdatera jag phpdocs och phpmetrics, fixade till kodstilen efter phpcs och fixade koden efter linters.
+    </p>
+    <p>
+        Skulle säga att detta projektet var väldigt kul att genomföra. Det blev en hel del svårare än vad jag trodde i början men blev väldigt nöjd med resultat även om det
+        inte fungerar helt perfekt ibland. Skulle säga att den svåraste delen var att skapa funktionerna för att känna igen poker händerna men tyckte också denna delen var
+        den roligaste i uppgiften eftersom det gav en bra utmaning och det var ganska lätt att buggtesta funktionerna med hjälp av phpunit vilket gjorde också att jag inte
+        behövde skapa testerna efter. En annan del jag hade ganska mycket problem med var att skapa funktionaliteten av själva spelet eftersom det var ganska svårt att
+        föreställa sig vad ska hände efter spelaren tryckt på knapparna och det blev så klart ännu svårare när man skulle räkna med vad som hände ifall datorn bettade och
+        det blev ytterligare lite svårare ifall datorn eller spelaren bettade mer pengar än vad spelaren eller datorn hade men skulle säga att jag löste det på ett ganska
+        bra sätt utan att göra programmet för komplicerat. I helhet skulle jag säga det var ett väldigt bra och rimligt projekt för kursen och det var roligt att med. Det
+        var också bra att man fick välja själv vilket av projekten man ville göra.
+    </p>
+    <p>
+        Avslutningsvist skulle jag säga att den här kursen har varit väldigt lärorik och har varit bra sätt att lära sig skriva på ett objektorienterat sätt i PHP. Tycker
+        lektionerna har varit lätta att förstå och ifall man missat något kunde man lätt hitta videon från lektionen och kolla igen, discord chatten har också varit väldigt
+        användbar för när man kör fast på något kan man snabbt fråga i discord och få bra svar från sina klasskompisar eller lärare. Ifall jag skulle ge något förbättringsförslag
+        skulle jag nog säga att det var lite svårt att komma igång med symfony men det släppte ganska snabbt så detta var inte jätte stort problem. Blev hyfsat nöjd med hur
+        jag presterade i kursen men tror jag la ner för lite tid i kursen och då blev det lite stressigt så det kunde jag förbättrat. Skulle glatt rekommendera den här kursen
+        till någon som är intresserade av programmering då jag lärt mig en hel del och ifall jag skulle betyg sätta kursen på en skala 1-10 hade jag gett den en 8a.
+    </p>
     </section>
 
 {% endblock %}
