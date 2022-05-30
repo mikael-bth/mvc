@@ -22,9 +22,10 @@ class PokerComputer
         if ($this->getPair($handNumbers)) {
             $this->bluffValue -= 20;
         }
-        if ($this->getValue($handNumbers)) {
+        if ($this->getValue($handNumbers) > 18) {
             $this->bluffValue -= 10;
         }
+        error_log("bluff: " . strval($this->bluffValue));
     }
 
     /**
@@ -36,7 +37,7 @@ class PokerComputer
         if ($state == 0) {
             if ($this->bluffValue < 40) {
                 return 1;
-            } elseif ($this->bluffValue < 90) {
+            } elseif ($this->bluffValue < 80) {
                 return 0;
             } else {
                 return 2;
@@ -44,7 +45,7 @@ class PokerComputer
         } elseif ($state == 1) {
             if ($this->bluffValue < 35) {
                 return 1;
-            } elseif ($this->bluffValue < 85) {
+            } elseif ($this->bluffValue < 75) {
                 return 0;
             } else {
                 return 2;
@@ -52,7 +53,7 @@ class PokerComputer
         } elseif ($state > 1) {
             if ($this->bluffValue < 30) {
                 return 1;
-            } elseif ($this->bluffValue < 80) {
+            } elseif ($this->bluffValue < 70) {
                 return 0;
             } else {
                 return 2;
@@ -69,7 +70,15 @@ class PokerComputer
         if ($playerBet > $computerMoney) {
             return $computerMoney;
         }
-        $randomBet = random_int($playerBet, $computerMoney);
+        $betRange = random_int(0, 20);
+        if ($betRange <= 10 && $playerBet < $computerMoney * 0.25) {
+            $randomBet = random_int($playerBet, $computerMoney * 0.25);
+        } elseif ($betRange <= 17 && $playerBet < $computerMoney * 0.50) {
+            $randomBet = random_int($playerBet, $computerMoney * 0.50);
+        } else {
+            $randomBet = random_int($playerBet, $computerMoney);
+        }
+        error_log("bet range: " . $betRange);
         $randomBet -= $randomBet % 5;
         return $randomBet;
     }

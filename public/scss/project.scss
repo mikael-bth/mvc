@@ -18,7 +18,7 @@ body {
 }
 
 .header h1 {
-    margin: 0;
+    margin: 15px 0 0;
     color: #fff;
     text-shadow: 1px 1px 2px #000;
     -moz-text-shadow: 1px 1px 2px #000;
@@ -39,7 +39,7 @@ body {
 }
 
 .nav li {
-    height: 100%;
+    padding-top: 1em;
     float: left;
 }
 
@@ -48,9 +48,11 @@ body {
     text-align: center;
     padding: 1em;
     color: #fff;
+    border: none;
+    border-radius: 2em;
 }
 
-.nav li:hover {
+.nav li a:hover {
     background-color: rgba(0,0,0,0.5);
 }
 

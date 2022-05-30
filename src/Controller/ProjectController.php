@@ -341,8 +341,6 @@ class ProjectController extends AbstractController
                 $pokerGameUpdate->setPot($activePot + $playerNewBet);
                 $entityManager->flush();
 
-                error_log("332 - $computerBet - $playerBet : $playerNewBet");
-
                 $game->setMessage("Player call");
                 $game->setState(4);
                 $session->set("poker-game", $game);
@@ -355,8 +353,6 @@ class ProjectController extends AbstractController
             $pokerGameUpdate->setPlayerMoney($playerMoney - $playerNewBet);
             $pokerGameUpdate->setPot($activePot + $playerNewBet);
             $entityManager->flush();
-
-            error_log("362 - $computerBet - $playerBet : $playerNewBet");
 
             $game->setMessage("Player call");
             $game->setState($game->getState() + 1);
@@ -371,12 +367,13 @@ class ProjectController extends AbstractController
         error_log($computerAction);
         if ($computerAction == 0) {
             $computerNewBet = ($playerBet + $playerNewBet) - $computerBet;
-            error_log("$computerNewBet : $computerBet : $playerBet : $playerNewBet");
             $game->setMessage("Dator call");
         } elseif ($computerAction == 1) {
             $computerNewBet = $pokerComputer->getBetAmount($playerBet + $playerNewBet, $computerMoney);
             if ($computerNewBet == $computerMoney) {
                 $game->setMessage("Dator all in");
+            } elseif ($computerNewBet == $playerNewBet) {
+                $game->setMessage("Dator call");
             } else {
                 $game->setMessage("Dator bet");
             }
@@ -404,8 +401,6 @@ class ProjectController extends AbstractController
             $pokerGameUpdate->setPot($activePot + $playerNewBet + $computerNewBet - $betDiff);
             $entityManager->flush();
 
-            error_log("395 - $computerBet : $computerNewBet - $playerBet : $playerNewBet - $betDiff");
-
             $game->setMessage("Player all in");
             $game->setState(4);
             $session->set("poker-game", $game);
@@ -422,8 +417,6 @@ class ProjectController extends AbstractController
             $pokerGameUpdate->setPot($activePot + $computerNewBet + $playerNewBet - $betDiff);
             $entityManager->flush();
 
-            error_log("413 - $computerBet : $computerNewBet - $playerBet : $playerNewBet - $betDiff");
-
             $game->setMessage("Dator all in");
             $game->setState(4);
             $session->set("poker-game", $game);
@@ -431,7 +424,6 @@ class ProjectController extends AbstractController
             return $this->redirectToRoute("project-game-play");
         }
 
-        error_log("$computerBet : $computerNewBet - $playerBet : $playerNewBet");
 
         if ($playerBet + $playerNewBet == $computerBet + $computerNewBet) {
             if ($computerNewBet == $computerMoney) {
@@ -441,8 +433,6 @@ class ProjectController extends AbstractController
                 $pokerGameUpdate->setPlayerMoney($playerMoney - $playerNewBet);
                 $pokerGameUpdate->setPot($activePot + $playerNewBet + $computerNewBet);
                 $entityManager->flush();
-
-                error_log("433 - $computerBet : $computerNewBet - $playerBet : $playerNewBet");
 
                 $game->setMessage("Dator all in");
                 $game->setState(4);
@@ -457,8 +447,6 @@ class ProjectController extends AbstractController
             $pokerGameUpdate->setPot($activePot + $playerNewBet + $computerNewBet);
             $entityManager->flush();
 
-            error_log("429 - $computerBet : $computerNewBet - $playerBet : $playerNewBet");
-
             $game->setState($game->getState() + 1);
             $session->set("poker-game", $game);
 
@@ -471,8 +459,6 @@ class ProjectController extends AbstractController
         $pokerGameUpdate->setComputerMoney($computerMoney - $computerNewBet);
         $pokerGameUpdate->setPot($activePot + $playerNewBet + $computerNewBet);
         $entityManager->flush();
-
-        error_log("$computerMoney - $computerNewBet : $playerMoney - $playerNewBet");
         
         return $this->redirectToRoute("project-game-play");
     }
