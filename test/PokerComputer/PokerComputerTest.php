@@ -202,8 +202,8 @@ class PokerComputerTest extends TestCase
         $testCard1 = new Card("A", 4, '♥', 'heart');
         $testHand = [$testCard, $testCard1];
         $pokerComputer = new PokerComputer($testHand);
-        $exp = 45;
-        srand(3245);
+        $exp = 50;
+        srand(425);
         $res = $pokerComputer->getBetAmount(10, 200);
         $this->assertEquals($exp, $res);
     }

@@ -13,6 +13,7 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method PokerGame|null findOneBy(array $criteria, array $orderBy = null)
  * @method PokerGame[]    findAll()
  * @method PokerGame[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
  */
 class PokerGameRepository extends ServiceEntityRepository
 {

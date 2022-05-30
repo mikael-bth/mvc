@@ -6,7 +6,7 @@ use App\Card\Card;
 
 /**
  * Deck class
- * 
+ *
  * @property Card[] $deck
  * @property array<string> $valueList
  * @property array<int> $valueNumberList

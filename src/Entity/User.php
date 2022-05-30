@@ -6,12 +6,15 @@ use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
+/**
+ * @SuppressWarnings(PHPMD.ShortVariable)
+ */
 class User
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private $id; /** @phpstan-ignore-line */
 
     #[ORM\Column(type: 'string', length: 255)]
     private $email;

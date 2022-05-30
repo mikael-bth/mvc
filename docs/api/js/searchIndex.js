@@ -956,60 +956,60 @@ Search.appendIndex(
             "summary": "Constructor",
             "url": "classes/App-Poker-HandValue.html#method___construct"
         },                {
-            "fqsen": "\\App\\Poker\\HandValue\u003A\u003ACalculateHandValue\u0028\u0029",
-            "name": "CalculateHandValue",
+            "fqsen": "\\App\\Poker\\HandValue\u003A\u003AcalculateHandValue\u0028\u0029",
+            "name": "calculateHandValue",
             "summary": "Calculates\u0020the\u0020hands\u0020value\u0020and\u0020returns\nan\u0020array\u0020of\u0020one\u0020int\u0020and\u0020one\u0020int\u0020array\nwhere\u0020the\u0020int\u0020represent\u0020the\u0020rule\u0020value\nexampel\u003A\u0020pair\u0020is\u00201,\u0020two\u002Dpair\u0020is\u00202\nand\u0020the\u0020array\u0020represent\u0020is\u0020ints\u0020that\nrepresent\u0020the\u0020highest\u0020value\u0020cards\u0020in\u0020the\nhand\u0020used\u0020as\u0020tiebreakers.",
-            "url": "classes/App-Poker-HandValue.html#method_CalculateHandValue"
+            "url": "classes/App-Poker-HandValue.html#method_calculateHandValue"
         },                {
-            "fqsen": "\\App\\Poker\\HandValue\u003A\u003ARoyalFlush\u0028\u0029",
-            "name": "RoyalFlush",
+            "fqsen": "\\App\\Poker\\HandValue\u003A\u003AroyalFlush\u0028\u0029",
+            "name": "royalFlush",
             "summary": "Returns\u0020true\u0020if\u0020hand\u0020is\nroyal\u002Dflush\u0020else\u0020false.",
-            "url": "classes/App-Poker-HandValue.html#method_RoyalFlush"
+            "url": "classes/App-Poker-HandValue.html#method_royalFlush"
         },                {
-            "fqsen": "\\App\\Poker\\HandValue\u003A\u003AStraightFlush\u0028\u0029",
-            "name": "StraightFlush",
+            "fqsen": "\\App\\Poker\\HandValue\u003A\u003AstraightFlush\u0028\u0029",
+            "name": "straightFlush",
             "summary": "Returns\u0020an\u0020array\u0020with\u0020an\nbool\u0020that\u0020says\u0020if\u0020the\u0020hand\u0020is\nan\u0020straight\u002Dflush\u0020and\u0020an\u0020int\u0020that\nis\u0020the\u0020highest\u0020card\u0020of\u0020the\u0020straight\u002Dflush,\n0\u0020if\u0020bool\u0020is\u0020false.",
-            "url": "classes/App-Poker-HandValue.html#method_StraightFlush"
+            "url": "classes/App-Poker-HandValue.html#method_straightFlush"
         },                {
-            "fqsen": "\\App\\Poker\\HandValue\u003A\u003AFourOfAKind\u0028\u0029",
-            "name": "FourOfAKind",
+            "fqsen": "\\App\\Poker\\HandValue\u003A\u003AfourOfAKind\u0028\u0029",
+            "name": "fourOfAKind",
             "summary": "Returns\u0020an\u0020array\u0020with\u0020an\nbool\u0020that\u0020says\u0020if\u0020the\u0020hand\u0020is\nan\u0020four\u0020of\u0020a\u0020kind\u0020and\u0020an\u0020int\u0020that\nis\u0020the\u0020card\u0020value\u0020of\u0020the\u0020fours,\n0\u0020if\u0020bool\u0020is\u0020false.",
-            "url": "classes/App-Poker-HandValue.html#method_FourOfAKind"
+            "url": "classes/App-Poker-HandValue.html#method_fourOfAKind"
         },                {
-            "fqsen": "\\App\\Poker\\HandValue\u003A\u003AFullHouse\u0028\u0029",
-            "name": "FullHouse",
+            "fqsen": "\\App\\Poker\\HandValue\u003A\u003AfullHouse\u0028\u0029",
+            "name": "fullHouse",
             "summary": "Returns\u0020an\u0020array\u0020with\u0020an\nbool\u0020that\u0020says\u0020if\u0020the\u0020hand\u0020is\nan\u0020full\u0020house\u0020and\u0020an\u0020int\u0020that\nis\u0020the\u0020card\u0020value\u0020of\u0020the\u0020threes,\n0\u0020if\u0020bool\u0020is\u0020false.",
-            "url": "classes/App-Poker-HandValue.html#method_FullHouse"
+            "url": "classes/App-Poker-HandValue.html#method_fullHouse"
         },                {
-            "fqsen": "\\App\\Poker\\HandValue\u003A\u003AFlush\u0028\u0029",
-            "name": "Flush",
+            "fqsen": "\\App\\Poker\\HandValue\u003A\u003Aflush\u0028\u0029",
+            "name": "flush",
             "summary": "Returns\u0020an\u0020array\u0020with\u0020an\nbool\u0020that\u0020says\u0020if\u0020the\u0020hand\u0020is\nan\u0020flush\u0020and\u0020an\u0020int\u0020that\nis\u0020the\u0020highest\u0020card\u0020of\u0020the\u0020flush,\n0\u0020if\u0020bool\u0020is\u0020false.",
-            "url": "classes/App-Poker-HandValue.html#method_Flush"
+            "url": "classes/App-Poker-HandValue.html#method_flush"
         },                {
-            "fqsen": "\\App\\Poker\\HandValue\u003A\u003AStraight\u0028\u0029",
-            "name": "Straight",
+            "fqsen": "\\App\\Poker\\HandValue\u003A\u003Astraight\u0028\u0029",
+            "name": "straight",
             "summary": "Returns\u0020an\u0020array\u0020with\u0020an\nbool\u0020that\u0020says\u0020if\u0020the\u0020hand\u0020is\nan\u0020straight\u0020and\u0020an\u0020int\u0020that\nis\u0020the\u0020highest\u0020card\u0020of\u0020the\u0020straight,\n0\u0020if\u0020bool\u0020is\u0020false.",
-            "url": "classes/App-Poker-HandValue.html#method_Straight"
+            "url": "classes/App-Poker-HandValue.html#method_straight"
         },                {
-            "fqsen": "\\App\\Poker\\HandValue\u003A\u003AThreeOfAKind\u0028\u0029",
-            "name": "ThreeOfAKind",
+            "fqsen": "\\App\\Poker\\HandValue\u003A\u003AthreeOfAKind\u0028\u0029",
+            "name": "threeOfAKind",
             "summary": "Returns\u0020an\u0020array\u0020with\u0020an\nbool\u0020that\u0020says\u0020if\u0020the\u0020hand\u0020is\nan\u0020three\u0020of\u0020a\u0020kind\u0020and\u0020an\u0020int\u0020that\nis\u0020the\u0020card\u0020value\u0020of\u0020the\u0020threes,\nand\u0020two\u0020ints\u0020that\u0020is\u0020the\u0020two\u0020biggest\nremainings\u0020cards.",
-            "url": "classes/App-Poker-HandValue.html#method_ThreeOfAKind"
+            "url": "classes/App-Poker-HandValue.html#method_threeOfAKind"
         },                {
-            "fqsen": "\\App\\Poker\\HandValue\u003A\u003ATwoPair\u0028\u0029",
-            "name": "TwoPair",
+            "fqsen": "\\App\\Poker\\HandValue\u003A\u003AtwoPair\u0028\u0029",
+            "name": "twoPair",
             "summary": "Returns\u0020an\u0020array\u0020with\u0020an\nbool\u0020that\u0020says\u0020if\u0020the\u0020hand\u0020is\na\u0020two\u0020of\u0020a\u0020kind\u0020and\u0020an\u0020int\u0020that\nis\u0020high\u0020card\u0020of\u0020the\u0020bigger\u0020pair,\nand\u0020an\u0020int\u0020that\u0020is\u0020the\u0020high\u0020card\nof\u0020the\u0020smaller\u0020pair\u0020and\u0020an\u0020int\u0020that\nis\u0020the\u0020biggest\u0020remaining\u0020card\nints\u0020are\u00200\u0020if\u0020bool\u0020is\u0020false.",
-            "url": "classes/App-Poker-HandValue.html#method_TwoPair"
+            "url": "classes/App-Poker-HandValue.html#method_twoPair"
         },                {
-            "fqsen": "\\App\\Poker\\HandValue\u003A\u003APair\u0028\u0029",
-            "name": "Pair",
+            "fqsen": "\\App\\Poker\\HandValue\u003A\u003Apair\u0028\u0029",
+            "name": "pair",
             "summary": "Returns\u0020an\u0020array\u0020with\u0020an\nbool\u0020that\u0020says\u0020if\u0020the\u0020hand\u0020is\na\u0020two\u0020of\u0020a\u0020kind\u0020and\u0020an\u0020int\u0020that\nis\u0020high\u0020card\u0020of\u0020the\u0020pair,\nand\u0020an\u0020array\u0020of\u0020three\u0020ints\u0020that\nis\u0020the\u0020biggest\u0020remaining\u0020cards.",
-            "url": "classes/App-Poker-HandValue.html#method_Pair"
+            "url": "classes/App-Poker-HandValue.html#method_pair"
         },                {
-            "fqsen": "\\App\\Poker\\HandValue\u003A\u003AHighCards\u0028\u0029",
-            "name": "HighCards",
+            "fqsen": "\\App\\Poker\\HandValue\u003A\u003AhighCards\u0028\u0029",
+            "name": "highCards",
             "summary": "Returns\u0020an\u0020array\u0020ints\u0020of\u0020the\u0020five\nhighest\u0020cards.",
-            "url": "classes/App-Poker-HandValue.html#method_HighCards"
+            "url": "classes/App-Poker-HandValue.html#method_highCards"
         },                {
             "fqsen": "\\App\\Poker\\HandValue\u003A\u003A\u0024handNumbers",
             "name": "handNumbers",
@@ -1046,10 +1046,10 @@ Search.appendIndex(
             "summary": "Returns\u0020a\u0020random\u0020bet\namount\u0020for\u0020the\u0020computer",
             "url": "classes/App-Poker-PokerComputer.html#method_getBetAmount"
         },                {
-            "fqsen": "\\App\\Poker\\PokerComputer\u003A\u003AgetPair\u0028\u0029",
-            "name": "getPair",
+            "fqsen": "\\App\\Poker\\PokerComputer\u003A\u003AisPair\u0028\u0029",
+            "name": "isPair",
             "summary": "Returns\u0020true\u0020if\u0020hand\u0020has\u0020an\u0020pair.",
-            "url": "classes/App-Poker-PokerComputer.html#method_getPair"
+            "url": "classes/App-Poker-PokerComputer.html#method_isPair"
         },                {
             "fqsen": "\\App\\Poker\\PokerComputer\u003A\u003AgetValue\u0028\u0029",
             "name": "getValue",

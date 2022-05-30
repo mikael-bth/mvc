@@ -3,7 +3,7 @@
 namespace App\Card;
 
 /**
- * @property Card[] $hand 
+ * @property Card[] $hand
  */
 class Player
 {

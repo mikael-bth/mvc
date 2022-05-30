@@ -103,13 +103,15 @@ class GameController extends AbstractController
 
         if ($stand) {
             $game->playerStay();
-        } else {
-            $deck = $game->drawPlayer($deck);
+            $session->set("game", $game);
+            return $this->redirectToRoute("game-play", array('status' => 0));
         }
-        
+
+        $deck = $game->drawPlayer($deck);
+
         $session->set("deck", $deck->getDeck());
         $session->set("game", $game);
-        
+
         return $this->redirectToRoute("game-play", array('status' => 0));
     }
 

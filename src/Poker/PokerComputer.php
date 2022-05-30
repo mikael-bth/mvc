@@ -20,7 +20,7 @@ class PokerComputer
 
         $this->bluffValue = rand(0, 100);
 
-        if ($this->getPair($handNumbers)) {
+        if ($this->isPair($handNumbers)) {
             $this->bluffValue -= 20;
         }
         if ($this->getValue($handNumbers) > 18) {
@@ -39,26 +39,22 @@ class PokerComputer
                 return 1;
             } elseif ($this->bluffValue < 80) {
                 return 0;
-            } else {
-                return 2;
             }
+            return 2;
         } elseif ($state == 1) {
             if ($this->bluffValue < 35) {
                 return 1;
             } elseif ($this->bluffValue < 75) {
                 return 0;
-            } else {
-                return 2;
             }
-        } elseif ($state > 1) {
-            if ($this->bluffValue < 30) {
-                return 1;
-            } elseif ($this->bluffValue < 70) {
-                return 0;
-            } else {
-                return 2;
-            }
+            return 2;
         }
+        if ($this->bluffValue < 30) {
+            return 1;
+        } elseif ($this->bluffValue < 70) {
+            return 0;
+        }
+        return 2;
     }
 
     /**
@@ -71,13 +67,14 @@ class PokerComputer
             return $computerMoney;
         }
         $betRange = rand(0, 20);
+
+        $randomBet = rand($playerBet, $computerMoney);
         if ($betRange <= 10 && $playerBet < $computerMoney * 0.25) {
-            $randomBet = rand($playerBet, $computerMoney * 0.25);
+            $randomBet = rand($playerBet, intval($computerMoney * 0.25));
         } elseif ($betRange <= 17 && $playerBet < $computerMoney * 0.50) {
-            $randomBet = rand($playerBet, $computerMoney * 0.50);
-        } else {
-            $randomBet = rand($playerBet, $computerMoney);
+            $randomBet = rand($playerBet, intval($computerMoney * 0.50));
         }
+
         $randomBet -= $randomBet % 5;
         return $randomBet;
     }
@@ -87,14 +84,16 @@ class PokerComputer
      * @param int[] $hand
      * @return bool $isPair
      */
-    private function getPair(array $hand): bool
+    private function isPair(array $hand): bool
     {
         $numberCount = array_count_values($hand);
-        $pair = array_filter($numberCount, function($value) {
+        $pair = array_filter($numberCount, function ($value) {
             return $value == 2;
         });
 
-        if (count($pair) < 1) return false;
+        if (count($pair) < 1) {
+            return false;
+        }
 
         return true;
     }
@@ -108,5 +107,4 @@ class PokerComputer
     {
         return array_sum($hand);
     }
-
 }

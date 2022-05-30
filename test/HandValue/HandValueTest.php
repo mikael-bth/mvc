@@ -40,7 +40,7 @@ class HandValueTest extends TestCase
         $testCard3, $testCard4, $testCard5,
         $testCard6, $testCard7];
         $handValue = new HandValue($testHand);
-        $this->assertEquals([9], $handValue->CalculateHandValue());
+        $this->assertEquals([9, [14]], $handValue->calculateHandValue());
     }
 
     /**
@@ -61,7 +61,7 @@ class HandValueTest extends TestCase
         $testCard3, $testCard4, $testCard5,
         $testCard6, $testCard7];
         $handValue = new HandValue($testHand);
-        $this->assertEquals([8, [13]], $handValue->CalculateHandValue());
+        $this->assertEquals([8, [13]], $handValue->calculateHandValue());
     }
     
     /**
@@ -82,7 +82,7 @@ class HandValueTest extends TestCase
         $testCard3, $testCard4, $testCard5,
         $testCard6, $testCard7];
         $handValue = new HandValue($testHand);
-        $this->assertEquals([7, [14, 10]], $handValue->CalculateHandValue());
+        $this->assertEquals([7, [14, 10]], $handValue->calculateHandValue());
     }
 
     /**
@@ -103,7 +103,7 @@ class HandValueTest extends TestCase
         $testCard3, $testCard4, $testCard5,
         $testCard6, $testCard7];
         $handValue = new HandValue($testHand);
-        $this->assertEquals([6, [10, 14]], $handValue->CalculateHandValue());
+        $this->assertEquals([6, [10, 14]], $handValue->calculateHandValue());
     }
 
     /**
@@ -124,7 +124,7 @@ class HandValueTest extends TestCase
         $testCard3, $testCard4, $testCard5,
         $testCard6, $testCard7];
         $handValue = new HandValue($testHand);
-        $this->assertEquals([5, [10]], $handValue->CalculateHandValue());
+        $this->assertEquals([5, [10]], $handValue->calculateHandValue());
     }
 
     /**
@@ -145,7 +145,7 @@ class HandValueTest extends TestCase
         $testCard3, $testCard4, $testCard5,
         $testCard6, $testCard7];
         $handValue = new HandValue($testHand);
-        $this->assertEquals([4, [10]], $handValue->CalculateHandValue());
+        $this->assertEquals([4, [10]], $handValue->calculateHandValue());
     }
 
     /**
@@ -166,7 +166,7 @@ class HandValueTest extends TestCase
         $testCard3, $testCard4, $testCard5,
         $testCard6, $testCard7];
         $handValue = new HandValue($testHand);
-        $this->assertEquals([3, [10, 14, 9]], $handValue->CalculateHandValue());
+        $this->assertEquals([3, [10, 14, 9]], $handValue->calculateHandValue());
     }
 
     /**
@@ -187,7 +187,7 @@ class HandValueTest extends TestCase
         $testCard3, $testCard4, $testCard5,
         $testCard6, $testCard7];
         $handValue = new HandValue($testHand);
-        $this->assertEquals([2, [10, 8, 6]], $handValue->CalculateHandValue());
+        $this->assertEquals([2, [10, 8, 6]], $handValue->calculateHandValue());
     }
 
     /**
@@ -208,7 +208,7 @@ class HandValueTest extends TestCase
         $testCard3, $testCard4, $testCard5,
         $testCard6, $testCard7];
         $handValue = new HandValue($testHand);
-        $this->assertEquals([1, [10, 8, 7, 6]], $handValue->CalculateHandValue());
+        $this->assertEquals([1, [10, 8, 7, 6]], $handValue->calculateHandValue());
     }
 
     /**
@@ -229,7 +229,7 @@ class HandValueTest extends TestCase
         $testCard3, $testCard4, $testCard5,
         $testCard6, $testCard7];
         $handValue = new HandValue($testHand);
-        $this->assertEquals([0, [14, 12, 11, 9, 6]], $handValue->CalculateHandValue());
+        $this->assertEquals([0, [14, 12, 11, 9, 6]], $handValue->calculateHandValue());
     }
 
 }
